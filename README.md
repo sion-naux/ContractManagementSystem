@@ -1,6 +1,6 @@
 # ContractManagementSystem
 数据库合同管理作业，我们爱冯妈！
-## 配置数据库连接
+### 配置数据库连接
 在 database/dbConfig.java 中：  
 ~~~
 public static String jdbcUrl = "<你的jdbcUrl>" + "?useUnicode=true&characterEncoding=utf8";  
@@ -13,3 +13,7 @@ public static String jdbcUrl = "jdbc:mysql://localhost:3306/wjh" + "?useUnicode=
 public static String userName = "root";
 public static String userPwd = "123456";
 ~~~
+### jsp/servelet 参考资料
+https://www.cnblogs.com/cynchanpin/p/7151912.html  
+#### 遇到“Error:(5, 50) java: 程序包javax.servlet.http不存在”解决办法  
+File -> Project Structure -> Libraries -> 点"+"号，添加tomcat的lib路径（例如"C:\Program Files\tomcat8\lib"）

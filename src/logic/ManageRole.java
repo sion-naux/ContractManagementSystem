@@ -26,8 +26,7 @@ public class ManageRole {
 
         String insert_sql = "INSERT INTO role " + "VALUES ('" + role.getName() + "','" + role.getDescription() + "','" + role.getFunctions() + "')";
         JDBCFacade jdbc = new JDBCFacade();
-        jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
-
+        jdbc.open("com.mysql.jdbc.Driver", dbConfig.jdbcUrl, dbConfig.userName, dbConfig.userPwd);
         int insert_result = jdbc.executeUpdate(insert_sql);
         if (insert_result == 0) {
             System.out.println("Failed to create.");
@@ -45,8 +44,7 @@ public class ManageRole {
 
         String insert_sql = "INSERT INTO role " + "VALUES ('" + name + "','" + description + "','" + functions + "')";
         JDBCFacade jdbc = new JDBCFacade();
-        jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
-
+        jdbc.open("com.mysql.jdbc.Driver", dbConfig.jdbcUrl, dbConfig.userName, dbConfig.userPwd);
         int insert_result = jdbc.executeUpdate(insert_sql);
         if (insert_result == 0) {
             System.out.println("创建失败。请检查您的输入");
@@ -63,8 +61,7 @@ public class ManageRole {
     public Role searchRole(String roleName) {
         String query_sql = "SELECT * FROM role WHERE NAME='" + roleName + "'";
         JDBCFacade jdbc = new JDBCFacade();
-        jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
-
+        jdbc.open("com.mysql.jdbc.Driver", dbConfig.jdbcUrl, dbConfig.userName, dbConfig.userPwd);
         Role query_role = new Role();
 
         try {
@@ -93,8 +90,7 @@ public class ManageRole {
     public boolean deleteRole(String to_delete_name) {
         String delete_sql = "DELETE FROM role WHERE NAME='" + to_delete_name + "'";
         JDBCFacade jdbc = new JDBCFacade();
-        jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
-
+        jdbc.open("com.mysql.jdbc.Driver", dbConfig.jdbcUrl, dbConfig.userName, dbConfig.userPwd);
         int delete_result = jdbc.executeUpdate(delete_sql);
         if (delete_result == 0) {
             System.out.println("删除角色：" + to_delete_name + "失败");
@@ -110,8 +106,7 @@ public class ManageRole {
     //input：roleName,新功能 output：更改结果
     public boolean changeRole(String to_change_name, String newFunc) {
         JDBCFacade jdbc = new JDBCFacade();
-        jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
-
+        jdbc.open("com.mysql.jdbc.Driver", dbConfig.jdbcUrl, dbConfig.userName, dbConfig.userPwd);
         String update_sql = "UPDATE role SET functions='" + newFunc + "' WHERE name='" + to_change_name + "'";
         if (jdbc.executeUpdate(update_sql) == 1) {
             System.out.println("更改成功！");
@@ -127,8 +122,7 @@ public class ManageRole {
     //input：oldName output：更改结果
     public boolean changeRoleName(String old_name, String new_name) {
         JDBCFacade jdbc = new JDBCFacade();
-        jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
-
+        jdbc.open("com.mysql.jdbc.Driver", dbConfig.jdbcUrl, dbConfig.userName, dbConfig.userPwd);
         String update_sql = "UPDATE role SET name='" + new_name + "' WHERE name='" + old_name + "'";
         if (jdbc.executeUpdate(update_sql) == 1) {
             System.out.println("更改成功！");
