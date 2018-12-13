@@ -15,5 +15,6 @@ public static String userPwd = "123456";
 ~~~
 ### jsp/servelet 参考资料
 https://www.cnblogs.com/cynchanpin/p/7151912.html  
+知乎的这个也不错:https://www.zhihu.com/question/269916070/answer/390319061
 #### 遇到“Error:(5, 50) java: 程序包javax.servlet.http不存在”解决办法  
 File -> Project Structure -> Libraries -> 点"+"号，添加tomcat的lib路径（例如"C:\Program Files\tomcat8\lib"）
