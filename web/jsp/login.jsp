@@ -56,7 +56,6 @@
             <form action="" method="post" class="sec_login_error">
                 <div id="username">
                     <label>帐 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</label>
-                    <%--<input type="text" id="sec_username_hide" name="username" placeholder="输入帐号" nullmsg="帐号不能为空！" datatype="s6-18" errormsg="帐号范围在6~18个字符之间！" sucmsg="帐号验证通过！"/>--%>
                     <input type="text" id="sec_username_hide" name="username" placeholder="输入帐号" nullmsg="帐号不能为空！"
                            errormsg="帐号范围在6~18个字符之间！" sucmsg="帐号验证通过！"/>
 
@@ -116,7 +115,7 @@ Do.ready('form', function() {
         $tab_li.hover(function () {
             $(this).addClass('selected').siblings().removeClass('selected');
             var index = $tab_li.index(this);
-            $('div.tab_box > div').eq(login).show().siblings().hide();
+            $('div.tab_box > div').eq(index).show().siblings().hide();
         });
     });
 </script>

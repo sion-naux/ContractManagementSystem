@@ -6,6 +6,16 @@
     <welcome-file-list>
         <welcome-file>jsp/login.jsp</welcome-file>
     </welcome-file-list>
+
+    <resource-ref>
+        <description>mysql数据库连接池</description>
+        <res-ref-name>jdbc/mysqlds</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
+
+
     <servlet>
         <servlet-name>login</servlet-name>
         <servlet-class>servlet.LoginServlet</servlet-class>
@@ -22,4 +32,23 @@
         <servlet-name>index</servlet-name>
         <url-pattern>/index</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>approval</servlet-name>
+        <servlet-class>servlet.ApprovalServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>approval</servlet-name>
+        <url-pattern>/approvel</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>draft</servlet-name>
+        <servlet-class>servlet.DraftServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>draft</servlet-name>
+        <url-pattern>/draft</url-pattern>
+    </servlet-mapping>
+
 </web-app>
