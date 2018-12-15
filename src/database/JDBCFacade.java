@@ -4,7 +4,7 @@ import java.nio.Buffer;
 import java.sql.*;
 import java.util.Dictionary;
 
-import com.mysql.jdbc.Driver;
+
 /**
  * Created by Jiqing on 2016/10/18.
  */
@@ -17,7 +17,6 @@ public class JDBCFacade {
 
     public void open(String driver,String jdbcUrl,String userName,String userPwd) {
         try {
-
             Class.forName(driver).newInstance();
             String str = getPwd(pwdFileName);
             conn = DriverManager.getConnection(jdbcUrl,userName,str);

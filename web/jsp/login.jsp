@@ -29,8 +29,8 @@
             <div class="stu_error_box"></div>
             <form action="<%=request.getContextPath()%>/login" method="post" class="stu_login_error">
                 <div id="username">
-                    <label>帐&nbsp;&nbsp;&nbsp;号：</label>
-                    <input type="text" id="stu_username_hide" name="username" placeholder="输入帐号" nullmsg="帐号不能为空！"
+                    <label>用户名：</label>
+                    <input type="text" id="stu_username_hide" name="username" placeholder="输入用户名" nullmsg="帐号不能为空！"
                            datatype="s6-18" errormsg="帐号范围在6~18个字符之间！" sucmsg="帐号验证通过！"/>
                     <!--ajaxurl="demo/valid.jsp"-->
                 </div>
@@ -44,6 +44,14 @@
                     <input type="checkbox" name="remember">
                     <label>记住密码</label>
                 </div>
+                <div style="color: red">
+                    <% String s = (String) request.getAttribute("error");
+                        if (s != null) {
+                            out.print(s);
+                        }
+                    %>
+                </div>
+
                 <div id="login">
                     <button type="submit">登录</button>
                 </div>
@@ -52,26 +60,35 @@
         <!-- 学生登录结束-->
         <!-- 注册开始-->
         <div class="hide">
-            <div class="sec_error_box"></div>
-            <form action="" method="post" class="sec_login_error">
-                <div id="username">
-                    <label>帐 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</label>
-                    <input type="text" id="sec_username_hide" name="username" placeholder="输入帐号" nullmsg="帐号不能为空！"
+            <%--<div class="sec_error_box"></div>--%>
+            <form action="<%=request.getContextPath()%>/register" method="post" class="sec_login_error">
+                <div id="username2">
+                    <label>&nbsp;&nbsp;&nbsp; 用户名：</label>
+                    <input type="text" id="sec_username_hide" name="username" placeholder="输入用户名" nullmsg="帐号不能为空！"
                            errormsg="帐号范围在6~18个字符之间！" sucmsg="帐号验证通过！"/>
 
                     <!--ajaxurl="demo/valid.jsp"-->
                 </div>
-                <div id="password">
+                <div id="password2">
                     <label>密 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-                    <input type="password" id="sec_password_hide" name="password" placeholder="输入密码" nullmsg="密码不能为空！"
+                    <input type="password" id="sec_password_hide2" name="password" placeholder="输入密码" nullmsg="密码不能为空！"
                            datatype="*6-16" errormsg="密码范围在6~16位之间！" sucmsg="密码验证通过！"/>
                 </div>
-                <div id="password">
+                <div id="password3">
                     <label>确认密码：</label>
-                    <input type="password" id="sec_password_hide" name="password" placeholder="确认密码" nullmsg="密码不能为空！"
+                    <input type="password" id="sec_password_hide3" name="password_confirm" placeholder="确认密码"
+                           nullmsg="密码不能为空！"
                            datatype="*6-16" errormsg="密码范围在6~16位之间！" sucmsg="密码验证通过！"/>
                 </div>
-                <div id="login">
+                <div style="color: red">
+                    <% String s2 = (String) request.getAttribute("register_error");
+                        if (s2 != null) {
+                            out.print(s2);
+                        }
+                        out.print(s2);
+                    %>
+                </div>
+                <div id="register">
                     <button type="submit">注册</button>
                 </div>
             </form>
