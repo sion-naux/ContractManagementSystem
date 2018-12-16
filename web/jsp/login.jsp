@@ -60,7 +60,7 @@
         <!-- 学生登录结束-->
         <!-- 注册开始-->
         <div class="hide">
-            <%--<div class="sec_error_box"></div>--%>
+            <div class="sec_error_box"></div>
             <form action="<%=request.getContextPath()%>/register" method="post" class="sec_login_error">
                 <div id="username2">
                     <label>&nbsp;&nbsp;&nbsp; 用户名：</label>
@@ -85,7 +85,7 @@
                         if (s2 != null) {
                             out.print(s2);
                         }
-                        out.print(s2);
+
                     %>
                 </div>
                 <div id="register">
@@ -198,14 +198,14 @@ Do.ready('form', function() {
                 $(this).val('输入密码');
             }
         });
-        $(".sec_login_error").Validform({
-            tiptype: function (msg, o, cssctl) {
-                var objtip = $(".sec_error_box");
-                cssctl(objtip, o.type);
-                objtip.text(msg);
-            },
-            ajaxPost: true
-        });
+        // $(".sec_login_error").Validform({
+        //     tiptype: function (msg, o, cssctl) {
+        //         var objtip = $(".sec_error_box");
+        //         cssctl(objtip, o.type);
+        //         objtip.text(msg);
+        //     },
+        //     ajaxPost: true
+        // });
     });
 </script>
 <script type="text/javascript">
