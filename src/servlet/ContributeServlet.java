@@ -2,6 +2,7 @@ package servlet;
 
 
 import entity.ContributeContract;
+import logic.Allocate;
 import logic.Verify;
 import logic.contract_drag;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,14 +29,19 @@ public class ContributeServlet extends HttpServlet {
         for (int i = 0; i < countersign_list.length; i++) {
             System.out.println(countersign_list[i]);
         }
+        Allocate.allocateCountersign(contract_num, Arrays.asList(countersign_list));//分配会签人
+
         System.out.println("待审批名单:");
         for (int i = 0; i < approval_list.length; i++) {
             System.out.println(approval_list[i]);
         }
+        Allocate.allocateExamine(contract_num, Arrays.asList(approval_list));//分配审批人
+
         System.out.println("待签订名单:");
         for (int i = 0; i < sign_list.length; i++) {
             System.out.println(sign_list[i]);
         }
+        Allocate.allocateSign(contract_num, Arrays.asList(sign_list));
 
         doGet(req, resp);
 

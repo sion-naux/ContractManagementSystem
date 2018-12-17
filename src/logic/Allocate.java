@@ -28,7 +28,7 @@ public class Allocate {
         try {
             String select_sql = "SELECT FROM rights WHERE userName ='" + user.getName() + "'";
             JDBCFacade jdbc = new JDBCFacade();
-            jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
+            jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
 
 
             ResultSet rs = jdbc.executeQuery(select_sql);
@@ -56,7 +56,7 @@ public class Allocate {
         try {
             String select_sql = "SELECT name FROM role.";
             JDBCFacade jdbc = new JDBCFacade();
-            jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
+            jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
 
             ResultSet rs = jdbc.executeQuery(select_sql);
 
@@ -82,7 +82,7 @@ public class Allocate {
         //获取权限配置信息，存入权限表
         String insert_sql = "INSERT INTO right(userName,roleName) VALUES('" + userName + "','" + roleName + "')";
         JDBCFacade jdbc = new JDBCFacade();
-        jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
+        jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
 
         int insert_result = jdbc.executeUpdate(insert_sql);
         if (insert_result == 0) {
@@ -99,7 +99,7 @@ public class Allocate {
     //界面上显示出已有权限角色名，以供选择
     public static List<List> showWhoHasRights() {
         JDBCFacade jdbc = new JDBCFacade();
-        jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
+        jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
 
         List<List> persons_hasRights = new ArrayList();//所有
         List<String> countersign_roles = new ArrayList();//会签
@@ -167,7 +167,7 @@ public class Allocate {
     //input：合同编号，分配用户名 output：分配结果
     public static boolean allocateCountersign(String contractID, List<String> usersName) {
         JDBCFacade jdbc = new JDBCFacade();
-        jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
+        jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
 
         for (int i = 0; i < usersName.size(); i++) {
             String insert_sql = "INSERT INTO contract_process(conNum,type,state,userName) values('" + contractID + "',1,0,'" + usersName.get(i) + "')";
@@ -187,7 +187,7 @@ public class Allocate {
     //input：合同编号，分配用户名 output：分配结果
     public static boolean allocateExamine(String contractID, List<String> usersName) {
         JDBCFacade jdbc = new JDBCFacade();
-        jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
+        jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
 
         for (int i = 0; i < usersName.size(); i++) {
             String insert_sql = "INSERT INTO contract_process(conNum,type,state,userName) values('" + contractID + "',2,0,'" + usersName.get(i) + "')";
@@ -207,7 +207,7 @@ public class Allocate {
     //input：合同编号，分配用户名 output：分配结果
     public static boolean allocateSign(String contractID, List<String> usersName) {
         JDBCFacade jdbc = new JDBCFacade();
-        jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
+        jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
 
         for (int i = 0; i < usersName.size(); i++) {
             String insert_sql = "INSERT INTO contract_process(conNum,type,state,userName) values('" + contractID + "',3,0,'" + usersName.get(i) + "')";
