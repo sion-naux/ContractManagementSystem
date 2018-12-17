@@ -47,7 +47,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>approval</servlet-name>
-        <url-pattern>/approvel</url-pattern>
+        <url-pattern>/approval</url-pattern>
     </servlet-mapping>
 
     <servlet>

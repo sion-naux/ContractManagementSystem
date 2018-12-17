@@ -15,7 +15,7 @@ public class ApprovalServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        response.sendRedirect(request.getContextPath() + "jsp/approvel.jsp");
+        response.sendRedirect(request.getContextPath() + "jsp/approval.jsp");
 
     }
 }
