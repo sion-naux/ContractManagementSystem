@@ -20,117 +20,206 @@ import java.util.List;
  */
 
 public class Allocate {
-    //创建角色（创建role类的方式）
-    //通过创建role类 新增角色到数据库
-    public boolean createRole_byclass(Role role) {
-
-        String insert_sql = "INSERT INTO role " + "VALUES ('" + role.getName() + "','" + role.getDescription() + "','" + role.getFunctions() + "')";
-        JDBCFacade jdbc = new JDBCFacade();
-        jdbc.open("com.mysql.jdbc.Driver", dbConfig.jdbcUrl, dbConfig.userName, dbConfig.userPwd);
-        int insert_result = jdbc.executeUpdate(insert_sql);
-        if (insert_result == 0) {
-            System.out.println("Failed to create.");
-            return false;
-        } else {
-            System.out.println("Success to create.");
-            return true;
-        }
-
-    }
-
-    //创建角色(给好输入的方式)
-    //input：角色名，描述，功能    //output：创建结果
-    public boolean createRole(String name, String description, String functions) {
-
-        String insert_sql = "INSERT INTO role " + "VALUES ('" + name + "','" + description + "','" + functions + "')";
-        JDBCFacade jdbc = new JDBCFacade();
-        jdbc.open("com.mysql.jdbc.Driver", dbConfig.jdbcUrl, dbConfig.userName, dbConfig.userPwd);
-        int insert_result = jdbc.executeUpdate(insert_sql);
-        if (insert_result == 0) {
-            System.out.println("创建失败。请检查您的输入");
-            return false;
-        } else {
-            System.out.println("创建成功！");
-            return true;
-        }
-
-    }
-
-    //查询角色
-    //input：角色名  //output：Role类
-    public Role searchRole(String roleName) {
-        String query_sql = "SELECT * FROM role WHERE NAME='" + roleName + "'";
-        JDBCFacade jdbc = new JDBCFacade();
-        jdbc.open("com.mysql.jdbc.Driver", dbConfig.jdbcUrl, dbConfig.userName, dbConfig.userPwd);
-        Role query_role = new Role();
-
+    //管理员界面
+    //get role information from TABLE RIGHT
+    //显示用户已有角色
+    public String getRoleName(User user, String userName) {
+        user.setName(userName);
         try {
-            ResultSet rs = jdbc.executeQuery(query_sql);
+            String select_sql = "SELECT FROM rights WHERE userName ='" + user.getName() + "'";
+            JDBCFacade jdbc = new JDBCFacade();
+            jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
 
-            if (!rs.next()) {
-                System.out.println("角色不存在。请查询您的输入！");
-            } else {
-                query_role.setName(roleName);
-                System.out.println("查询角色名：" + query_role.getName());
-                String desc = rs.getString("description");
-                query_role.setDescription(desc);
-                System.out.println("描述：" + query_role.getDescription());
-                String functions = rs.getString("functions");
-                query_role.setFunctions(functions);
-                System.out.println("功能：" + query_role.getFunctions());
-            }
-            return query_role;
+
+            ResultSet rs = jdbc.executeQuery(select_sql);
+            //     while (rs.next()) {
+            String roleName = rs.getString("roleName");
+            System.out.println("用户：" + userName + " 当前角色为：" + roleName);
+            //          this.role.setName(roleName);
+            return roleName;
+            //System.out.println(name);
+            //   }
         } catch (Exception e) {
             e.printStackTrace();
-            return new Role();
-        }
-    }
-
-    //删除角色
-    public boolean deleteRole(String to_delete_name) {
-        String delete_sql = "DELETE FROM role WHERE NAME='" + to_delete_name + "'";
-        JDBCFacade jdbc = new JDBCFacade();
-        jdbc.open("com.mysql.jdbc.Driver", dbConfig.jdbcUrl, dbConfig.userName, dbConfig.userPwd);
-        int delete_result = jdbc.executeUpdate(delete_sql);
-        if (delete_result == 0) {
-            System.out.println("删除角色：" + to_delete_name + "失败");
-            return false;
-        } else {
-            System.out.println("删除角色：" + to_delete_name + "成功；删除 " + delete_sql + " 行");
-            return true;
-        }
-    }
-
-    //更改角色
-    //更改对应角色具有的功能（权限）
-    //input：roleName,新功能 output：更改结果
-    public boolean changeRole(String to_change_name, String newFunc) {
-        JDBCFacade jdbc = new JDBCFacade();
-        jdbc.open("com.mysql.jdbc.Driver", dbConfig.jdbcUrl, dbConfig.userName, dbConfig.userPwd);
-        String update_sql = "UPDATE role SET functions='" + newFunc + "' WHERE name='" + to_change_name + "'";
-        if (jdbc.executeUpdate(update_sql) == 1) {
-            System.out.println("更改成功！");
-            return true;
-        } else {
-            System.out.println("抱歉，该角色不存在");
-            return false;
+            return e.getMessage();
         }
 
     }
 
-    //更改角色名
-    //input：oldName output：更改结果
-    public boolean changeRoleName(String old_name, String new_name) {
-        JDBCFacade jdbc = new JDBCFacade();
-        jdbc.open("com.mysql.jdbc.Driver", dbConfig.jdbcUrl, dbConfig.userName, dbConfig.userPwd);
-        String update_sql = "UPDATE role SET name='" + new_name + "' WHERE name='" + old_name + "'";
-        if (jdbc.executeUpdate(update_sql) == 1) {
-            System.out.println("更改成功！");
-            return true;
-        } else {
-            System.out.println("抱歉，该角色不存在");
-            return false;
+    //管理员授权
+    //获取角色列表
+    //input：无  output：当前所有角色名组成的list
+    public static List<String> showRole() {
+        //界面上显示出已有权限角色名，以供选择
+        List<String> roles = new ArrayList();
+
+        try {
+            String select_sql = "SELECT name FROM role.";
+            JDBCFacade jdbc = new JDBCFacade();
+            jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
+
+            ResultSet rs = jdbc.executeQuery(select_sql);
+
+            System.out.println("所有可选角色有：");
+            while (rs.next()) {
+                String roleName = rs.getString("name");
+                roles.add(roleName);
+                //return roleName;
+                System.out.println(roleName);
+            }
+            return roles;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return roles;//list is empty
         }
 
+    }
+
+    //为当前用户分配角色（权限）
+    //input：用户名、角色名 output：分配结果
+    public static boolean allocateRole(String userName, String roleName) {
+        //查询用户权限列表信息
+        //获取权限配置信息，存入权限表
+        String insert_sql = "INSERT INTO right(userName,roleName) VALUES('" + userName + "','" + roleName + "')";
+        JDBCFacade jdbc = new JDBCFacade();
+        jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
+
+        int insert_result = jdbc.executeUpdate(insert_sql);
+        if (insert_result == 0) {
+            System.out.println("分配角色：" + roleName + " 给用户：" + userName + "，失败");
+            return false;
+        } else {
+            System.out.println("分配角色：" + roleName + " 给用户：" + userName + "，成功");
+            return true;
+        }
+
+    }
+
+    //数据验证：显示具有对应资格的用户姓名
+    //界面上显示出已有权限角色名，以供选择
+    public static List<List> showWhoHasRights() {
+        JDBCFacade jdbc = new JDBCFacade();
+        jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
+
+        List<List> persons_hasRights = new ArrayList();//所有
+        List<String> countersign_roles = new ArrayList();//会签
+        List<String> examine_roles = new ArrayList();//审批
+        List<String> sign_roles = new ArrayList();//签订
+
+        //会签
+        try {
+            String select_sql =
+                    "SELECT userName FROM rights WHERE roleName IN(SELECT name FROM role WHERE functions LIKE '%会签合同%')";
+
+            System.out.println("会签可分配人有：");
+
+            ResultSet rs = jdbc.executeQuery(select_sql);
+            while (rs.next()) {
+                String sign_person = rs.getString("userName");
+                countersign_roles.add(sign_person);
+                System.out.println(sign_person);
+            }
+            persons_hasRights.add(countersign_roles);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //审批
+        try {
+            String select_sql =
+                    "SELECT userName FROM rights WHERE roleName IN(SELECT name FROM role WHERE functions LIKE '%审批合同%')";
+
+            System.out.println("审批可分配人有：");
+
+            ResultSet rs = jdbc.executeQuery(select_sql);
+            while (rs.next()) {
+                String examin_person = rs.getString("userName");
+                examine_roles.add(examin_person);
+                System.out.println(examin_person);
+            }
+            persons_hasRights.add(examine_roles);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //签订
+        try {
+            String select_sql =
+                    "SELECT userName FROM rights WHERE roleName IN(SELECT name FROM role WHERE functions LIKE '%签订合同%')";
+
+            System.out.println("签订可分配人有：");
+
+            ResultSet rs = jdbc.executeQuery(select_sql);
+            while (rs.next()) {
+                String sign_person = rs.getString("userName");
+                sign_roles.add(sign_person);
+                System.out.println(sign_person);
+            }
+            persons_hasRights.add(sign_roles);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return persons_hasRights;
+    }
+
+    //分配会签人
+    //input：合同编号，分配用户名 output：分配结果
+    public static boolean allocateCountersign(String contractID, List<String> usersName) {
+        JDBCFacade jdbc = new JDBCFacade();
+        jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
+
+        for (int i = 0; i < usersName.size(); i++) {
+            String insert_sql = "INSERT INTO contract_process(conNum,type,state,userName) values('" + contractID + "',1,0,'" + usersName.get(i) + "')";
+            int insert_result = jdbc.executeUpdate(insert_sql);
+            if (insert_result == 0) {
+                System.out.println("分配会签权给：" + usersName.get(i) + "失败");
+                return false;
+            } else {
+                System.out.println("分配会签权给：" + usersName.get(i) + "成功");
+            }
+        }
+
+        return true;
+    }
+
+    //分配审批人
+    //input：合同编号，分配用户名 output：分配结果
+    public static boolean allocateExamine(String contractID, List<String> usersName) {
+        JDBCFacade jdbc = new JDBCFacade();
+        jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
+
+        for (int i = 0; i < usersName.size(); i++) {
+            String insert_sql = "INSERT INTO contract_process(conNum,type,state,userName) values('" + contractID + "',2,0,'" + usersName.get(i) + "')";
+            int insert_result = jdbc.executeUpdate(insert_sql);
+            if (insert_result == 0) {
+                System.out.println("分配审批权给：" + usersName.get(i) + "失败");
+                return false;
+            } else {
+                System.out.println("分配审批权给：" + usersName.get(i) + "成功");
+            }
+        }
+
+        return true;
+    }
+
+    //分配签订人
+    //input：合同编号，分配用户名 output：分配结果
+    public static boolean allocateSign(String contractID, List<String> usersName) {
+        JDBCFacade jdbc = new JDBCFacade();
+        jdbc.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8", "root", "982625frx");
+
+        for (int i = 0; i < usersName.size(); i++) {
+            String insert_sql = "INSERT INTO contract_process(conNum,type,state,userName) values('" + contractID + "',3,0,'" + usersName.get(i) + "')";
+            int insert_result = jdbc.executeUpdate(insert_sql);
+            if (insert_result == 0) {
+                System.out.println("分配签订权给：" + usersName.get(i) + "失败");
+                return false;
+            } else {
+                System.out.println("分配签订权给：" + usersName.get(i) + "成功");
+            }
+        }
+
+        return true;
     }
 }

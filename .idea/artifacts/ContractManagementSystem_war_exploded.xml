@@ -6,6 +6,7 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="ContractManagementSystem" />
+          <element id="dir-copy" path="/usr/local/apache-tomcat-9.0.13" />
         </element>
       </element>
     </root>
