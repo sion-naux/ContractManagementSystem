@@ -109,7 +109,7 @@
               <span class="nav-link">合同审批</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="approvel.jsp">
+              <a class="nav-link" href="approval.jsp">
                 <span class="menu-title">待审批合同</span>
                 <i class="icon-flag menu-icon"></i>
               </a>
@@ -297,6 +297,15 @@
 
 
   <script src="../static/js/clickevent.js"></script>
+
+  <script>
+    function updateTable(){
+
+    }
+
+
+  </script>
+
   <!-- End custom js for this page-->
 </body>
 
