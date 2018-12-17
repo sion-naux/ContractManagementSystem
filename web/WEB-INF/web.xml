@@ -40,6 +40,14 @@
         <servlet-name>index</servlet-name>
         <url-pattern>/index</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>contribute</servlet-name>
+        <servlet-class>servlet.ContributeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>contribute</servlet-name>
+        <url-pattern>/contribute</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>approval</servlet-name>

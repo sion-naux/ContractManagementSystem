@@ -1,5 +1,6 @@
 package servlet;
 
+import entity.CurrentUser;
 import logic.Verify;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName = req.getParameter("username");
+        userName=new String(userName.getBytes("ISO-8859-1"),"utf-8");
         String password = req.getParameter("password");
         System.err.println("username got:" + userName + " ; " + "password got" + password);
 
@@ -30,6 +32,7 @@ public class LoginServlet extends HttpServlet {
             System.out.println("密码错误！");
             req.getRequestDispatcher("jsp/login.jsp").forward(req, resp);
         } else if (register_result == 1) {
+            CurrentUser.username = userName;
             resp.sendRedirect(req.getContextPath() + "/index");
         } else {
             req.setAttribute("error", "登陆失败！");

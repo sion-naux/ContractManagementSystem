@@ -2,13 +2,13 @@
       return false;
     }
     
-    var btn = document.getElementById("test1");
+    // var btn = document.getElementById("test1");
     var shadow = document.getElementById("black-shadow");
     var dialog = document.getElementById("dialogBox");
-    btn.onclick = function(){
-      ShowHide(true,shadow,dialog);
-      return false;
-    }
+    // btn.onclick = function(){
+    //   ShowHide(true,shadow,dialog);
+    //   return false;
+    // }
     
     shadow.onclick = function(){
       ShowHide(false,shadow,dialog);

@@ -14415,7 +14415,7 @@ pre {
         border-right: none; }
   .dashboard-curved-chart .float-chart {
     /* height: 250px; */
-    height: 600px; 
+    height: 600px;
     width: calc(100% + 21px);
     margin-left: -11px;
     margin-right: -11px;
@@ -15612,7 +15612,7 @@ dl {
 }
 
   * {box-sizing: border-box;}
-  
+
   div.search {
     padding: 30px 0;
     text-align: center;
@@ -15632,7 +15632,7 @@ dl {
     color: #9E9C9C;
   }
   .d1 button {
-    position: absolute; 
+    position: absolute;
     top: 0;
     right: 0px;
     width: 42px;
@@ -15654,11 +15654,12 @@ dl {
 
 	ul,li{list-style: none;}
 	.container-selector{
+        overflow-y: scroll;
 		width:560px;
 		height: 400px;
 		padding: 40px 20px;
 		background: #fff;
-		border-radius: 4px;	
+		border-radius: 4px;
 		position: absolute;
 		left: 50%;
 		top: 50%;
@@ -15680,8 +15681,8 @@ dl {
 		display: block;
 		cursor: pointer;
   }
-  
 
 
-    
+
+
 /*# sourceMappingURL=maps/style.css.map */
