@@ -25,6 +25,10 @@ File -> Project Structure -> Libraries -> 点"+"号，添加tomcat的lib路径�
 ##### 小记：
 ##### 如果idea提示找不到com.mysql.jdbc.Driver,试将连接jar包放入tomcat中的lib目录下
 
+### 2018.12.18更新
+#### 新增会签以及查看已会签合同功能
+#### PS：ajax真好用
+
 ### 建表命令行
 - user
 ~~~
