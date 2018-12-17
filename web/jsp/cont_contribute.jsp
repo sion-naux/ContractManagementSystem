@@ -294,13 +294,17 @@
                     <%--</div>--%>
 
                     <div class="container-selector">
-                        <form action="<%=request.getContextPath()%>/contribute" method="post">
-                            <%--<a id="contract_num_a" style="display:none;"></a>--%>
-                                <a id="contract_num_a"></a>
+                        <form id="myForm" action="<%=request.getContextPath()%>/contribute" method="post">
+                            <input type="hidden" name="countersign_list" value="" id="countersign_list_Array">
+                            <input type="hidden" name="approval_list" value="" id="approval_list_Array">
+                            <input type="hidden" name="sign_list" value="" id="sign_list_Array">
+                            <input type="hidden" name="contract_num_a" value="" id="contract_num_a">
+
+                                <%--<a id="contract_num_a"></a>--%>
                             <div>
                                 <p>分配会签人</p>
                             </div>
-                            <ul class="data-list" id="lList1" style="overflow-y: scroll;height: 250px;">
+                            <ul class="data-list" id="lList1"  style="overflow-y: scroll;height: 250px;">
                                 <%
                                     String contribute_person_list = (String) request.getAttribute("contribute_person_list");
                                     if (contribute_person_list != null) {
@@ -312,7 +316,7 @@
                                 <button type="button" name="button" id="add1">添 加</button>
                                 <button type="button" name="button" id="remove1">删 除</button>
                             </div>
-                            <ul class="data-list" id="rList1" style="height: 250px">
+                            <ul class="data-list" id="rList1"  style="height: 250px">
 
                             </ul>
                             <div>
@@ -329,7 +333,7 @@
                                 <button type="button" name="button" id="add2">添 加</button>
                                 <button type="button" name="button" id="remove2">删 除</button>
                             </div>
-                            <ul class="data-list" id="rList2" style="height: 250px">
+                            <ul class="data-list" id="rList2"  style="height: 250px">
 
                             </ul>
                             <div>
@@ -346,17 +350,19 @@
                                 <button type="button" name="button" id="add3">添 加</button>
                                 <button type="button" name="button" id="remove3">删 除</button>
                             </div>
-                            <ul class="data-list" id="rList3" style="height: 250px">
+                            <ul class="data-list" id="rList3"  style="height: 250px">
 
                             </ul>
 
 
                             </ul>
                             <div style="text-align: center">
-                                <button type="submit" class="btn btn-success mr-2">提交</button>
-                                <button class="btn btn-light">取消</button>
+                                <button type="button" class="btn btn-success mr-2" onclick="submit_contribute();">提交</button>
+
+                                <button type="button" class="btn btn-light" onclick="ShowHide(false,shadow,dialog);return false;">取消</button>
                             </div>
                         </form>
+
                     </div>
 
                 </div>

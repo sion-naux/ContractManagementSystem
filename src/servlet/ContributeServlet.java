@@ -17,8 +17,28 @@ import java.util.List;
 public class ContributeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String contract_num = new String(req.getParameter("contract_num_a").getBytes("ISO-8859-1"), "utf-8");
+        String countersign_list[] = new String(req.getParameter("countersign_list").getBytes("ISO-8859-1"), "utf-8").split(",");
+        String approval_list[] = new String(req.getParameter("approval_list").getBytes("ISO-8859-1"), "utf-8").split(",");
+        String sign_list[] = new String(req.getParameter("sign_list").getBytes("ISO-8859-1"), "utf-8").split(",");
 
-        super.doPost(req, resp);
+        System.out.println("合同编号:" + contract_num);
+        System.out.println("待会签名单:");
+        for (int i = 0; i < countersign_list.length; i++) {
+            System.out.println(countersign_list[i]);
+        }
+        System.out.println("待审批名单:");
+        for (int i = 0; i < approval_list.length; i++) {
+            System.out.println(approval_list[i]);
+        }
+        System.out.println("待签订名单:");
+        for (int i = 0; i < sign_list.length; i++) {
+            System.out.println(sign_list[i]);
+        }
+
+        doGet(req, resp);
+
+
     }
 
     private String get_contribute_contract_list() {
