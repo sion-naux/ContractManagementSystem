@@ -56,7 +56,6 @@
         </ul>
       </div>
     </nav>    <!-- partial -->
-    <!-- partial -->
     <div class="container-fluid page-body-wrapper" style="margin-top: -9px;">
       <div class="row row-offcanvas row-offcanvas-right">
         <!-- partial:partials/_sidebar.html -->
@@ -108,13 +107,13 @@
               <span class="nav-link">合同审批</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="approvel.jsp">
+              <a class="nav-link" href="approval.jsp">
                 <span class="menu-title">待审批合同</span>
                 <i class="icon-flag menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="over_approvel.jsp">
+              <a class="nav-link" href="over_approval.jsp">
                 <span class="menu-title">已审批合同</span>
                 <i class="icon-flag menu-icon"></i>
               </a>
@@ -183,7 +182,7 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                           <div class="card-body">
-                            <h4 class="card-title">已审批合同</h4>
+                            <h4 class="card-title">未审批合同</h4>
 
                             <table class="table table-hover">
                               <thead>
@@ -199,31 +198,31 @@
                                   <td>Jacob</td>
                                   <td>123</td>
                                   <td>28.76%</td>
-                                  <td><button class="btn btn-info">查看</button> <button class="btn btn-info">删除</button></td>
+                                  <td><button class="btn btn-info" id="test1">审批</button></td>
                                 </tr>
                                 <tr>
                                     <td>Jacob</td>
                                     <td>123</td>
                                     <td>28.76%</td>
-                                    <td><button class="btn btn-info">查看</button> <button class="btn btn-info">删除</button></td>
+                                    <td><button class="btn btn-info" >审批</button></td>
                                 </tr>
                                 <tr>
                                   <td>John</td>
                                   <td>Premier</td>
                                   <td>28.76%</td>
-                                  <td><button class="btn btn-info">查看</button> <button class="btn btn-info">删除</button></td>
+                                  <td><button class="btn btn-info" >审批</button></td>
                                 </tr>
                                 <tr>
                                   <td>Peter</td>
                                   <td>After effects</td>
                                   <td>28.76%</td>
-                                    <td><button class="btn btn-info">查看</button> <button class="btn btn-info">删除</button></td>
+                                    <td><button class="btn btn-info" >审批</button></td>
                                 </tr>
                                 <tr>
                                   <td>Dave</td>
                                   <td>53275535</td>
                                   <td>28.76%</td>
-                                  <td><button class="btn btn-info">查看</button> <button class="btn btn-info">删除</button></td>
+                                  <td><button class="btn btn-info" >审批</button></td>
                                 </tr>
                               </tbody>
                             </table>
@@ -246,6 +245,36 @@
                 <div id="curved-line-chart" class="float-chart float-chart-mini"></div>
               </div>
             </div>
+            <div class="black-shadow" id="black-shadow" tabindex=-1>
+              </div>
+              <div class="dialog" id="dialogBox">
+                <div class="col-12 stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">审批合同</h4>
+                      <span class="card-description col-sm-3">
+                        合同名称
+                      </span>
+                      <span class="card-description">
+                        合同名称
+                      </span>
+                      <form class="forms-sample">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label card-description">审批意见</label>
+                          <div class="col-sm-9">
+                              <textarea class="form-control" rows="5" placeholder="输入审批意见"></textarea>
+                          </div>
+                        </div>
+                        <div style="text-align: center">
+                        <button type="submit" class="btn btn-success mr-2" >同意</button>
+                        <button type="submit" class="btn btn-success mr-2" >拒绝</button>
+                        <button class="btn btn-light">取消</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
           </div>
 
        
@@ -268,6 +297,7 @@
   <!-- container-scroller -->
 
 
+  <script src="../static/js/clickevent.js"></script>
 </body>
 
 </html>

@@ -207,7 +207,7 @@
                 <span class="nav-link">合同审批</span>
               </li>
             <li class="nav-item">
-              <a class="nav-link" href="approvel.jsp">
+              <a class="nav-link" href="approval.jsp">
                 <span class="menu-title">待审批合同</span>
                 <i class="icon-flag menu-icon"></i>
               </a>
@@ -252,7 +252,7 @@
               <span class="nav-link">系统管理</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="cont_contribute.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/contribute">
                 <span class="menu-title">分配合同</span>
                 <i class="icon-pie-chart menu-icon"></i>
               </a>
@@ -305,16 +305,16 @@
                       <p class="card-description">
                         填写信息
                       </p>
-                      <form class="forms-sample">
+                      <form class="forms-sample" action="<%=request.getContextPath()%>/draft" method="post">
                         <div class="form-group">
-                          <input type="text" class="form-control" placeholder="合同名称">
+                          <input type="text" class="form-control" name="contract_name" placeholder="合同名称">
                         </div>
                         <div class="form-group">
-                          <input type="text" class="form-control" placeholder="客户">
+                          <input type="text" class="form-control" name="contract_customer" placeholder="客户">
                         </div>
                         <div class="form-group">
                             <div class='input-group date' >
-                                <input type='text' class="form-control" id='datetimepicker3' placeholder="开始时间"/>
+                                <input type='text' class="form-control" name="contract_begin_time" id='datetimepicker3' placeholder="开始时间"/>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
                                 </span>
                             </div>
@@ -331,7 +331,7 @@
                         </script>
                         <div class="form-group">
                             <div class='input-group date' >
-                                <input type='text' class="form-control" id='datetimepicker4' placeholder="结束时间"/>
+                                <input type='text' class="form-control" name="contract_end_time" id='datetimepicker4' placeholder="结束时间"/>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
                                 </span>
                             </div>
@@ -349,16 +349,16 @@
                         <div class="form-group" style="margin-top: 20px">
                           <input type="file" name="img[]" class="file-upload-default">
                           <div class="input-group col-xs-12">
-                            <input type="text" class="form-control file-upload-info" disabled placeholder="上传附件">
+                            <input type="text" class="form-control file-upload-info" name="option_name" disabled placeholder="上传附件">
                             <span class="input-group-append">
                               <input class="dropfy" type="file">
                             </span>
                           </div>
                         </div>
                         <div class="form-group">
-                          <textarea class="form-control" rows="5" placeholder="合同内容"></textarea>
+                          <textarea class="form-control" rows="5" name="contract_content" placeholder="合同内容"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-success mr-2" id="draft" onclick="load();return false">确认</button>
+                        <button type="submit" class="btn btn-success mr-2" id="draft" >确认</button>
                         <button class="btn btn-light">取消</button>
                       </form>
                     </div>

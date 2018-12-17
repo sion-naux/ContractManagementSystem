@@ -27,7 +27,8 @@ public class Verify<main> {
         try {
             jdbc = new JDBCFacade();
             //打开数据库连接
-            jdbc.open("com.mysql.jdbc.Driver", dbConfig.jdbcUrl, dbConfig.userName, dbConfig.userPwd);
+            jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
+
             String sql = "select * from user where name='" + user.getName() + "'";
             System.out.println("生成的sql语句是：" + sql);
             ResultSet rs = jdbc.executeQuery(sql);
@@ -48,6 +49,7 @@ public class Verify<main> {
             jdbc.close();
         } catch (Exception e) {
             e.printStackTrace();
+            flag = -5;
         }
 
 
@@ -67,7 +69,7 @@ public class Verify<main> {
         try {
             jdbc = new JDBCFacade();
             //打开数据库连接
-            jdbc.open("com.mysql.jdbc.Driver", dbConfig.jdbcUrl, dbConfig.userName, dbConfig.userPwd);
+            jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
             String sql = "select * from user where name='" + user.getName() + "'";
             System.out.println("生成的sql语句是:" + sql);
             ResultSet rs = jdbc.executeQuery(sql);
@@ -103,7 +105,7 @@ public class Verify<main> {
         try {
             jdbc = new JDBCFacade();
             //打开数据库连接
-            jdbc.open("com.mysql.jdbc.Driver", dbConfig.jdbcUrl, dbConfig.userName, dbConfig.userPwd);
+            jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
             String sql = "delete from user where name='" + username + "'";
             System.out.println("生成的sql语句是:" + sql);
             flag = jdbc.executeUpdate(sql);
@@ -127,7 +129,7 @@ public class Verify<main> {
         try {
             jdbc = new JDBCFacade();
             //打开数据库连接
-            jdbc.open("com.mysql.jdbc.Driver", dbConfig.jdbcUrl, dbConfig.userName, dbConfig.userPwd);
+            jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
             String sql = "select * from user where name='" + user.getName() + "'";
             System.out.println("生成的sql语句是：" + sql);
             ResultSet rs = jdbc.executeQuery(sql);
@@ -155,7 +157,7 @@ public class Verify<main> {
         try {
             jdbc = new JDBCFacade();
             //打开数据库连接
-            jdbc.open("com.mysql.jdbc.Driver", dbConfig.jdbcUrl, dbConfig.userName, dbConfig.userPwd);
+            jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
             String sql = "select * from user";
             System.out.println("生成的sql语句是：" + sql);
             ResultSet rs = jdbc.executeQuery(sql);

@@ -4,8 +4,18 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <welcome-file-list>
-        <welcome-file>jsp/login.jsp</welcome-file>
+        <welcome-file>/jsp/login.jsp</welcome-file>
     </welcome-file-list>
+
+    <resource-ref>
+        <description>mysql数据库连接池</description>
+        <res-ref-name>jdbc/mysqlds</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
+
+
     <servlet>
         <servlet-name>login</servlet-name>
         <servlet-class>servlet.LoginServlet</servlet-class>
@@ -15,6 +25,14 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>register</servlet-name>
+        <servlet-class>servlet.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>register</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>index</servlet-name>
         <servlet-class>servlet.IndexServlet</servlet-class>
     </servlet>
@@ -22,4 +40,40 @@
         <servlet-name>index</servlet-name>
         <url-pattern>/index</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>contribute</servlet-name>
+        <servlet-class>servlet.ContributeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>contribute</servlet-name>
+        <url-pattern>/contribute</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>approval</servlet-name>
+        <servlet-class>servlet.ApprovalServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>approval</servlet-name>
+        <url-pattern>/approval</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>draft</servlet-name>
+        <servlet-class>servlet.DraftServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>draft</servlet-name>
+        <url-pattern>/draft</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>sign</servlet-name>
+        <servlet-class>servlet.SignServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sign</servlet-name>
+        <url-pattern>/countersign</url-pattern>
+    </servlet-mapping>
+
 </web-app>
