@@ -189,6 +189,7 @@
                       <table class="table table-hover">
                         <thead>
                           <tr>
+                            <th>合同编号</th>
                             <th>合同名称</th>
                             <th>起草日期</th>
                             <th>起草人</th>
@@ -196,36 +197,42 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>Jacob</td>
-                            <td>123</td>
-                            <td>28.76%</td>
-                            <td><button class="btn btn-info">查看</button> <button class="btn btn-info">删除</button></td>
-                          </tr>
-                          <tr>
-                            <td>Jacob</td>
-                            <td>123</td>
-                            <td>28.76%</td>
-                            <td><button class="btn btn-info">查看</button> <button class="btn btn-info">删除</button></td>
-                          </tr>
-                          <tr>
-                            <td>John</td>
-                            <td>Premier</td>
-                            <td>28.76%</td>
-                            <td><button class="btn btn-info">查看</button> <button class="btn btn-info">删除</button></td>
-                          </tr>
-                          <tr>
-                            <td>Peter</td>
-                            <td>After effects</td>
-                            <td>28.76%</td>
-                            <td><button class="btn btn-info">查看</button> <button class="btn btn-info">删除</button></td>
-                          </tr>
-                          <tr>
-                            <td>Dave</td>
-                            <td>53275535</td>
-                            <td>28.76%</td>
-                            <td><button class="btn btn-info">查看</button> <button class="btn btn-info">删除</button></td>
-                          </tr>
+                          <%--<tr>--%>
+                            <%--<td>Jacob</td>--%>
+                            <%--<td>123</td>--%>
+                            <%--<td>28.76%</td>--%>
+                            <%--<td><button class="btn btn-info">查看</button> <button class="btn btn-info">删除</button></td>--%>
+                          <%--</tr>--%>
+                          <%--<tr>--%>
+                            <%--<td>Jacob</td>--%>
+                            <%--<td>123</td>--%>
+                            <%--<td>28.76%</td>--%>
+                            <%--<td><button class="btn btn-info">查看</button> <button class="btn btn-info">删除</button></td>--%>
+                          <%--</tr>--%>
+                          <%--<tr>--%>
+                            <%--<td>John</td>--%>
+                            <%--<td>Premier</td>--%>
+                            <%--<td>28.76%</td>--%>
+                            <%--<td><button class="btn btn-info">查看</button> <button class="btn btn-info">删除</button></td>--%>
+                          <%--</tr>--%>
+                          <%--<tr>--%>
+                            <%--<td>Peter</td>--%>
+                            <%--<td>After effects</td>--%>
+                            <%--<td>28.76%</td>--%>
+                            <%--<td><button class="btn btn-info">查看</button> <button class="btn btn-info">删除</button></td>--%>
+                          <%--</tr>--%>
+                          <%--<tr>--%>
+                            <%--<td>Dave</td>--%>
+                            <%--<td>53275535</td>--%>
+                            <%--<td>28.76%</td>--%>
+                            <%--<td><button class="btn btn-info">查看</button> <button class="btn btn-info">删除</button></td>--%>
+                          <%--</tr>--%>
+                          <%
+                            String countersign_contract_list = (String) request.getAttribute("get_contract_list");
+                            if (countersign_contract_list != null) {
+                              out.print(countersign_contract_list);
+                            }
+                          %>
                         </tbody>
                       </table>
                     </div>
@@ -248,7 +255,45 @@
               </div>
             </div>
           </div>
+          <div class="black-shadow" id="black-shadow" tabindex=-1>
+          </div>
+          <div class="dialog" id="dialogBox">
+            <div class="col-12 stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">会签合同</h4>
+                  <div>
+                      <span class="card-description col-sm-3">
+                        合同编号
+                      </span>
+                    <span class="card-description" id="box_cont_num">
 
+                      </span>
+                  </div>
+                  <div>
+                      <span class="card-description col-sm-3">
+                        合同名称
+                      </span>
+                    <span class="card-description" id="box_cont_name">
+
+                      </span>
+                  </div>
+                  <form class="forms-sample">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label card-description">会签意见</label>
+                      <div class="col-sm-9">
+                        <textarea class="form-control" rows="5" id="sign_message" placeholder="输入会签意见" disabled></textarea>
+                      </div>
+                    </div>
+                    <div style="text-align: center">
+                      <button class="btn btn-success mr-2">确定</button>
+                      <button class="btn btn-light">取消</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </div>
         <!-- content-wrapper ends -->
@@ -268,6 +313,10 @@
   </div>
   <!-- container-scroller -->
 
+  <script src="../static/js/jQuery1.7.js"></script>
+  <script src="../static/js/clickevent.js"></script>
+
 </body>
+
 
 </html>

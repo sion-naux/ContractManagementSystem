@@ -93,7 +93,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="over_countersign.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/over_countersign">
                 <span class="menu-title">已会签合同</span>
                 <i class="icon-grid menu-icon"></i>
               </a>
