@@ -20,7 +20,83 @@ https://www.cnblogs.com/cynchanpin/p/7151912.html
 #### 遇到“Error:(5, 50) java: 程序包javax.servlet.http不存在”解决办法  
 File -> Project Structure -> Libraries -> 点"+"号，添加tomcat的lib路径（例如"C:\Program Files\tomcat8\lib"）
 
-###2018.12.15更新
-#####更改密码获取方式，不再直接将密码写入程序
-#####小记：
-#####如果idea提示找不到com.mysql.jdbc.Driver,试将连接jar包放入tomcat中的lib目录下
+### 2018.12.15更新
+##### 更改密码获取方式，不再直接将密码写入程序
+##### 小记：
+##### 如果idea提示找不到com.mysql.jdbc.Driver,试将连接jar包放入tomcat中的lib目录下
+
+### 建表命令行
+- user
+~~~
+CREATE TABLE `user` (
+  `name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `password` varchar(20) NOT NULL,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+~~~
+- role
+~~~
+CREATE TABLE `role` (
+  `name` varchar(40) NOT NULL,
+  `descrption` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `functions` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+~~~
+
+- right
+~~~
+CREATE TABLE `right` (
+  `userName` varchar(20) NOT NULL,
+  `roleName` varchar(20) NOT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`userName`,`roleName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+~~~
+
+- function
+~~~
+CREATE TABLE `right` (
+  `userName` varchar(20) NOT NULL,
+  `roleName` varchar(20) NOT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`userName`,`roleName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+~~~
+
+- contract
+~~~
+CREATE TABLE `contract` (
+  `num` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `name` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `customer` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `beginTime` datetime DEFAULT NULL,
+  `endTime` datetime DEFAULT NULL,
+  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci,
+  `userName` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (`num`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+~~~
+
+- contract_process
+~~~
+CREATE TABLE `contract_process` (
+  `conNum` varchar(20) DEFAULT NULL,
+  `type` int(11) DEFAULT NULL,
+  `state` int(11) DEFAULT NULL,
+  `userName` varchar(40) DEFAULT NULL,
+  `content` text,
+  `time` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+~~~
+
+- contract_state
+~~~
+CREATE TABLE `contract_state` (
+  `num` varchar(20) NOT NULL,
+  `type` int(11) DEFAULT NULL,
+  `time` datetime DEFAULT NULL,
+  PRIMARY KEY (`num`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+~~~
+
