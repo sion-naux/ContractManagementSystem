@@ -188,6 +188,7 @@
                             <table class="table table-hover">
                               <thead>
                                 <tr>
+                                  <th>合同编号</th>
                                   <th>合同名称</th>
                                   <th>起草日期</th>
                                   <th>起草人</th>
@@ -195,36 +196,42 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr>
-                                  <td>Jacob</td>
-                                  <td>123</td>
-                                  <td>28.76%</td>
-                                  <td><button class="btn btn-info" id="test1">会签</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Jacob</td>
-                                    <td>123</td>
-                                    <td>28.76%</td>
-                                    <td><button class="btn btn-info">会签</button></td>
-                                </tr>
-                                <tr>
-                                  <td>John</td>
-                                  <td>Premier</td>
-                                  <td>28.76%</td>
-                                  <td><button class="btn btn-info" >会签</button></td>
-                                </tr>
-                                <tr>
-                                  <td>Peter</td>
-                                  <td>After effects</td>
-                                  <td>28.76%</td>
-                                    <td><button class="btn btn-info" >会签</button></td>
-                                </tr>
-                                <tr>
-                                  <td>Dave</td>
-                                  <td>53275535</td>
-                                  <td>28.76%</td>
-                                  <td><button class="btn btn-info" >会签</button></td>
-                                </tr>
+                                <%--<tr>--%>
+                                  <%--<td>Jacob</td>--%>
+                                  <%--<td>123</td>--%>
+                                  <%--<td>28.76%</td>--%>
+                                  <%--<td><button class="btn btn-info" onclick="countersign(this)">会签</button></td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                    <%--<td>Jacob</td>--%>
+                                    <%--<td>123</td>--%>
+                                    <%--<td>28.76%</td>--%>
+                                    <%--<td><button class="btn btn-info">会签</button></td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                  <%--<td>John</td>--%>
+                                  <%--<td>Premier</td>--%>
+                                  <%--<td>28.76%</td>--%>
+                                  <%--<td><button class="btn btn-info" >会签</button></td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                  <%--<td>Peter</td>--%>
+                                  <%--<td>After effects</td>--%>
+                                  <%--<td>28.76%</td>--%>
+                                    <%--<td><button class="btn btn-info" >会签</button></td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                  <%--<td>Dave</td>--%>
+                                  <%--<td>53275535</td>--%>
+                                  <%--<td>28.76%</td>--%>
+                                  <%--<td><button class="btn btn-info" >会签</button></td>--%>
+                                <%--</tr>--%>
+                                <%
+                                  String countersign_contract_list = (String) request.getAttribute("get_contract_list");
+                                  if (countersign_contract_list != null) {
+                                    out.print(countersign_contract_list);
+                                  }
+                                %>
                               </tbody>
                             </table>
                           </div>
@@ -257,7 +264,7 @@
                     <span class="card-description col-sm-3">
                       合同名称
                     </span>
-                    <span class="card-description">
+                    <span class="card-description" id="box_cont_name">
                       合同名称
                     </span>
                     <form class="forms-sample">
@@ -298,13 +305,6 @@
 
   <script src="../static/js/clickevent.js"></script>
 
-  <script>
-    function updateTable(){
-
-    }
-
-
-  </script>
 
   <!-- End custom js for this page-->
 </body>

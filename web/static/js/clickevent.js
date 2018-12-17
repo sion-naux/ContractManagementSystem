@@ -3,28 +3,36 @@ function load() {
 }
 
 
-var shadow = document.getElementById("black-shadow");
-var dialog = document.getElementById("dialogBox");
-// btn.onclick = function(){
-//   ShowHide(true,shadow,dialog);
-//   return false;
-// }
+    var shadow = document.getElementById("black-shadow");
+    var dialog = document.getElementById("dialogBox");
+    // btn.onclick = function(){
+    //   ShowHide(true,shadow,dialog);
+    //   return false;
+    // }
+    
+    shadow.onclick = function(){
+      ShowHide(false,shadow,dialog);
+      return false;
+    };
+    function contribute(btn) {
+        var tr = btn.parentElement.parentElement;
+        var contract_num = tr.cells[0].innerHTML;
+        console.log("你点的合同编号是："+contract_num);
+        ShowHide(true,shadow,dialog);
+        $("#contract_num_a").text(contract_num);
 
-shadow.onclick = function () {
-    ShowHide(false, shadow, dialog);
     return false;
-};
+    };
 
-function contribute(btn) {
+function countersign(btn) {
     var tr = btn.parentElement.parentElement;
     var contract_num = tr.cells[0].innerHTML;
-    console.log("你点的合同编号是：" + contract_num);
+    document.getElementById("box_cont_name").innerHTML = tr.cells[1].innerHTML;
+
     ShowHide(true, shadow, dialog);
-
-    $("#contract_num_a").val(contract_num);
-
     return false;
-};
+}
+
 
 function ShowHide(Boolean, item1, item2) {
     for (var i = 1, len = arguments.length; i < len; i++) {
@@ -75,4 +83,7 @@ function submit_contribute() {
     $("#sign_list_Array").val(sign_list_Array);
     document.getElementById("myForm").submit()
 }
+
+
+
 

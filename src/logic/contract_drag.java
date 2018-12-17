@@ -117,6 +117,29 @@ public class contract_drag {
         return contract_state_list;
     }
 
+    //列出待分配合同
+    //合同名称 起草日期 起草人
+    public static List<ContributeContract> show_contract(int state) {
+        List<ContributeContract> contract_state_list = new ArrayList<ContributeContract>();
+        try {
+            JDBCFacade jdbc = new JDBCFacade();
+            //打开数据库连接
+            jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
+            String sql = "select contract_state.num as num,name,userName,contract_state.time as time from contract_state,contract where contract_state.num=contract.num and type=";
+            sql = sql + state;
+            System.out.println("生成的sql语句是：" + sql);
+            ResultSet rs = jdbc.executeQuery(sql);
+            while (rs.next()) {
+                contract_state_list.add(new ContributeContract(rs.getString("num"),rs.getString("name"),rs.getString("userName"),rs.getString("time")));
+            }
+            jdbc.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return contract_state_list;
+    }
+
+
     public boolean insertcontract_state() {
         boolean result = false;
         String sql = "insert into contract_state values(?,?,?)";
