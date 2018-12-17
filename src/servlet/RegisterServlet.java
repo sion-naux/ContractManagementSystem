@@ -11,7 +11,7 @@ import java.io.IOException;
 public class RegisterServlet  extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String userName = req.getParameter("username");
+        String userName=new String(req.getParameter("username").getBytes("ISO-8859-1"),"utf-8");
         String password = req.getParameter("password");
         String password_confirm = req.getParameter("password_confirm");
 

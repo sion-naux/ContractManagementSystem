@@ -252,7 +252,7 @@
               <span class="nav-link">系统管理</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="cont_contribute.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/contribute">
                 <span class="menu-title">分配合同</span>
                 <i class="icon-pie-chart menu-icon"></i>
               </a>
