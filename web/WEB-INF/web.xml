@@ -67,4 +67,13 @@
         <url-pattern>/draft</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>sign</servlet-name>
+        <servlet-class>servlet.SignServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sign</servlet-name>
+        <url-pattern>/countersign</url-pattern>
+    </servlet-mapping>
+
 </web-app>
