@@ -1,14 +1,24 @@
 package entity;
 
 public class ContributeContract {
+    private String num;//合同编号
     private String name;//合同名称
     private String userName;//起草人
     private String time;//起草时间
 
-    public ContributeContract(String name, String userName, String time) {
+    public ContributeContract(String num,String name, String userName, String time) {
+        this.num = num;
         this.name = name;
         this.userName = userName;
         this.time = time;
+    }
+
+    public String getNum() {
+        return num;
+    }
+
+    public void setNum(String num) {
+        this.num = num;
     }
 
     public String getName() {

@@ -17,6 +17,7 @@ import java.util.List;
 public class ContributeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         super.doPost(req, resp);
     }
 
@@ -27,20 +28,24 @@ public class ContributeServlet extends HttpServlet {
         Iterator<ContributeContract> iter = contribute_list.iterator();
         while (iter.hasNext()) {
             ContributeContract contributeContract = iter.next();
+            String num = new String();
             String name = new String();
             String time = new String();
             String username = new String();
+            num = contributeContract.getNum();
             name = contributeContract.getName();
             time = contributeContract.getTime().split(" ")[0];
             username = contributeContract.getUserName();
+            System.out.println("合同编号:" + num);
             System.out.println("合同名称:" + name);
             System.out.println("起草时间:" + time);
             System.out.println("起草人:" + username);
             String item = "";
-            item = "<tr><td>" + name +
+            item = "<tr><td id=\"contract_num\">" + num +
+                    "</td><td>" + name +
                     "</td><td>" + time +
                     "</td><td>" + username +
-                    "</td>" + "<td><button class=\"btn btn-info\" onclick=\"ShowHide(true,shadow,dialog); return false;\">分配</button></td></tr>";
+                    "</td>" + "<td><button class=\"btn btn-info contribute_button\" onclick=\"contribute(this);\">分配</button></td></tr>";
             System.out.println("表格生成的一行：" + item);
             contribute_contract_list += item;
         }

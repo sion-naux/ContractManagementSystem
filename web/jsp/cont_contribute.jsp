@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../static/css/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="../static/images/favicon.png"/>
+    <script src="../static/js/jquery-2.1.1.min.js"></script>
 </head>
 <body>
 <div class="container-scroller">
@@ -189,6 +190,7 @@
                                         <table class="table table-hover">
                                             <thead>
                                             <tr>
+                                                <th>合同编号</th>
                                                 <th>合同名称</th>
                                                 <th>起草日期</th>
                                                 <th>起草人</th>
@@ -292,8 +294,9 @@
                     <%--</div>--%>
 
                     <div class="container-selector">
-                        <form>
-
+                        <form action="<%=request.getContextPath()%>/contribute" method="post">
+                            <%--<a id="contract_num_a" style="display:none;"></a>--%>
+                                <a id="contract_num_a"></a>
                             <div>
                                 <p>分配会签人</p>
                             </div>
@@ -317,7 +320,6 @@
                             </div>
                             <ul class="data-list" id="lList2" style="overflow-y: scroll;height: 250px;">
                                 <%
-
                                     if (contribute_person_list != null) {
                                         out.print(contribute_person_list);
                                     }
@@ -335,7 +337,6 @@
                             </div>
                             <ul class="data-list" id="lList3" style="overflow-y: scroll;height: 250px;">
                                 <%
-
                                     if (contribute_person_list != null) {
                                         out.print(contribute_person_list);
                                     }
@@ -352,7 +353,7 @@
 
                             </ul>
                             <div style="text-align: center">
-                                <button class="btn btn-success mr-2">提交</button>
+                                <button type="submit" class="btn btn-success mr-2">提交</button>
                                 <button class="btn btn-light">取消</button>
                             </div>
                         </form>

@@ -2,7 +2,7 @@
       return false;
     }
     
-    // var btn = document.getElementById("test1");
+
     var shadow = document.getElementById("black-shadow");
     var dialog = document.getElementById("dialogBox");
     // btn.onclick = function(){
@@ -13,7 +13,16 @@
     shadow.onclick = function(){
       ShowHide(false,shadow,dialog);
       return false;
-    }
+    };
+    function contribute(btn) {
+        var tr = btn.parentElement.parentElement;
+        var contract_num = tr.cells[0].innerHTML;
+        console.log("你点的合同编号是："+contract_num);
+        ShowHide(true,shadow,dialog);
+        $("#contract_num_a").text(contract_num);
+
+        return false;
+    };
     function ShowHide(Boolean, item1, item2){
         for(var i=1,len=arguments.length;i<len;i++){
           if(Boolean){
