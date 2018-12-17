@@ -55,7 +55,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>approval</servlet-name>
-        <url-pattern>/approvel</url-pattern>
+        <url-pattern>/approval</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -65,6 +65,15 @@
     <servlet-mapping>
         <servlet-name>draft</servlet-name>
         <url-pattern>/draft</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>sign</servlet-name>
+        <servlet-class>servlet.SignServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sign</servlet-name>
+        <url-pattern>/countersign</url-pattern>
     </servlet-mapping>
 
 </web-app>

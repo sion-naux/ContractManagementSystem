@@ -19,7 +19,7 @@ public class IndexServlet extends HttpServlet {
 
         System.out.println(req.getRequestURI());
         if(req.getRequestURI().contains("approvel")){
-            resp.sendRedirect("jsp/approvel.jsp");
+            resp.sendRedirect("jsp/approval.jsp");
         }
 
         resp.sendRedirect("jsp/index.jsp");

@@ -57,7 +57,7 @@
       </div>
     </nav>    <!-- partial -->
     <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
+    <div class="container-fluid page-body-wrapper" style="margin-top: -9px;">
       <div class="row row-offcanvas row-offcanvas-right">
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -87,7 +87,7 @@
               <span class="nav-link">合同会签</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="countersign.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/countersign">
                 <span class="menu-title">待会签合同</span>
                 <i class="icon-speedometer menu-icon"></i>
               </a>
