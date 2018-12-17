@@ -7,33 +7,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>合同管理系统</title>
   <!-- inject:css -->
-  <link rel="stylesheet" type="text/css" href="../static/css/style.css">
-  <!-- endinject -->
-  <link rel="shortcut icon" href="../static/images/favicon.png" />
-</head>
-<body>
-  <div class="container-scroller">
-    <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-      <div class="text-center navbar-brand-wrapper">
-        <a class="navbar-brand brand-logo" href="index.jsp"><img src="../static/images/logo.svg" alt="logo"></a>
-        <a class="navbar-brand brand-logo-mini" href="index.jsp"><img src="../static/images/logo_mini.svg" alt="logo"></a>
-      </div>
-      <div class="navbar-menu-wrapper d-flex align-items-center">
-        <p class="page-name d-none d-lg-block">早上好！</p>
-        <ul class="navbar-nav ml-lg-auto">
-          <li class="nav-item">
-            <form class="mt-2 mt-md-0 d-none d-lg-block search-input">
-              <div class="input-group">
-                <span class="input-group-addon d-flex align-items-center"><i class="icon-magnifier icons"></i></span>
-                <input type="text" class="form-control" placeholder="Search...">
-              </div>
-            </form>
-          </li>
-          <li class="nav-item dropdown mail-dropdown">
-            <a class="nav-link count-indicator" id="MailDropdown" href="#" data-toggle="dropdown">
-              <i class="icon-envelope-letter icons"></i>
-              <span class="count bg-danger"></span>
+              <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+              <!-- endinject -->
+              <link rel="shortcut icon" href="../static/images/favicon.png" />
+              </head>
+              <body>
+              <div class="container-scroller">
+                <!-- partial:partials/_navbar.html -->
+                <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+                  <div class="text-center navbar-brand-wrapper">
+                    <a class="navbar-brand brand-logo" href="index.jsp"><img src="../static/images/logo.svg" alt="logo"></a>
+                    <a class="navbar-brand brand-logo-mini" href="index.jsp"><img src="../static/images/logo_mini.svg" alt="logo"></a>
+                  </div>
+                  <div class="navbar-menu-wrapper d-flex align-items-center">
+                    <p class="page-name d-none d-lg-block">早上好！</p>
+                    <ul class="navbar-nav ml-lg-auto">
+                      <li class="nav-item">
+                        <form class="mt-2 mt-md-0 d-none d-lg-block search-input">
+                          <div class="input-group">
+                            <span class="input-group-addon d-flex align-items-center"><i class="icon-magnifier icons"></i></span>
+                            <input type="text" class="form-control" placeholder="Search...">
+                          </div>
+                        </form>
+                      </li>
+                      <li class="nav-item dropdown mail-dropdown">
+                        <a class="nav-link count-indicator" id="MailDropdown" href="#" data-toggle="dropdown">
+                          <i class="icon-envelope-letter icons"></i>
+                          <span class="count bg-danger"></span>
             </a>
           </li>
           <li class="nav-item dropdown notification-dropdown">
@@ -108,13 +108,13 @@
               <span class="nav-link">合同审批</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/approvel">
+              <a class="nav-link" href="<%=request.getContextPath()%>/approval">
                 <span class="menu-title">待审批合同</span>
                 <i class="icon-flag menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="over_approvel.jsp">
+              <a class="nav-link" href="over_approval.jsp">
                 <span class="menu-title">已审批合同</span>
                 <i class="icon-flag menu-icon"></i>
               </a>
