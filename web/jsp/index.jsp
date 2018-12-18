@@ -159,7 +159,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="auth_manage.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/authManage">
                 <span class="menu-title">权限管理</span>
                 <i class="icon-pie-chart menu-icon"></i>
               </a>

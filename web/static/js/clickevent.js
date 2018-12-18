@@ -1,3 +1,11 @@
+//授权的checkbox只能点一个
+$(document).ready(function(){
+    $('#checkbox_group_role').find('input[type=checkbox]').bind('click', function(){
+        $('#checkbox_group_role').find('input[type=checkbox]').not(this).attr("checked", false);
+    });
+});
+
+
 function load() {
     return false;
 }
@@ -5,6 +13,7 @@ function load() {
 
 var shadow = document.getElementById("black-shadow");
 var dialog = document.getElementById("dialogBox");
+var dialog2 = document.getElementById("dialogBox2");
 // btn.onclick = function(){
 //   ShowHide(true,shadow,dialog);
 //   return false;
@@ -12,9 +21,11 @@ var dialog = document.getElementById("dialogBox");
 
 shadow.onclick = function () {
     ShowHide(false, shadow, dialog);
+    ShowHide(false, shadow, dialog2);
     return false;
 };
 
+//分配合同按钮
 function contribute(btn) {
     var tr = btn.parentElement.parentElement;
     var contract_num = tr.cells[0].innerHTML;
@@ -26,6 +37,26 @@ function contribute(btn) {
     return false;
 };
 
+//授权按钮
+function auth(btn) {
+    var tr = btn.parentElement.parentElement;
+    var username = tr.cells[0].innerHTML;
+    console.log("你点的用户名是：" + username);
+    ShowHide(true, shadow, dialog2);
+    $("#username_input").val(username);
+    return false;
+
+}
+
+//添加角色按钮
+function add_role(btn) {
+    ShowHide(true, shadow, dialog);
+
+    return false;
+
+}
+
+//显示弹框
 function ShowHide(Boolean, item1, item2) {
     for (var i = 1, len = arguments.length; i < len; i++) {
         if (Boolean) {
@@ -37,6 +68,7 @@ function ShowHide(Boolean, item1, item2) {
     }
 }
 
+//分配合同提交响应
 function submit_contribute() {
     var countersign_list = document.getElementById("rList1");
     var countersign_list_items = countersign_list.childNodes;
@@ -74,5 +106,24 @@ function submit_contribute() {
     $("#approval_list_Array").val(approval_list_Array);
     $("#sign_list_Array").val(sign_list_Array);
     document.getElementById("myForm").submit()
+}
+
+//提交授权
+function submit_auth(){
+
+    var s = document.getElementsByName("checkbox_role");
+    var role_list_Array = "";
+
+    for( var i = 0; i < s.length; i++ )
+    {
+        if ( s[i].checked ){
+            role_list_Array= s[i].value;
+            break;
+        }
+    }
+    $("#role_list").val(role_list_Array);
+
+
+    document.getElementById("authForm").submit()
 }
 

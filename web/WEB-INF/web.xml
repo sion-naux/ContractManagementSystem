@@ -50,6 +50,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>authManage</servlet-name>
+        <servlet-class>servlet.AuthManageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>authManage</servlet-name>
+        <url-pattern>/authManage</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
         <servlet-name>approval</servlet-name>
         <servlet-class>servlet.ApprovalServlet</servlet-class>
     </servlet>

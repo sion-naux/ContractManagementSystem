@@ -86,6 +86,7 @@ public class Verify<main> {
             System.out.println("生成的sql语句是:" + sql);
             flag = jdbc.executeUpdate(sql);
             jdbc.close();
+            RightManage.giveRight(user.getName(),"普通用户");
         } catch (Exception e) {
             e.printStackTrace();
         }

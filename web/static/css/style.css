@@ -9469,9 +9469,11 @@ pre code {
     }
 
     .col-sm-9-1 {
-        margin-top: 20px;
+
         flex: 0 0 75%;
         max-width: 75%;
+        margin-top: 0;
+        margin-left: 10px;
     }
 
     .col-sm-10 {
@@ -19690,7 +19692,7 @@ select.form-control {
 .form-group label {
     font-size: 0.875rem;
     line-height: 1;
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 .form-group.has-danger .form-control {
@@ -20470,6 +20472,16 @@ ul, li {
     margin: 10px auto;
     display: block;
     cursor: pointer;
+}
+
+.add_role_button {
+    width: fit-content;
+    margin-left: 30px;
+}
+
+.role_label{
+    vertical-align: middle;
+    margin-bottom: 0;
 }
 
 .contribute_button {

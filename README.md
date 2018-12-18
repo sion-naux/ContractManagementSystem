@@ -38,15 +38,15 @@ CREATE TABLE `user` (
 ~~~
 CREATE TABLE `role` (
   `name` varchar(40) NOT NULL,
-  `descrption` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `description` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `functions` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ~~~
 
-- right
+- userright
 ~~~
-CREATE TABLE `right` (
+CREATE TABLE `userright` (
   `userName` varchar(20) NOT NULL,
   `roleName` varchar(20) NOT NULL,
   `description` varchar(100) DEFAULT NULL,

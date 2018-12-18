@@ -2,6 +2,7 @@ package logic;
 
 import database.JDBCFacade;
 import database.dbConfig;
+import entity.Right;
 import entity.Role;
 import entity.User;
 
@@ -55,6 +56,27 @@ public class ManageRole {
         }
 
     }
+
+    //获取角色列表
+    public static List<Role> getRoleList(){
+        List<Role> right_list = new ArrayList<Role>();
+        try {
+            JDBCFacade jdbc = new JDBCFacade();
+            //打开数据库连接
+            jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
+            String sql = "select * from role";
+            System.out.println("生成的sql语句是：" + sql);
+            ResultSet rs = jdbc.executeQuery(sql);
+            while (rs.next()) {
+                right_list.add(new Role(rs.getString("name"),rs.getString("description"),rs.getString("functions")));
+            }
+            jdbc.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return right_list;
+    }
+
 
     //查询角色
     //input：角色名  //output：Role类
