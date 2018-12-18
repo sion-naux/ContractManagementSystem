@@ -111,13 +111,13 @@
                         <span class="nav-link">合同审批</span>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="approval.jsp">
+                        <a class="nav-link" href="<%=request.getContextPath()%>/approval">
                             <span class="menu-title">待审批合同</span>
                             <i class="icon-flag menu-icon"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="over_approvel.jsp">
+                        <a class="nav-link" href="over_approval.jsp">
                             <span class="menu-title">已审批合同</span>
                             <i class="icon-flag menu-icon"></i>
                         </a>

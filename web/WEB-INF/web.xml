@@ -78,12 +78,20 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>sign</servlet-name>
-        <servlet-class>servlet.SignServlet</servlet-class>
+        <servlet-name>countersign</servlet-name>
+        <servlet-class>servlet.CountersignServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>sign</servlet-name>
+        <servlet-name>countersign</servlet-name>
         <url-pattern>/countersign</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>countersign</servlet-name>
+        <url-pattern>/over_countersign</url-pattern>
+    </servlet-mapping>get_countersign_content
+    <servlet-mapping>
+        <servlet-name>countersign</servlet-name>
+        <url-pattern>/get_countersign_content</url-pattern>
     </servlet-mapping>
 
 </web-app>

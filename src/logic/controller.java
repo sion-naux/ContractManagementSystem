@@ -46,7 +46,7 @@ public class controller {
                     System.out.println("输入要会签的合同名：");
                     String name = scan.nextLine();
                     countersign.clickOneHetong(name);
-                    countersign.insertComment(name);
+//                    countersign.insertComment(name);
                     break;
                 }
                 case 2: {

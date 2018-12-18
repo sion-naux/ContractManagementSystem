@@ -18,7 +18,7 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         System.out.println(req.getRequestURI());
-        if(req.getRequestURI().contains("approvel")){
+        if(req.getRequestURI().contains("approval")){
             resp.sendRedirect("jsp/approval.jsp");
         }
 

@@ -4,6 +4,14 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import database.JDBCFacade;
+import database.dbConfig;
+import entity.CurrentUser;
 
 import com.mysql.jdbc.PreparedStatement;
 
@@ -14,36 +22,55 @@ public class contract_approval {
 	 * 3.选择通过不通过 输入审批意见
 	 * 4.更新合同状态(若这个人拒绝了合同 合同状态改为已拒绝 若所有人都审批通过 则审批完成)
 	 */
+	private JDBCFacade jdbc;
 	String  userName;
 	String num = "";
 	public contract_approval(String userName){
 		this.userName = userName;
 	}
 
-	public void defaultFind(){
+	public List<Map> defaultFind(){
+		List<Map> list =new ArrayList<Map>();
 		try {
+			jdbc = new JDBCFacade();
+			//打开数据库连接
+			jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
+			String result_name;//合同名称
+			String result_beginTime;//起草日期
+			String result_userName;//起草人
+			ResultSet rs,rs2,rs3;
 			String conNum;
 			String sql = "select conNum from contract_process where type = 2 and state = 0 and userName = ?";
-			PreparedStatement ps = (PreparedStatement) controller.connect.prepareStatement(sql);
+			System.out.println(sql);
+			PreparedStatement ps = (PreparedStatement) jdbc.getPrepareStatement(sql);
 			ps.setString(1, userName);
-			ResultSet rs = ps.executeQuery();
+			System.out.println(ps);
+			rs = ps.executeQuery();
 			System.out.println("需要审批的合同有：");
 			while(rs.next()){
 				conNum = rs.getString(1);
-				String sql2 = "select name from contract where num = ? and (select type from contract_state where num = " +"\""+ conNum +"\""+ ")"+" = 3";
-				ps = (PreparedStatement) controller.connect.prepareStatement(sql2);
+				String sql2 = "select * from contract where num = ? and (select type from contract_state where num = " +"\""+ conNum +"\""+ ")"+" = 3";
+				ps = (PreparedStatement) jdbc.getPrepareStatement(sql2);
 				ps.setString(1,conNum);
 				System.out.println(ps);
-				rs = ps.executeQuery();
-				if(rs.next()){
+				rs2 = ps.executeQuery();
+				if(rs2.next()){
 					//查看合同是否已否决
 					String sql3 = "select * from contract_process where conNum = ? and state = 2";
-					PreparedStatement ps2 = (PreparedStatement) controller.connect.prepareStatement(sql3);
+					PreparedStatement ps2 = (PreparedStatement) jdbc.getPrepareStatement(sql3);
 					ps2.setString(1, conNum);
 					System.out.println(ps2);
-					ResultSet rs2 = ps2.executeQuery();
-					if(!rs2.next()){
-						System.out.println(rs.getString(1));
+					rs3 = ps2.executeQuery();
+					if(!rs3.next()){
+						Map map = new HashMap();
+						result_name = rs2.getString("name");
+						result_beginTime =rs2.getString("beginTime");
+						result_userName = rs2.getString("userName");
+						System.out.println(result_name+result_beginTime+result_userName);
+						map.put("name", result_name);
+						map.put("beginTime",result_beginTime);
+						map.put("userName",result_userName);
+						list.add(map);
 					}
 				}
 			}
@@ -51,14 +78,18 @@ public class contract_approval {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return list;
 	}
 
 	public void clickOneHetong(String name){
+		jdbc = new JDBCFacade();
+		//打开数据库连接
+		jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
 		PreparedStatement pst;
 		ResultSet rs;
 		try {
 			String sql = "select * from contract where name = ?";
-			pst = (PreparedStatement) controller.connect.prepareStatement(sql);
+			pst = (PreparedStatement) jdbc.getPrepareStatement(sql);
 			pst.setString(1, name);
 			rs = pst.executeQuery();
 			if(rs.next()){
@@ -79,9 +110,12 @@ public class contract_approval {
 
 	public void decide(String name,String ifpass,String content){
 		try {
+			jdbc = new JDBCFacade();
+			//打开数据库连接
+			jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
 			//1.查找该合同的编号
 			String sql = "select num from contract where name = ?";
-			PreparedStatement ps = (PreparedStatement) controller.connect.prepareStatement(sql);
+			PreparedStatement ps = (PreparedStatement) jdbc.getPrepareStatement(sql);
 			ps.setString(1, name);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
@@ -94,7 +128,7 @@ public class contract_approval {
 			}else{
 				sql2 = "update contract_process set state = 1,content = ? where conNum = ? and userName = ? and type = 2";
 			}
-			ps = (PreparedStatement) controller.connect.prepareStatement(sql2);
+			ps = (PreparedStatement) jdbc.getPrepareStatement(sql2);
 			ps.setString(1, content);
 			ps.setString(2, num);
 			ps.setString(3, userName);
@@ -115,11 +149,14 @@ public class contract_approval {
 	}
 
 	public void Ifcomplete(){
+		jdbc = new JDBCFacade();
+		//打开数据库连接
+		jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
 		String sql = "select * from contract_process where conNum = ? and type = 2 and state = 0";
 		PreparedStatement pst;
 		ResultSet rs;
 		try {
-			pst = (PreparedStatement) controller.connect.prepareStatement(sql);
+			pst = (PreparedStatement) jdbc.getPrepareStatement(sql);
 			pst.setString(1, num);
 			System.out.println(pst);
 			rs = pst.executeQuery();
@@ -132,7 +169,7 @@ public class contract_approval {
 				String sql2 = "update contract_state set type = 4,time = ? where num = ?";
 				pst.setDate(1, finishtime);
 				pst.setString(2, num);
-				pst = (PreparedStatement) controller.connect.prepareStatement(sql2);
+				pst = (PreparedStatement) jdbc.getPrepareStatement(sql2);
 				pst.executeUpdate();
 			}else{
 				System.out.println("还有部分审批完成！");
