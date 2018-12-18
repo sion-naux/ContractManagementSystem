@@ -31,6 +31,13 @@ function countersign(btn) {
     ShowHide(true, shadow, dialog);
 }
 
+function over_approval(btn) {
+    var tr = btn.parentElement.parentElement;
+    document.getElementById("box_cont_num").innerHTML = tr.cells[0].innerHTML;
+    document.getElementById("box_cont_name").innerHTML = tr.cells[1].innerHTML;
+    ShowHide(true, shadow, dialog);
+}
+
 function over_countersign(btn) {
 
     var tr = btn.parentElement.parentElement;
