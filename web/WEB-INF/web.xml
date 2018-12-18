@@ -57,6 +57,14 @@
         <servlet-name>authManage</servlet-name>
         <url-pattern>/authManage</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>addRole</servlet-name>
+        <servlet-class>servlet.AddRoleServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addRole</servlet-name>
+        <url-pattern>/addRole</url-pattern>
+    </servlet-mapping>
 
 
     <servlet>

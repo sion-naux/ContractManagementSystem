@@ -236,19 +236,20 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">添加角色</h4>
-                                    <form class="forms-sample">
+                                    <form class="forms-sample" id="addrole_form" action="<%=request.getContextPath()%>/addRole" method="post">
+                                        <input type="hidden" name="addrole_list" value="" id="addrole_list">
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label card-description"
                                                    style="margin-top: 0px">角色名称</label>
                                             <div class="col-sm-9">
-                                                <input class="form-control" placeholder="输入角色名称"/>
+                                                <input class="form-control" name="add_role_name" placeholder="输入角色名称"/>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label card-description">角色表述</label>
                                             <div class="col-sm-9-1">
-                                                <textarea class="form-control" rows="5" placeholder="输入角色描述"></textarea>
+                                                <textarea class="form-control" name="add_role_description" rows="5" placeholder="输入角色描述"></textarea>
                                             </div>
                                         </div>
                                         <div class="row" style="overflow-y: scroll; height: 100px;">
@@ -259,114 +260,114 @@
                                                 <p class="card-description ">合同管理:</p>
                                                 <div class="row-fluid">
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="起草合同">
                                                     </label>起草合同
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="定稿合同">
                                                     </label>定稿合同
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="查询合同">
                                                     </label>查询合同
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="删除合同">
                                                     </label>删除合同
                                                 </div>
                                                 <p class="card-description ">流程管理:</p>
                                                 <div class="row-fluid">
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="会签合同">
                                                     </label>会签合同
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="审批合同">
                                                     </label>审批合同
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="签订合同">
                                                     </label>签订合同
                                                     <label>
-                                                        <input type="checkbox"/>
+                                                        <input type="checkbox" name="checkbox_addrole" value="流程查询">
                                                     </label>流程查询</br>
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="分配会签">
                                                     </label>分配会签
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="分配审批">
                                                     </label>分配审批
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="分配签订">
                                                     </label>分配签订
                                                 </div>
                                                 <p class="card-description ">用户管理:</p>
                                                 <div class="row-fluid">
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="新增用户">
                                                         新增用户
                                                     </label>
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="编辑用户">
                                                         编辑用户
                                                     </label>
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="查询用户">
                                                         查询用户
                                                     </label>
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="删除用户">
                                                         删除用户
                                                     </label>
                                                 </div>
                                                 <p class="card-description ">角色管理:</p>
                                                 <div class="row-fluid">
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="新增角色">
                                                         新增角色
                                                     </label>
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="编辑角色">
                                                         编辑角色
                                                     </label>
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="查询角色">
                                                         查询角色
                                                     </label>
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="删除角色">
                                                         删除角色
                                                     </label>
                                                 </div>
                                                 <p class="card-description ">客户管理:</p>
                                                 <div class="row-fluid">
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="新增客户">
                                                     </label>新增客户
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="编辑客户">
                                                     </label>编辑客户
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="查询客户">
                                                     </label>查询客户
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="删除客户">
                                                     </label>删除客户
                                                 </div>
                                                 <p class="card-description ">功能管理:</p>
                                                 <div class="row-fluid">
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="新增功能">
                                                     </label>新增功能
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="编辑功能">
                                                     </label>编辑功能
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="查询功能">
                                                     </label>查询功能
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="删除功能">
                                                     </label>删除功能
                                                 </div>
                                                 <p class="card-description ">权限管理:</p>
                                                 <div class="row-fluid">
                                                     <label>
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="checkbox_addrole" value="配置权限">
                                                     </label>配置权限
                                                 </div>
 
@@ -374,8 +375,8 @@
 
                                         </div>
                                         <div style="text-align: center">
-                                            <button type="submit" class="btn btn-success mr-2">提交</button>
-                                            <button class="btn btn-light">取消</button>
+                                            <button type="button" class="btn btn-success mr-2" onclick="submit_add_role();">提交</button>
+                                            <button type="button" class="btn btn-light" onclick="ShowHide(false,shadow,dialog);return false;">取消</button>
                                         </div>
                                     </form>
                                 </div>
@@ -412,7 +413,7 @@
                                         </div>
                                         <div style="text-align: center">
                                             <button type="button" class="btn btn-success mr-2" onclick="submit_auth();">提交</button>
-                                            <button type="button" class="btn btn-light"onclick="ShowHide(false,shadow,dialog2);return false;">取消</button>
+                                            <button type="button" class="btn btn-light" onclick="ShowHide(false,shadow,dialog2);return false;">取消</button>
                                         </div>
                                     </form>
                                 </div>

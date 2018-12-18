@@ -127,3 +127,22 @@ function submit_auth(){
     document.getElementById("authForm").submit()
 }
 
+//提交添加角色
+function submit_add_role(){
+
+    var s = document.getElementsByName("checkbox_addrole");
+    var addrole_list_Array = new Array();
+
+    for( var i = 0; i < s.length; i++ )
+    {
+        if ( s[i].checked ){
+            addrole_list_Array.push(s[i].value);
+
+        }
+    }
+    $("#addrole_list").val(addrole_list_Array);
+
+
+    document.getElementById("addrole_form").submit()
+}
+
