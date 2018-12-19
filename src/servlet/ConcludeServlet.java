@@ -50,7 +50,7 @@ public class ConcludeServlet extends HttpServlet {
         String client = CurrentUser.username;
 
         if(request.getRequestURL().toString().contains("over_conclude")) {
-            request.setAttribute("get_contract_list", Get_Con_List.getInstance().get_contract_list(3,1,client,5));
+            request.setAttribute("get_contract_list", Get_Con_List.getInstance().get_contract_list(3,1,client,4));
             request.getRequestDispatcher("jsp/over_conclude.jsp").forward(request, response);
         }
         else {
