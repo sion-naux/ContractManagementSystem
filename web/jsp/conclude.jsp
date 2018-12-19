@@ -292,7 +292,7 @@
                           </div>
                         </div>
                         <div style="text-align: center">
-                        <button type="submit" class="btn btn-success mr-2" >提交</button>
+                        <button class="btn btn-success mr-2" onclick="submit_conclude()" >提交</button>
                         <button class="btn btn-light">取消</button>
                         </div>
                       </form>

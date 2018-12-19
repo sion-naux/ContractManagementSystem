@@ -1,9 +1,12 @@
 package servlet;
 
 import Utils.Get_Con_List;
+import Utils.Get_Para_Data;
 import entity.ContributeContract;
+import entity.CurrentUser;
 import logic.contract_countersign;
 import logic.contract_drag;
+import logic.contract_sign;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,12 +28,12 @@ public class CountersignServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-       StringBuffer sb = getParaData(request.getReader());
+        StringBuffer sb = new Get_Para_Data().getParaData(request.getReader());
 
         String conNum = null;
         String sign_msg = null;
         Date sign_time = null;
-        String sign_user = "DOng";
+        String sign_user = CurrentUser.username;
         int type = 1;
 
         conNum = sb.toString().split("&")[0];
@@ -43,15 +46,14 @@ public class CountersignServlet extends HttpServlet {
         pw.flush();
         pw.close();
 
-        contract_countersign countersign = new contract_countersign(sign_user);
-        countersign.insertComment(conNum,sign_msg);
-
+        contract_sign contract_sign = new contract_sign(sign_user);
+        contract_sign.insertComment(conNum, sign_msg);
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String client = "111";
+        String client = CurrentUser.username;
 
         if(request.getRequestURL().toString().contains("get_countersign_content")) {
             PrintWriter pw = response.getWriter();
@@ -67,7 +69,7 @@ public class CountersignServlet extends HttpServlet {
             request.getRequestDispatcher("jsp/over_countersign.jsp").forward(request, response);
         }
         else {
-            request.setAttribute("get_contract_list",  Get_Con_List.getInstance().get_contract_list(1,1,client));
+            request.setAttribute("get_contract_list",  Get_Con_List.getInstance().get_contract_list(1,0,client));
             request.getRequestDispatcher("jsp/countersign.jsp").forward(request, response);
         }
 
@@ -112,17 +114,17 @@ public class CountersignServlet extends HttpServlet {
 //        return contribute_contract_list;
 //    }
 
-    public StringBuffer getParaData(BufferedReader bufferedReader){
-        StringBuffer sb = new StringBuffer();
-        String line = null;
-        try{
-            BufferedReader br = bufferedReader;
-            while((line = br.readLine()) != null)
-                sb.append(line);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        return sb;
-    }
+//    public StringBuffer Get_Para_Data(BufferedReader bufferedReader){
+//        StringBuffer sb = new StringBuffer();
+//        String line = null;
+//        try{
+//            BufferedReader br = bufferedReader;
+//            while((line = br.readLine()) != null)
+//                sb.append(line);
+//        } catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        return sb;
+//    }
 
 }

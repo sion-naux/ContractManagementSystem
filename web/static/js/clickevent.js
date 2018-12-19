@@ -212,3 +212,77 @@ function over_conclude(btn) {
 
     });
 }
+
+function submit_sign(){
+    // $(document).ready(function () {
+    //     $("#sign_submit").click(function (e) {
+    //         e.preventDefault();
+    var obj = $(this);
+    // var cont_num = document.getElementById("box_cont_num").innerText;
+    // var cont_name = document.getElementById("box_cont_name").innerText;
+    // var sign_msg = document.getElementById("sign_message").innerText;
+    var cont_num = $("#box_cont_num").html();
+    var cont_name = $("#box_cont_name").text();
+    var sign_msg = $("#sign_message").val();
+    var data = cont_num + "&" + cont_name + "&" + sign_msg;
+    alert(data);
+    $.ajax({
+        url : "http://localhost:8080/countersign",
+        type : "POST",
+        data :  data,
+        // dataType : 'text',
+        success (data){
+            alert("chenggong");
+            ShowHide(false,shadow,dialog);
+            var row = document.getElementById(cont_num);
+            row.remove();
+
+
+        },
+        error (data){
+            alert(data.msg);
+        }
+
+    });
+
+    //     })
+    // })
+
+}
+
+function submit_conclude(){
+    // $(document).ready(function () {
+    //     $("#sign_submit").click(function (e) {
+    //         e.preventDefault();
+    var obj = $(this);
+    // var cont_num = document.getElementById("box_cont_num").innerText;
+    // var cont_name = document.getElementById("box_cont_name").innerText;
+    // var sign_msg = document.getElementById("sign_message").innerText;
+    var cont_num = $("#box_cont_num").html();
+    var cont_name = $("#box_cont_name").text();
+    var sign_msg = $("#sign_message").val();
+    var data = cont_num + "&" + cont_name + "&" + sign_msg;
+    alert(data);
+    $.ajax({
+        url : "http://localhost:8080/conclude",
+        type : "POST",
+        data :  data,
+        // dataType : 'text',
+        success (data){
+            alert("chenggong");
+            ShowHide(false,shadow,dialog);
+            var row = document.getElementById(cont_num);
+            row.remove();
+
+
+        },
+        error (data){
+            alert(data.msg);
+        }
+
+    });
+
+    //     })
+    // })
+
+}

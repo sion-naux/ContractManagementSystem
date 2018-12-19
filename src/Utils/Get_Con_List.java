@@ -30,6 +30,16 @@ public class Get_Con_List {
     public String get_contract_list(int type, int state,String client) {
         String contribute_contract_list = "";
         List<ContributeContract> contribute_list;
+        String btnName = "";
+        String methodName = "";
+        if(state == 0){
+            btnName = STATIONS[type];
+            methodName = METHOD_NAME[type];
+        }
+        else if(state == 1){
+            btnName = "查看";
+            methodName = METHOD_NAME[STATIONS.length + type - 1];
+        }
         contribute_list = contract_drag.show_contract(type, state, client);
         Iterator<ContributeContract> iter = contribute_list.iterator();
         while (iter.hasNext()) {
@@ -47,16 +57,7 @@ public class Get_Con_List {
             System.out.println("起草时间:" + time);
             System.out.println("起草人:" + username);
             String item = "";
-            String btnName = "";
-            String methodName = "";
-            if(state == 0){
-                btnName = STATIONS[state];
-                methodName = METHOD_NAME[state];
-            }
-            else if(state == 1){
-                btnName = "查看";
-                methodName = METHOD_NAME[STATIONS.length + type - 1];
-            }
+
 
             item = "<tr id=\""+num+"\"><td>" + num +
                     "</td><td>" + name +

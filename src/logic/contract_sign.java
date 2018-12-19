@@ -5,7 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
+import Utils.Get_Time;
 import com.mysql.jdbc.PreparedStatement;
+
+import static logic.contract_drag.jdbcObject;
 
 public class contract_sign {
 	String num;
@@ -85,48 +88,83 @@ public class contract_sign {
 			e.printStackTrace();
 		}
 	}
-	public void signConstract(String name,String content){
-		PreparedStatement pst;
-		String sql = "update contract_process set content = ?,state = 1 where userName = ? and type = 3";
-		try {
-			pst = (PreparedStatement) controller.connect.prepareStatement(sql);
-			pst.setString(1, content);
-			pst.setString(2, username);
-			int row = pst.executeUpdate();
-			if(row == 1){
-				System.out.println("更新成功！");
-			}else{
-				System.out.println("更新失败！");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	public void signConstract(String name,String content){
+//		PreparedStatement pst;
+//		String sql = "update contract_process set content = ?,state = 1 where userName = ? and type = 3";
+//		try {
+//			pst = (PreparedStatement) controller.connect.prepareStatement(sql);
+//			pst.setString(1, content);
+//			pst.setString(2, username);
+//			int row = pst.executeUpdate();
+//			if(row == 1){
+//				System.out.println("更新成功！");
+//			}else{
+//				System.out.println("更新失败！");
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
-	public void Ifcompleted(){
+	public void insertComment(String conNum, String content) {
+		String num;
+		//首先查找该合同名对应的合同编号
+		String sql1 = "select * from contract where num = \"" + conNum + "\"";
+		System.out.println(sql1);
 		PreparedStatement pst;
-		ResultSet rs;
-		String sql = "select * from contract_process where conNum = ? and state = 3 and state = 0";
 		try {
-			pst = (PreparedStatement) controller.connect.prepareStatement(sql);
-			pst.setString(1, num);
-			System.out.println(pst);
-			rs = pst.executeQuery();
-			if(!rs.next()){
-				System.out.println("该合同的所有签订已完成！");
+			pst = (PreparedStatement) jdbcObject.getPrepareStatement(sql1);
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()) {
+				num = rs.getString(1);
+
 				long l = System.currentTimeMillis();
 				Date finishtime = new Date(l);
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				sdf.format(finishtime);
+				String sql2 = "update contract_process set content = ?,time = ?,state = 1,userName = \""+this.username+"\" where conNum = \"" + num + "\"";
+				pst = (PreparedStatement) jdbcObject.getPrepareStatement(sql2);
+				pst.setString(1, content);
+				pst.setDate(2, finishtime);
+				System.out.println(pst);
+				pst.executeUpdate();
+				System.out.println("修改成功(*￣︶￣)");
+				Ifcompleted(conNum);
+
+			}
+			//插入评论
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("操作失败o(╥﹏╥)");
+			e.printStackTrace();
+		}
+	}
+
+
+
+
+	public boolean Ifcompleted(String conNum){
+		boolean result = false;
+		PreparedStatement pst;
+		ResultSet rs;
+		String sql = "select * from contract_process where conNum = ? and type = 3 and state = 0";
+		try {
+			pst = (PreparedStatement) controller.connect.prepareStatement(sql);
+			pst.setString(1, conNum);
+			System.out.println(pst);
+			rs = pst.executeQuery();
+			if(!rs.next()){
+				System.out.println("该合同的所有签订已完成！");
 				String sql2 = "update contract_state set type = 5,time = ? where num = ?";
 				pst = (PreparedStatement) controller.connect.prepareStatement(sql2);
-				pst.setDate(1, finishtime);
-				pst.setString(2, num);
+				pst.setDate(1, new Get_Time().getCurrentTime());
+				pst.setString(2, conNum);
 				System.out.println(pst);
 				int count = pst.executeUpdate();
 				if(count == 1){
 					System.out.println("合同状态更新成功o(*￣▽￣*)");
+					result = true;
 				}else{
 					System.out.println("合同状态更新失败(；′⌒`)");
 				}
@@ -136,6 +174,8 @@ public class contract_sign {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			return result;
 		}
 	}
 }
