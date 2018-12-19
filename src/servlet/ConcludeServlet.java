@@ -18,7 +18,6 @@ import java.util.Iterator;
 import java.util.List;
 import Utils.Get_Con_List;
 
-@WebServlet(name = "ConcludeServlet")
 public class ConcludeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -41,7 +40,7 @@ public class ConcludeServlet extends HttpServlet {
         pw.close();
 
         contract_countersign countersign = new contract_countersign(conclude_user);
-        countersign.insertComment(conNum,sign_msg);
+        countersign.insertComment(conNum,sign_msg,3);
 
 
     }
@@ -50,12 +49,12 @@ public class ConcludeServlet extends HttpServlet {
 
         String client = CurrentUser.username;
 
-        if(request.getRequestURL().toString().contains("over_countersign")) {
-            request.setAttribute("get_contract_list", Get_Con_List.getInstance().get_contract_list(3,1,client));
+        if(request.getRequestURL().toString().contains("over_conclude")) {
+            request.setAttribute("get_contract_list", Get_Con_List.getInstance().get_contract_list(3,1,client,5));
             request.getRequestDispatcher("jsp/over_conclude.jsp").forward(request, response);
         }
         else {
-            request.setAttribute("get_contract_list", Get_Con_List.getInstance().get_contract_list(3,0,client));
+            request.setAttribute("get_contract_list", Get_Con_List.getInstance().get_contract_list(3,0,client,4));
             request.getRequestDispatcher("jsp/conclude.jsp").forward(request, response);
         }
 

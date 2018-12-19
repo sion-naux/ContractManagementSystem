@@ -46,8 +46,8 @@ public class CountersignServlet extends HttpServlet {
         pw.flush();
         pw.close();
 
-        contract_sign contract_sign = new contract_sign(sign_user);
-        contract_sign.insertComment(conNum, sign_msg);
+        contract_countersign contract_countersign = new contract_countersign(sign_user);
+        contract_countersign.insertComment(conNum, sign_msg, 1);
 
     }
 
@@ -58,18 +58,18 @@ public class CountersignServlet extends HttpServlet {
         if(request.getRequestURL().toString().contains("get_countersign_content")) {
             PrintWriter pw = response.getWriter();
             contract_countersign countersign = new contract_countersign();
-            String content = countersign.find_CounterSign_Cont(request.getParameter("cont_num"));
+            String content = countersign.find_CounterSign_Cont(request.getParameter("cont_num"),1,client);
             String result = "{ \"msg\" : \""+content+"\"}";
             pw.print(result);
             pw.flush();
             pw.close();
         }
         else if(request.getRequestURL().toString().contains("over_countersign")) {
-            request.setAttribute("get_contract_list",  Get_Con_List.getInstance().get_contract_list(1,1,client));
+            request.setAttribute("get_contract_list",  Get_Con_List.getInstance().get_contract_list(1,1,client,1));
             request.getRequestDispatcher("jsp/over_countersign.jsp").forward(request, response);
         }
         else {
-            request.setAttribute("get_contract_list",  Get_Con_List.getInstance().get_contract_list(1,0,client));
+            request.setAttribute("get_contract_list",  Get_Con_List.getInstance().get_contract_list(1,0,client,1));
             request.getRequestDispatcher("jsp/countersign.jsp").forward(request, response);
         }
 

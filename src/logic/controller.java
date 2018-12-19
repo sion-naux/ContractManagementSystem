@@ -94,8 +94,8 @@ public class controller {
                         break;
                     }
                     sign.showSelect(name);
-                    sign.signConstract(name, content);
-                    sign.Ifcompleted();
+//                    sign.signConstract(name, content);
+//                    sign.Ifcompleted();
                 }
             }
         }
