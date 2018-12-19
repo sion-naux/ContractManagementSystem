@@ -189,6 +189,7 @@
                                         <table class="table table-hover">
                                             <thead>
                                             <tr>
+                                                <th>合同编号</th>
                                                 <th>合同名称</th>
                                                 <th>起草日期</th>
                                                 <th>起草人</th>
@@ -200,7 +201,7 @@
                                             <%for (Map m : list) {%>
                                             <tr><%for (Object k : m.keySet()){%>
                                                 <td><%out.println(m.get(k));}%></td>
-                                                <td><button class="btn btn-info" >审批</button></td>
+                                                <td><button class="btn btn-info" onclick="approval(this)">审批</button></td>
                                                 <%}%>
                                             </tr>
                                             </tbody>
@@ -231,22 +232,32 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">审批合同</h4>
+                                    <div>
+                                        <span class="card-description col-sm-3">
+                                            合同编号
+                                         </span>
+                                        <span class="card-description" id="box_cont_num">
+                                            合同名称
+                                        </span>
+                                    </div>
+                                    <div>
                                     <span class="card-description col-sm-3">
                         合同名称
                       </span>
-                                    <span class="card-description">
+                                    <span class="card-description" id="box_cont_name">
                         合同名称
                       </span>
+                                    </div>
                                     <form class="forms-sample">
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label card-description">审批意见</label>
                                             <div class="col-sm-9">
-                                                <textarea class="form-control" rows="5" placeholder="输入审批意见"></textarea>
+                                                <textarea class="form-control" rows="5" id="approval_message" placeholder="输入审批意见"></textarea>
                                             </div>
                                         </div>
                                         <div style="text-align: center">
-                                            <button type="submit" class="btn btn-success mr-2" >同意</button>
-                                            <button type="submit" class="btn btn-success mr-2" >拒绝</button>
+                                            <button type="submit" class="btn btn-success mr-2" id="approval_submit1"  onclick="submit_approval1()">同意</button>
+                                            <button type="submit" class="btn btn-success mr-2" id="approval_submit2" onclick="submit_approval2()">拒绝</button>
                                             <button class="btn btn-light">取消</button>
                                         </div>
                                     </form>
@@ -275,6 +286,7 @@
 </div>
 <!-- container-scroller -->
 
+<script src="../static/js/jQuery1.7.js"></script>
 
 <script src="../static/js/clickevent.js"></script>
 </body>
