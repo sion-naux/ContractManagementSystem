@@ -310,7 +310,7 @@ function submit_approval1(){
     var data = cont_num + "&" + cont_name + "&" + sign_msg + "&" +"y";
     alert(data);
     $.ajax({
-        url : "http://localhost:8081/approval",
+        url : "http://localhost:8080/approval",
         type : "POST",
         data :  data,
         // dataType : 'text',
@@ -334,7 +334,7 @@ function submit_approval2(){
     var data = cont_num + "&" + cont_name + "&" + sign_msg + "&" +"n";
     alert(data);
     $.ajax({
-        url : "http://localhost:8081/approval",
+        url : "http://localhost:8080/approval",
         type : "POST",
         data :  data,
         // dataType : 'text',
@@ -357,7 +357,7 @@ function submit_search(){
     var data = search_message;
     alert(data);
     $.ajax({
-        url : "http://localhost:8081/search",
+        url : "http://localhost:8080/search",
         type : "POST",
         data :  data,
         // dataType : 'text',
