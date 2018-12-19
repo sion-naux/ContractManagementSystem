@@ -96,7 +96,7 @@
     <servlet-mapping>
         <servlet-name>countersign</servlet-name>
         <url-pattern>/over_countersign</url-pattern>
-    </servlet-mapping>get_countersign_content
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>countersign</servlet-name>
         <url-pattern>/get_countersign_content</url-pattern>
@@ -114,6 +114,28 @@
         <servlet-name>conclude</servlet-name>
         <url-pattern>/over_conclude</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>conclude</servlet-name>
+        <url-pattern>/get_conclude_content</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>final</servlet-name>
+        <servlet-class>servlet.FinalServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>final</servlet-name>
+        <url-pattern>/cont_final</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>final</servlet-name>
+        <url-pattern>/over_cont_final</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>final</servlet-name>
+        <url-pattern>/get_final_content</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>search</servlet-name>
         <servlet-class>servlet.SearchServlet</servlet-class>

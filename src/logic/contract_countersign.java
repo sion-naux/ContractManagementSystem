@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
+import Utils.Get_Time;
 import com.mysql.jdbc.PreparedStatement;
 
 import static logic.contract_drag.jdbcObject;
@@ -29,47 +30,47 @@ public class contract_countersign {
 
     }
 
-
-    public void defaultFind() {
-        String sql = "select name from contract,contract_process where contract.num = contract_process.conNum"
-                + " and type = 1 and state = 0 and contract_process.userName = \"" + username + "\"";
-        System.out.println(sql);
-        try {
-            PreparedStatement pst = (PreparedStatement) controller.connect.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
-            System.out.println("您需要会签的合同有：");
-            while (rs.next()) {
-                System.out.println(rs.getString("name") + " ");
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-
-    public void clickOneHetong(String name) {
-        PreparedStatement pst;
-        ResultSet rs;
-        try {
-            String sql = "select * from contract where name = ?";
-            pst = (PreparedStatement) controller.connect.prepareStatement(sql);
-            pst.setString(1, name);
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                System.out.println("合同编号:" + rs.getString("num"));
-                System.out.println("合同名称:" + rs.getString("name"));
-                System.out.println("顾客:" + rs.getString("customer"));
-                System.out.println("生效时间:" + rs.getString("beginTime"));
-                System.out.println("结束时间:" + rs.getString("endTime"));
-                System.out.println("起草人:" + rs.getString("userName"));
-            }
-
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-    }
+//
+//    public void defaultFind() {
+//        String sql = "select name from contract,contract_process where contract.num = contract_process.conNum"
+//                + " and type = 1 and state = 0 and contract_process.userName = \"" + username + "\"";
+//        System.out.println(sql);
+//        try {
+//            PreparedStatement pst = (PreparedStatement) controller.connect.prepareStatement(sql);
+//            ResultSet rs = pst.executeQuery();
+//            System.out.println("您需要会签的合同有：");
+//            while (rs.next()) {
+//                System.out.println(rs.getString("name") + " ");
+//            }
+//        } catch (SQLException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void clickOneHetong(String name) {
+//        PreparedStatement pst;
+//        ResultSet rs;
+//        try {
+//            String sql = "select * from contract where name = ?";
+//            pst = (PreparedStatement) controller.connect.prepareStatement(sql);
+//            pst.setString(1, name);
+//            rs = pst.executeQuery();
+//            if (rs.next()) {
+//                System.out.println("合同编号:" + rs.getString("num"));
+//                System.out.println("合同名称:" + rs.getString("name"));
+//                System.out.println("顾客:" + rs.getString("customer"));
+//                System.out.println("生效时间:" + rs.getString("beginTime"));
+//                System.out.println("结束时间:" + rs.getString("endTime"));
+//                System.out.println("起草人:" + rs.getString("userName"));
+//            }
+//
+//        } catch (SQLException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//
+//    }
 
 //    public void insertComment(String name) {
 //        String content = "不错！";
@@ -110,32 +111,30 @@ public class contract_countersign {
 
 
     public void insertComment(String conNum, String content, int type) {
-        String num;
+//        String num;
         //首先查找该合同名对应的合同编号
-        String sql1 = "select * from contract where num = \"" + conNum + "\"";
-        System.out.println(sql1);
-        PreparedStatement pst;
+//        String sql1 = "select * from contract where num = \"" + conNum + "\"";
+//        System.out.println(sql1);
+
         try {
-            pst = (PreparedStatement) jdbcObject.getPrepareStatement(sql1);
+//            pst = (PreparedStatement) jdbcObject.getPrepareStatement(sql1);
 //            pst = (PreparedStatement) controller.connect.prepareStatement(sql1);
-            ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
-                num = rs.getString(1);
+//            ResultSet rs = pst.executeQuery();
+//            if (rs.next()) {
+//                num = rs.getString(1);
 
-                    long l = System.currentTimeMillis();
-                    Date finishtime = new Date(l);
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    sdf.format(finishtime);
-                    String sql2 = "update contract_process set content = ?,time = ?,state = 1 where type = " + type + " and userName = \""+this.username+"\" and conNum = \"" + num + "\"";
-                    pst = (PreparedStatement) jdbcObject.getPrepareStatement(sql2);
-                    pst.setString(1, content);
-                    pst.setDate(2, finishtime);
-                    System.out.println(pst);
-                    pst.executeUpdate();
-                    System.out.println("修改成功(*￣︶￣)");
-                    Ifcompleted(num);
+            PreparedStatement pst;
+            String sql2 = "update contract_process set content = ?,time = ?,state = 1 where type = " + type + " and userName = \""+this.username+"\" and conNum = \"" + conNum + "\"";
+            pst = (PreparedStatement) jdbcObject.getPrepareStatement(sql2);
+            pst.setString(1, content);
+            pst.setDate(2, new Get_Time().getCurrentTime());
+            System.out.println(pst);
+            //执行sql语句
+            pst.executeUpdate();
+            //检查是否全部会签完成
+            Ifcompleted(conNum, type);
 
-            }
+//            }
             //插入评论
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -144,29 +143,28 @@ public class contract_countersign {
         }
     }
 
-    public void Ifcompleted(String num) {
+    public void Ifcompleted(String num, int type) {
+        /*
+        若全部会签完成
+        则将contract_state中状态改为2
+        代表全部会签完成，可以进行下一步定稿
+         */
+
         PreparedStatement pst;
-        String sql4 = "select * from contract_process where conNum = \"" + num + "\"" + "and type = 1 and state = 0";
-        System.out.println(sql4);
+        String sql = "select * from contract_process where conNum = \"" + num + "\"" + " and type = " + type + " and state = 0";
+        System.out.println(sql);
         try {
-            pst = (PreparedStatement) controller.connect.prepareStatement(sql4);
+            pst = (PreparedStatement) jdbcObject.getPrepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             if (!rs.next()) {
-                long l = System.currentTimeMillis();
-                Date finishtime = new Date(l);
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                sdf.format(finishtime);
-                String sql5 = "update contract_state set type = 2,time = ? where num = ?";
-                pst = (PreparedStatement) controller.connect.prepareStatement(sql5);
-                pst.setDate(1, finishtime);
+                String sql2 = "update contract_state set type = "+(type+1)+",time = ? where num = ?";
+                pst = (PreparedStatement) jdbcObject.getPrepareStatement(sql2);
+                pst.setDate(1, new Get_Time().getCurrentTime());
                 pst.setString(2, num);
                 pst.executeUpdate();
-                System.out.println("该合同的所有会签已完成！");
             } else {
-                System.out.println("还有部分会签尚未完成，革命尚需努力！");
             }
         } catch (SQLException e) {
-            System.out.println("系统有点问题嘤嘤嘤");
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -190,28 +188,28 @@ public class contract_countersign {
         }
     }
 
-    public String find_CounterSign_Cont(String conNum, int state, String client) {
-        String content = null;
-        //首先查找该合同名对应的合同编号
-        String sql1 = "select content from contract_process where conNum = \"" + conNum + "\" and state = " + state + " and userName = \"" + client + "\"";
-        System.out.println(sql1);
-        PreparedStatement pst;
-        try {
-            pst = (PreparedStatement) jdbcObject.getPrepareStatement(sql1);
-
-            ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
-                content = rs.getString(1);
-
-            }
-            //插入评论
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            System.out.println("操作失败o(╥﹏╥)");
-            e.printStackTrace();
-        }
-        return content;
-    }
+//    public String find_CounterSign_Cont(String conNum, int state, String client) {
+//        String content = null;
+//        //首先查找该合同名对应的合同编号
+//        String sql1 = "select content from contract_process where conNum = \"" + conNum + "\" and state = " + state + " and userName = \"" + client + "\"";
+//        System.out.println(sql1);
+//        PreparedStatement pst;
+//        try {
+//            pst = (PreparedStatement) jdbcObject.getPrepareStatement(sql1);
+//
+//            ResultSet rs = pst.executeQuery();
+//            if (rs.next()) {
+//                content = rs.getString(1);
+//
+//            }
+//            //插入评论
+//        } catch (SQLException e) {
+//            // TODO Auto-generated catch block
+//            System.out.println("操作失败o(╥﹏╥)");
+//            e.printStackTrace();
+//        }
+//        return content;
+//    }
 
 }
 

@@ -57,8 +57,7 @@ public class CountersignServlet extends HttpServlet {
 
         if(request.getRequestURL().toString().contains("get_countersign_content")) {
             PrintWriter pw = response.getWriter();
-            contract_countersign countersign = new contract_countersign();
-            String content = countersign.find_CounterSign_Cont(request.getParameter("cont_num"),1,client);
+            String content =  Get_Con_List.getInstance().find_Cont_Info(request.getParameter("cont_num"),1,1,client);
             String result = "{ \"msg\" : \""+content+"\"}";
             pw.print(result);
             pw.flush();

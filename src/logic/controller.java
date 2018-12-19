@@ -42,10 +42,10 @@ public class controller {
                 case 1: {
                     String userName = "小赵";
                     contract_countersign countersign = new contract_countersign(userName);
-                    countersign.defaultFind();//查询该用户要会签合同
+//                    countersign.defaultFind();//查询该用户要会签合同
                     System.out.println("输入要会签的合同名：");
                     String name = scan.nextLine();
-                    countersign.clickOneHetong(name);
+//                    countersign.clickOneHetong(name);
 //                    countersign.insertComment(name);
                     break;
                 }

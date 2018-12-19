@@ -72,13 +72,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/cont_final.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/cont_final">
                 <span class="menu-title">待定稿合同</span>
                 <i class="icon-wrench menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/over_cont_final.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/over_cont_final">
                 <span class="menu-title">已定稿合同</span>
                 <i class="icon-wrench menu-icon"></i>
               </a>

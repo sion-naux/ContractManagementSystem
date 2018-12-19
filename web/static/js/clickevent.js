@@ -173,6 +173,7 @@ function over_countersign(btn) {
     document.getElementById("box_cont_name").innerHTML = tr.cells[1].innerHTML;
     ShowHide(true, shadow, dialog);
     var cont_num = $("#box_cont_num").html();
+    alert(cont_num);
     $.ajax({
         url : "http://localhost:8080/get_countersign_content?cont_num=" + cont_num,
         type : "GET",
@@ -211,7 +212,7 @@ function over_conclude(btn) {
     ShowHide(true, shadow, dialog);
     var cont_num = $("#box_cont_num").html();
     $.ajax({
-        url : "http://localhost:8080/get_countersign_content?cont_num=" + cont_num,
+        url : "http://localhost:8080/get_conclude_content?cont_num=" + cont_num,
         type : "GET",
         // dataType : 'text',
         success (data){
@@ -369,6 +370,47 @@ function submit_search(){
         },
         error (data){
             alert(data.msg);
+        }
+    });
+}
+
+function final_cont(btn) {
+
+    var tr = btn.parentElement.parentElement;
+    document.getElementById("box_cont_num").innerHTML = tr.cells[0].innerHTML;
+    document.getElementById("box_cont_name").innerHTML = tr.cells[1].innerHTML;
+    ShowHide(true, shadow, dialog);
+    var cont_num = $("#box_cont_num").html();
+    $.ajax({
+        url : "http://localhost:8080/get_final_content?cont_num=" + cont_num,
+        type : "GET",
+        // dataType : 'text',
+        success (data){
+            var item = JSON.parse(data);
+            document.getElementById("box_client_name").innerHTML = item.client_name;
+            document.getElementById("box_begin_time").innerHTML = item.begin_time;
+            document.getElementById("box_end_time").innerHTML = item.end_time;
+            document.getElementById("contract_content").innerHTML = item.contract_content;
+        },
+        error (data){
+            alert("操作失败");
+        }
+
+    });
+}
+
+
+function submit_final(btn) {
+
+    $.ajax({
+        url : "http://localhost:8080/get_final_content",
+        type : "POST",
+        // dataType : 'text',
+        success (data){
+            alert("操作成功");
+        },
+        error (data){
+            alert("操作失败");
         }
     });
 }
