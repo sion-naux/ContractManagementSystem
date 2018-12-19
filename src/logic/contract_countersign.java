@@ -109,7 +109,7 @@ public class contract_countersign {
 //    }
 
 
-    public void insertComment(String conNum, String content) {
+    public void insertComment(String conNum, String content, int type) {
         String num;
         //首先查找该合同名对应的合同编号
         String sql1 = "select * from contract where num = \"" + conNum + "\"";
@@ -126,7 +126,7 @@ public class contract_countersign {
                     Date finishtime = new Date(l);
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                     sdf.format(finishtime);
-                    String sql2 = "update contract_process set content = ?,time = ?,state = 1,userName = \""+this.username+"\" where conNum = \"" + num + "\"";
+                    String sql2 = "update contract_process set content = ?,time = ?,state = 1 where type = " + type + " and userName = \""+this.username+"\" and conNum = \"" + num + "\"";
                     pst = (PreparedStatement) jdbcObject.getPrepareStatement(sql2);
                     pst.setString(1, content);
                     pst.setDate(2, finishtime);
@@ -190,10 +190,10 @@ public class contract_countersign {
         }
     }
 
-    public String find_CounterSign_Cont(String conNum) {
+    public String find_CounterSign_Cont(String conNum, int state, String client) {
         String content = null;
         //首先查找该合同名对应的合同编号
-        String sql1 = "select content from contract_process where conNum = \"" + conNum + "\"";
+        String sql1 = "select content from contract_process where conNum = \"" + conNum + "\" and state = " + state + " and userName = \"" + client + "\"";
         System.out.println(sql1);
         PreparedStatement pst;
         try {
