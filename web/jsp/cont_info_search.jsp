@@ -8,11 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>合同管理系统</title>
   <!-- inject:css -->
-  <link rel="stylesheet" href="../static/css/style.css">
-  <link rel="stylesheet" href="../static/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/style.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/font-awesome.min.css">
 
   <!-- endinject -->
-  <link rel="shortcut icon" href="../static/images/favicon.png" />
+  <link rel="shortcut icon" href="<%=request.getContextPath()%>/static/images/favicon.png" />
 </head>
 <body>
   <div class="container-scroller">
@@ -185,8 +185,8 @@
                 </div>
                 <div class="search d1">
                   <form class="search">
-                  <input type="text" placeholder="输入关键字">
-                  <button type="submit"></button>
+                  <input id="search_message" type="text" placeholder="输入关键字">
+                  <button type="submit" onclick="submit_search()"></button>
                   </form>
                 </div>
 
@@ -201,44 +201,25 @@
                                   <th>起草日期</th>
                                   <th>起草人</th>
                                   <th>状态</th>
-                                  <th>操作</th>
+                                  <th></th>
+                                  <th></th>
                                 </tr>
                               </thead>
                               <tbody>
+                                <%--<tr>--%>
+                                  <%--<td>Jacob</td>--%>
+                                  <%--<td>123</td>--%>
+                                  <%--<td>28.76%</td>--%>
+                                  <%--<td><label class="badge badge-danger">Pending</label></td>--%>
+                                  <%--<td><button class="btn btn-info" id="test1">查看</button></td>--%>
+                                <%--</tr>--%>
+                                <%List<Map> list = (List<Map>)request.getAttribute("default_list");%>
+                                <%for (Map m : list) {%>
                                 <tr>
-                                  <td>Jacob</td>
-                                  <td>123</td>
-                                  <td>28.76%</td>
-                                  <td><label class="badge badge-danger">Pending</label></td>
-                                  <td><button class="btn btn-info" id="test1">查看</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Jacob</td>
-                                    <td>123</td>
-                                    <td>28.76%</td>
-                                    <td><label class="badge badge-warning">In progress</label></td>
-                                    <td><button class="btn btn-info">查看</button></td>
-                                </tr>
-                                <tr>
-                                  <td>John</td>
-                                  <td>Premier</td>
-                                  <td>28.76%</td>
-                                  <td><label class="badge badge-info">Fixed</label></td>
-                                  <td><button class="btn btn-info" >查看</button></td>
-                                </tr>
-                                <tr>
-                                  <td>Peter</td>
-                                  <td>After effects</td>
-                                  <td>28.76%</td>
-                                  <td><label class="badge badge-success">Completed</label></td>
-                                  <td><button class="btn btn-info">查看</button></td>
-                                </tr>
-                                <tr>
-                                  <td>Dave</td>
-                                  <td>53275535</td>
-                                  <td>28.76%</td>
-                                  <td><label class="badge badge-secondary">Completed</label></td>
-                                  <td><button class="btn btn-info">查看</button></td>
+                                <%for (Object k : m.keySet()){%>
+                                  <td><%out.println(m.get(k));}%></td>
+                                  <td><button class="btn btn-info" onclick="search_info(this)">查看</button></td>
+                                  <%}%>
                                 </tr>
                               </tbody>
                             </table>
@@ -262,42 +243,25 @@
               </div>
             </div>
             <div class="black-shadow" id="black-shadow" tabindex=-1>
-              </div>
-              <div class="dialog" id="dialogBox">
-                <div class="col-12 stretch-card">
-                  <div class="card">
-                    <div class="card-body">
-                      <h4 class="card-title">签订合同</h4>
-                      <span class="card-description col-sm-3">
-                        合同名称
+            </div>
+            <div class="dialog" id="dialogBox">
+              <div class="col-12 stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">合同详细内容</h4>
+                    <div>
+                      <span class="card-description" id="box_cont_content">
                       </span>
-                      <span class="card-description">
-                        合同名称
-                      </span></br>
-                      <div class="col-sm-12">
-                      <span class="card-description " >
-                          客户姓名
-                        </span>
-                        <span class="card-description  col-sm-3" >
-                          你好
-                        </span>
-                      </div>
-                      <form class="forms-sample">
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label card-description">签订信息</label>
-                          <div class="col-sm-9">
-                              <textarea class="form-control" rows="5" placeholder="输入签订意见"></textarea>
-                          </div>
-                        </div>
-                        <div style="text-align: center">
-                        <button type="submit" class="btn btn-success mr-2" >提交</button>
-                        <button class="btn btn-light">取消</button>
-                        </div>
-                      </form>
                     </div>
+
+                      <div style="text-align: center">
+                        <button class="btn btn-light">确定</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
+            </div>
           </div>
 
 
@@ -320,9 +284,13 @@
   </div>
   <!-- container-scroller -->
 
-
+  <script src="../static/js/jQuery1.7.js"></script>
   <script src="../static/js/clickevent.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('table tr').find('td:eq(4)').hide();
+    });
+  </script>
   <!-- End custom js for this page-->
 </body>
-
 </html>

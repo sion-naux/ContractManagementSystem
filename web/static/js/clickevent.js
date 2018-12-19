@@ -152,6 +152,13 @@ function approval(btn) {
     ShowHide(true, shadow, dialog);
 }
 
+function search_info(btn) {
+    var tr = btn.parentElement.parentElement;
+    document.getElementById("box_cont_content").innerHTML = tr.cells[4].innerHTML;
+    ShowHide(true, shadow, dialog);
+}
+
+
 
 function over_approval(btn) {
     var tr = btn.parentElement.parentElement;
@@ -328,6 +335,29 @@ function submit_approval2(){
     alert(data);
     $.ajax({
         url : "http://localhost:8081/approval",
+        type : "POST",
+        data :  data,
+        // dataType : 'text',
+        success (data){
+            ShowHide(false,shadow,dialog);
+            alert("chenggong");
+            var row = document.getElementById(cont_num);
+            row.remove();
+        },
+        error (data){
+            alert(data.msg);
+        }
+    });
+}
+
+
+function submit_search(){
+    var obj = $(this);
+    var search_message = $("#search_message").html();
+    var data = search_message;
+    alert(data);
+    $.ajax({
+        url : "http://localhost:8081/search",
         type : "POST",
         data :  data,
         // dataType : 'text',

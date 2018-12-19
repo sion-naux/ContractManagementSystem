@@ -47,7 +47,7 @@ public class ApprovalServlet extends HttpServlet {
         contract_approval approval = new contract_approval(CurrentUser.username);
         list = approval.defaultFind();
         request.setAttribute("default_list",list);
-        request.setAttribute("test",list);
+//        request.setAttribute("test",list);
         for (Map m : list)
         {
             for (Object k : m.keySet())

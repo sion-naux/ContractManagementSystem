@@ -114,6 +114,14 @@
         <servlet-name>conclude</servlet-name>
         <url-pattern>/over_conclude</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>search</servlet-name>
+        <servlet-class>servlet.SearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>search</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
 
 
 </web-app>

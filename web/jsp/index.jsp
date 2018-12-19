@@ -138,7 +138,7 @@
               <span class="nav-link">合同查询</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/cont_info_search.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/search">
                 <span class="menu-title">合同信息查询</span>
                 <i class="icon-bubbles menu-icon"></i>
               </a>
