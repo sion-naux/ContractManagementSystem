@@ -155,13 +155,13 @@
                         <span class="nav-link">系统管理</span>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<%=request.getContextPath()%>/jsp/cont_contribute.jsp">
+                        <a class="nav-link" href="<%=request.getContextPath()%>/contribute">
                             <span class="menu-title">分配合同</span>
                             <i class="icon-pie-chart menu-icon"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<%=request.getContextPath()%>/jsp/auth_manage.jsp">
+                        <a class="nav-link" href="<%=request.getContextPath()%>/authManage">
                             <span class="menu-title">权限管理</span>
                             <i class="icon-pie-chart menu-icon"></i>
                         </a>

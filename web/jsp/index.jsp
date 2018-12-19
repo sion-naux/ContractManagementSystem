@@ -66,19 +66,19 @@
               <span class="nav-link">合同起草</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="draft.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/draft.jsp">
                 <span class="menu-title">起草合同</span>
                 <i class="icon-speedometer menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="cont_final.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/cont_final.jsp">
                 <span class="menu-title">待定稿合同</span>
                 <i class="icon-wrench menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="over_cont_final.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/over_cont_final.jsp">
                 <span class="menu-title">已定稿合同</span>
                 <i class="icon-wrench menu-icon"></i>
               </a>
@@ -87,13 +87,13 @@
               <span class="nav-link">合同会签</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/countersign">
+              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/countersign.jsp">
                 <span class="menu-title">待会签合同</span>
                 <i class="icon-speedometer menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/over_countersign">
+              <a class="nav-link"href="<%=request.getContextPath()%>/jsp/over_countersign.jsp">
                 <span class="menu-title">已会签合同</span>
                 <i class="icon-grid menu-icon"></i>
               </a>
@@ -114,7 +114,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="over_approval.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/over_approval.jsp">
                 <span class="menu-title">已审批合同</span>
                 <i class="icon-flag menu-icon"></i>
               </a>
@@ -123,13 +123,13 @@
               <span class="nav-link">合同签订</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="conclude.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/conclude.jsp">
                 <span class="menu-title">待签订合同</span>
                 <i class="icon-pie-chart menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="over_conclude.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/over_conclude.jsp">
                 <span class="menu-title">已签订合同</span>
                 <i class="icon-pie-chart menu-icon"></i>
               </a>
@@ -138,13 +138,13 @@
               <span class="nav-link">合同查询</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="cont_info_search.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/cont_info_search.jsp">
                 <span class="menu-title">合同信息查询</span>
                 <i class="icon-bubbles menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="cont_proc_search.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/cont_proc_search.jsp">
                 <span class="menu-title">合同流程查询</span>
                 <i class="icon-pie-chart menu-icon"></i>
               </a>
@@ -165,7 +165,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="auth_manage.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/auth_manage.jsp">
                 <span class="menu-title">日志管理</span>
                 <i class="icon-pie-chart menu-icon"></i>
               </a>
