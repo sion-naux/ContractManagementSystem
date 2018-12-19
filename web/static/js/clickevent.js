@@ -145,6 +145,13 @@ function submit_add_role(){
 
     document.getElementById("addrole_form").submit()
 }
+function approval(btn) {
+    var tr = btn.parentElement.parentElement;
+    document.getElementById("box_cont_num").innerHTML = tr.cells[0].innerHTML;
+    document.getElementById("box_cont_name").innerHTML = tr.cells[1].innerHTML;
+    ShowHide(true, shadow, dialog);
+}
+
 
 function over_approval(btn) {
     var tr = btn.parentElement.parentElement;
@@ -154,7 +161,6 @@ function over_approval(btn) {
 }
 
 function over_countersign(btn) {
-
     var tr = btn.parentElement.parentElement;
     document.getElementById("box_cont_num").innerHTML = tr.cells[0].innerHTML;
     document.getElementById("box_cont_name").innerHTML = tr.cells[1].innerHTML;
@@ -285,4 +291,54 @@ function submit_conclude(){
     //     })
     // })
 
+}
+
+
+
+function submit_approval1(){
+    var obj = $(this);
+    var cont_num = $("#box_cont_num").html();
+    var cont_name = $("#box_cont_name").text();
+    var sign_msg = $("#approval_message").val();
+    var data = cont_num + "&" + cont_name + "&" + sign_msg + "&" +"y";
+    alert(data);
+    $.ajax({
+        url : "http://localhost:8081/approval",
+        type : "POST",
+        data :  data,
+        // dataType : 'text',
+        success (data){
+            alert("chenggong");
+            ShowHide(false,shadow,dialog);
+            var row = document.getElementById(cont_num);
+            row.remove();
+        },
+        error (data){
+            alert(data.msg);
+        }
+    });
+}
+
+function submit_approval2(){
+    var obj = $(this);
+    var cont_num = $("#box_cont_num").html();
+    var cont_name = $("#box_cont_name").text();
+    var sign_msg = $("#approval_message").val();
+    var data = cont_num + "&" + cont_name + "&" + sign_msg + "&" +"n";
+    alert(data);
+    $.ajax({
+        url : "http://localhost:8081/approval",
+        type : "POST",
+        data :  data,
+        // dataType : 'text',
+        success (data){
+            ShowHide(false,shadow,dialog);
+            alert("chenggong");
+            var row = document.getElementById(cont_num);
+            row.remove();
+        },
+        error (data){
+            alert(data.msg);
+        }
+    });
 }

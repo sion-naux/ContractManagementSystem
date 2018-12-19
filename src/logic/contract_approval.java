@@ -27,14 +27,15 @@ public class contract_approval {
 	String num = "";
 	public contract_approval(String userName){
 		this.userName = userName;
+		jdbc = new JDBCFacade();
+		//打开数据库连接
+		jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
 	}
 
 	public List<Map> defaultFind(){
 		List<Map> list =new ArrayList<Map>();
 		try {
-			jdbc = new JDBCFacade();
-			//打开数据库连接
-			jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
+			String result_no;//合同编号
 			String result_name;//合同名称
 			String result_beginTime;//起草日期
 			String result_userName;//起草人
@@ -63,10 +64,12 @@ public class contract_approval {
 					rs3 = ps2.executeQuery();
 					if(!rs3.next()){
 						Map map = new HashMap();
+						result_no = rs2.getString("num");
 						result_name = rs2.getString("name");
 						result_beginTime =rs2.getString("beginTime");
 						result_userName = rs2.getString("userName");
-						System.out.println(result_name+result_beginTime+result_userName);
+						System.out.println(result_no+result_name+result_beginTime+result_userName);
+						map.put("num", result_no);
 						map.put("name", result_name);
 						map.put("beginTime",result_beginTime);
 						map.put("userName",result_userName);
@@ -82,9 +85,6 @@ public class contract_approval {
 	}
 
 	public void clickOneHetong(String name){
-		jdbc = new JDBCFacade();
-		//打开数据库连接
-		jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
 		PreparedStatement pst;
 		ResultSet rs;
 		try {
@@ -110,9 +110,6 @@ public class contract_approval {
 
 	public void decide(String name,String ifpass,String content){
 		try {
-			jdbc = new JDBCFacade();
-			//打开数据库连接
-			jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
 			//1.查找该合同的编号
 			String sql = "select num from contract where name = ?";
 			PreparedStatement ps = (PreparedStatement) jdbc.getPrepareStatement(sql);
@@ -149,9 +146,6 @@ public class contract_approval {
 	}
 
 	public void Ifcomplete(){
-		jdbc = new JDBCFacade();
-		//打开数据库连接
-		jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
 		String sql = "select * from contract_process where conNum = ? and type = 2 and state = 0";
 		PreparedStatement pst;
 		ResultSet rs;
@@ -167,9 +161,9 @@ public class contract_approval {
 				SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 				sdf.format(finishtime);
 				String sql2 = "update contract_state set type = 4,time = ? where num = ?";
+				pst = (PreparedStatement) jdbc.getPrepareStatement(sql2);
 				pst.setDate(1, finishtime);
 				pst.setString(2, num);
-				pst = (PreparedStatement) jdbc.getPrepareStatement(sql2);
 				pst.executeUpdate();
 			}else{
 				System.out.println("还有部分审批完成！");
