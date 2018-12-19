@@ -69,6 +69,7 @@ public class contract_info_search {
                             break;
                     }
                     System.out.println(name + beginTime + userName + type);
+
                 }
                 list.add(map);
             }
