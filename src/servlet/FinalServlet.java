@@ -1,7 +1,9 @@
 package servlet;
 
 import Utils.Get_Con_List;
+import Utils.Get_Para_Data;
 import entity.CurrentUser;
+import logic.contract_countersign;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +20,17 @@ import java.util.List;
 public class FinalServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        StringBuffer sb = new Get_Para_Data().getParaData(request.getReader());
 
+        String conNum = null;
+
+        PrintWriter pw = response.getWriter();
+        String result = "{ \"msg\" : \"success\"}";
+        pw.print(result);
+        pw.flush();
+        pw.close();
+
+        Get_Con_List.getInstance().Change_final_status(sb.toString());
 
     }
 

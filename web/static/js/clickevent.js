@@ -363,10 +363,7 @@ function submit_search(){
         data :  data,
         // dataType : 'text',
         success (data){
-            ShowHide(false,shadow,dialog);
             alert("chenggong");
-            var row = document.getElementById(cont_num);
-            row.remove();
         },
         error (data){
             alert(data.msg);
@@ -402,12 +399,14 @@ function final_cont(btn) {
 
 function submit_final(btn) {
 
+    var cont_num = $("#box_cont_num").html();
     $.ajax({
         url : "http://localhost:8080/get_final_content",
         type : "POST",
+        data : cont_num,
         // dataType : 'text',
         success (data){
-            alert("操作成功");
+
         },
         error (data){
             alert("操作失败");

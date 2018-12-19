@@ -93,7 +93,7 @@ public class Get_Con_List {
             methodName = "final_cont";
         } else if (process_state == 1) {
             btnName = "查看";
-            methodName = "over_final_cont";
+            methodName = "final_cont";
         }
 
         //获取定稿相关列表
@@ -124,8 +124,9 @@ public class Get_Con_List {
         return contract_state_list;
     }
 
-    //只适用于定稿合同信息查询
+
     public ArrayList<String> find_final_Cont_Info(String conNum, int type, String client) {
+        //只适用于定稿合同信息查询
         String customer = null;
         String content = null;
         ArrayList<String> list = new ArrayList<>();
@@ -135,17 +136,14 @@ public class Get_Con_List {
         PreparedStatement pst;
         try {
             pst = (PreparedStatement) jdbcObject.getPrepareStatement(sql1);
-
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
+                //将相关信息放入容器中
                 list.add(rs.getString(1));
                 list.add(rs.getDate(2).toString());
                 list.add(rs.getDate(3).toString());
                 list.add(rs.getString(4));
-
-
             }
-            //插入评论
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             System.out.println("操作失败o(╥﹏╥)");
@@ -154,9 +152,26 @@ public class Get_Con_List {
         return list;
     }
 
+    public void Change_final_status(String conNum){
+        //通过合同编号将合同从会签完成改为定稿完成
+        String sql = "update contract_state set type = 3,time = ? where num = ?";
+        PreparedStatement pst;
+        try {
+            pst = (PreparedStatement) jdbcObject.getPrepareStatement(sql);
+            pst.setDate(1, new Get_Time().getCurrentTime());
+            pst.setString(2, conNum);
+            pst.executeUpdate();
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            System.out.println("操作失败o(╥﹏╥)");
+            e.printStackTrace();
+        }
+    }
 
 
     public String find_Cont_Info(String conNum, int type, int state, String client) {
+        //查找合同内容
         String content = null;
         //首先查找该合同名对应的合同编号
         String sql1 = "select content from contract_process where conNum = \"" + conNum + "\" and type = " + type + " and state = " + state + " and userName = \"" + client + "\"";
@@ -170,7 +185,7 @@ public class Get_Con_List {
                 content = rs.getString(1);
 
             }
-            //插入评论
+
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             System.out.println("操作失败o(╥﹏╥)");

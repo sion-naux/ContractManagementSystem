@@ -149,7 +149,6 @@ public class contract_countersign {
         则将contract_state中状态改为2
         代表全部会签完成，可以进行下一步定稿
          */
-
         PreparedStatement pst;
         String sql = "select * from contract_process where conNum = \"" + num + "\"" + " and type = " + type + " and state = 0";
         System.out.println(sql);
@@ -188,28 +187,7 @@ public class contract_countersign {
         }
     }
 
-//    public String find_CounterSign_Cont(String conNum, int state, String client) {
-//        String content = null;
-//        //首先查找该合同名对应的合同编号
-//        String sql1 = "select content from contract_process where conNum = \"" + conNum + "\" and state = " + state + " and userName = \"" + client + "\"";
-//        System.out.println(sql1);
-//        PreparedStatement pst;
-//        try {
-//            pst = (PreparedStatement) jdbcObject.getPrepareStatement(sql1);
-//
-//            ResultSet rs = pst.executeQuery();
-//            if (rs.next()) {
-//                content = rs.getString(1);
-//
-//            }
-//            //插入评论
-//        } catch (SQLException e) {
-//            // TODO Auto-generated catch block
-//            System.out.println("操作失败o(╥﹏╥)");
-//            e.printStackTrace();
-//        }
-//        return content;
-//    }
+
 
 }
 
