@@ -102,4 +102,18 @@
         <url-pattern>/get_countersign_content</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>conclude</servlet-name>
+        <servlet-class>servlet.ConcludeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>conclude</servlet-name>
+        <url-pattern>/conclude</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>conclude</servlet-name>
+        <url-pattern>/over_conclude</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

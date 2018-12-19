@@ -37,6 +37,16 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.10" level="application_server_libraries" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://E:/tomcat/apache-tomcat-8.5.34/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://E:/tomcat/apache-tomcat-8.5.34/lib" recursive="false" />
+      </library>
+    </orderEntry>
   </component>
 </module>

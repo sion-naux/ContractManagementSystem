@@ -124,13 +124,13 @@ public class contract_drag {
 
     //列出待分配合同
     //合同名称 起草日期 起草人
-    public static List<ContributeContract> show_contract(int type, int state) {
+    public static List<ContributeContract> show_contract(int type, int state, String client) {
         List<ContributeContract> contract_state_list = new ArrayList<ContributeContract>();
         try {
             JDBCFacade jdbc = new JDBCFacade();
             //打开数据库连接
             jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
-            String sql = "select contract_state.num as num,name,contract.userName,contract_state.time as time from contract_state,contract,contract_process where contract_state.num=contract.num and contract_state.num=contract_process.conNum and state="+state+" and contract_state.type=";
+            String sql = "select contract_state.num as num,name,contract.userName,contract_state.time as time from contract_state,contract,contract_process where contract_state.num=contract.num and contract_state.num=contract_process.conNum and state="+state+" and contract_process.userName=\"" + client + "\" and contract_state.type=";
             sql = sql + type;
             System.out.println("生成的sql语句是：" + sql);
             ResultSet rs = jdbc.executeQuery(sql);

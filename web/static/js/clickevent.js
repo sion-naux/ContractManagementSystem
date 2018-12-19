@@ -174,6 +174,41 @@ function over_countersign(btn) {
         }
 
     });
+}
 
+function countersign(btn) {
+    var tr = btn.parentElement.parentElement;
+    document.getElementById("box_cont_num").innerHTML = tr.cells[0].innerHTML;
+    document.getElementById("box_cont_name").innerHTML = tr.cells[1].innerHTML;
+    ShowHide(true, shadow, dialog);
+}
 
+function conclude(btn) {
+    var tr = btn.parentElement.parentElement;
+    document.getElementById("box_cont_num").innerHTML = tr.cells[0].innerHTML;
+    document.getElementById("box_cont_name").innerHTML = tr.cells[1].innerHTML;
+    ShowHide(true, shadow, dialog);
+}
+
+function over_conclude(btn) {
+
+    var tr = btn.parentElement.parentElement;
+    document.getElementById("box_cont_num").innerHTML = tr.cells[0].innerHTML;
+    document.getElementById("box_cont_name").innerHTML = tr.cells[1].innerHTML;
+    ShowHide(true, shadow, dialog);
+    var cont_num = $("#box_cont_num").html();
+    $.ajax({
+        url : "http://localhost:8080/get_countersign_content?cont_num=" + cont_num,
+        type : "GET",
+        // dataType : 'text',
+        success (data){
+            var item = JSON.parse(data)
+            document.getElementById("sign_message").innerHTML = item.msg;
+
+        },
+        error (data){
+            alert("操作失败");
+        }
+
+    });
 }

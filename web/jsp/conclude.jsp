@@ -58,7 +58,7 @@
       </div>
     </nav>    <!-- partial -->
     <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
+    <div class="container-fluid page-body-wrapper" style="margin-top: -9px;">
       <div class="row row-offcanvas row-offcanvas-right">
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -188,6 +188,7 @@
                             <table class="table table-hover">
                               <thead>
                                 <tr>
+                                  <th>合同编号</th>
                                   <th>合同名称</th>
                                   <th>起草日期</th>
                                   <th>起草人</th>
@@ -195,36 +196,42 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr>
-                                  <td>Jacob</td>
-                                  <td>123</td>
-                                  <td>28.76%</td>
-                                  <td><button class="btn btn-info" id="test1">查看</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Jacob</td>
-                                    <td>123</td>
-                                    <td>28.76%</td>
-                                    <td><button class="btn btn-info">查看</button></td>
-                                </tr>
-                                <tr>
-                                  <td>John</td>
-                                  <td>Premier</td>
-                                  <td>28.76%</td>
-                                  <td><button class="btn btn-info">查看</button></td>
-                                </tr>
-                                <tr>
-                                  <td>Peter</td>
-                                  <td>After effects</td>
-                                  <td>28.76%</td>
-                                    <td><button class="btn btn-info">查看</button></td>
-                                </tr>
-                                <tr>
-                                  <td>Dave</td>
-                                  <td>53275535</td>
-                                  <td>28.76%</td>
-                                  <td><button class="btn btn-info">查看</button></td>
-                                </tr>
+                                <%--<tr>--%>
+                                  <%--<td>Jacob</td>--%>
+                                  <%--<td>123</td>--%>
+                                  <%--<td>28.76%</td>--%>
+                                  <%--<td><button class="btn btn-info" id="test1">查看</button></td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                    <%--<td>Jacob</td>--%>
+                                    <%--<td>123</td>--%>
+                                    <%--<td>28.76%</td>--%>
+                                    <%--<td><button class="btn btn-info">查看</button></td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                  <%--<td>John</td>--%>
+                                  <%--<td>Premier</td>--%>
+                                  <%--<td>28.76%</td>--%>
+                                  <%--<td><button class="btn btn-info">查看</button></td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                  <%--<td>Peter</td>--%>
+                                  <%--<td>After effects</td>--%>
+                                  <%--<td>28.76%</td>--%>
+                                    <%--<td><button class="btn btn-info">查看</button></td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                  <%--<td>Dave</td>--%>
+                                  <%--<td>53275535</td>--%>
+                                  <%--<td>28.76%</td>--%>
+                                  <%--<td><button class="btn btn-info">查看</button></td>--%>
+                                <%--</tr>--%>
+                                <%
+                                  String countersign_contract_list = (String) request.getAttribute("get_contract_list");
+                                  if (countersign_contract_list != null) {
+                                    out.print(countersign_contract_list);
+                                  }
+                                %>
                               </tbody>
                             </table>
                           </div>
@@ -253,17 +260,27 @@
                   <div class="card">
                     <div class="card-body">
                       <h4 class="card-title">签订合同</h4>
+                      <div>
+                      <span class="card-description col-sm-3">
+                        合同编号
+                      </span>
+                        <span class="card-description" id="box_cont_num">
+
+                      </span>
+                      </div>
+                      <div>
                       <span class="card-description col-sm-3">
                         合同名称
                       </span>
-                      <span class="card-description">
-                        合同名称
-                      </span></br>
+                        <span class="card-description" id="box_cont_name">
+
+                      </span>
+                      </div></br>
                       <div class="col-sm-12">
                       <span class="card-description " >
                           客户姓名
                         </span>
-                        <span class="card-description  col-sm-3" >
+                        <span class="card-description  col-sm-3" id="box_client_name">
                           你好
                         </span>
                       </div>
@@ -305,7 +322,7 @@
   </div>
   <!-- container-scroller -->
 
-
+  <script src="../static/js/jQuery1.7.js"></script>
   <script src="../static/js/clickevent.js"></script>
   <!-- End custom js for this page-->
 </body>

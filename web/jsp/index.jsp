@@ -87,13 +87,13 @@
               <span class="nav-link">合同会签</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/countersign.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/countersign">
                 <span class="menu-title">待会签合同</span>
                 <i class="icon-speedometer menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link"href="<%=request.getContextPath()%>/jsp/over_countersign.jsp">
+              <a class="nav-link"href="<%=request.getContextPath()%>/over_countersign">
                 <span class="menu-title">已会签合同</span>
                 <i class="icon-grid menu-icon"></i>
               </a>
@@ -123,13 +123,13 @@
               <span class="nav-link">合同签订</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/conclude.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/conclude">
                 <span class="menu-title">待签订合同</span>
                 <i class="icon-pie-chart menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/over_conclude.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/over_conclude">
                 <span class="menu-title">已签订合同</span>
                 <i class="icon-pie-chart menu-icon"></i>
               </a>

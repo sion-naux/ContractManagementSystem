@@ -1,5 +1,6 @@
 package servlet;
 
+import Utils.Get_Con_List;
 import entity.ContributeContract;
 import logic.contract_countersign;
 import logic.contract_drag;
@@ -50,6 +51,8 @@ public class CountersignServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        String client = "111";
+
         if(request.getRequestURL().toString().contains("get_countersign_content")) {
             PrintWriter pw = response.getWriter();
             contract_countersign countersign = new contract_countersign();
@@ -60,54 +63,54 @@ public class CountersignServlet extends HttpServlet {
             pw.close();
         }
         else if(request.getRequestURL().toString().contains("over_countersign")) {
-            request.setAttribute("get_contract_list", get_contract_list(1, 1));
+            request.setAttribute("get_contract_list",  Get_Con_List.getInstance().get_contract_list(1,1,client));
             request.getRequestDispatcher("jsp/over_countersign.jsp").forward(request, response);
         }
         else {
-            request.setAttribute("get_contract_list", get_contract_list(1, 0));
+            request.setAttribute("get_contract_list",  Get_Con_List.getInstance().get_contract_list(1,1,client));
             request.getRequestDispatcher("jsp/countersign.jsp").forward(request, response);
         }
 
 
     }
 
-    private String get_contract_list(int type, int state) {
-        String contribute_contract_list = "";
-        List<ContributeContract> contribute_list;
-        contribute_list = contract_drag.show_contract(type, state);
-        Iterator<ContributeContract> iter = contribute_list.iterator();
-        while (iter.hasNext()) {
-            ContributeContract contributeContract = iter.next();
-            String num = new String();
-            String name = new String();
-            String time = new String();
-            String username = new String();
-            num = contributeContract.getNum();
-            name = contributeContract.getName();
-            time = contributeContract.getTime().split(" ")[0];
-            username = contributeContract.getUserName();
-            System.out.println("合同编号:" + num);
-            System.out.println("合同名称:" + name);
-            System.out.println("起草时间:" + time);
-            System.out.println("起草人:" + username);
-            String item = "";
-            String btnName = "查看";
-            String methodName = "over_countersign";
-            if(state == 0){
-                btnName = STATIONS[state];
-                methodName = "countersign";
-            }
-            item = "<tr id=\""+num+"\"><td>" + num +
-                    "</td><td>" + name +
-                    "</td><td>" + time +
-                    "</td><td>" + username +
-                    "</td>" + "<td><button class=\"btn btn-info \" onclick=\""+methodName+"(this)\">"+btnName+"</button></td></tr>";
-            System.out.println("表格生成的一行：" + item);
-            contribute_contract_list += item;
-        }
-
-        return contribute_contract_list;
-    }
+//    private String get_contract_list(int type, int state, String client) {
+//        String contribute_contract_list = "";
+//        List<ContributeContract> contribute_list;
+//        contribute_list = contract_drag.show_contract(type, state, client);
+//        Iterator<ContributeContract> iter = contribute_list.iterator();
+//        while (iter.hasNext()) {
+//            ContributeContract contributeContract = iter.next();
+//            String num = new String();
+//            String name = new String();
+//            String time = new String();
+//            String username = new String();
+//            num = contributeContract.getNum();
+//            name = contributeContract.getName();
+//            time = contributeContract.getTime().split(" ")[0];
+//            username = contributeContract.getUserName();
+//            System.out.println("合同编号:" + num);
+//            System.out.println("合同名称:" + name);
+//            System.out.println("起草时间:" + time);
+//            System.out.println("起草人:" + username);
+//            String item = "";
+//            String btnName = "查看";
+//            String methodName = "over_countersign";
+//            if(state == 0){
+//                btnName = STATIONS[state];
+//                methodName = "countersign";
+//            }
+//            item = "<tr id=\""+num+"\"><td>" + num +
+//                    "</td><td>" + name +
+//                    "</td><td>" + time +
+//                    "</td><td>" + username +
+//                    "</td>" + "<td><button class=\"btn btn-info \" onclick=\""+methodName+"(this)\">"+btnName+"</button></td></tr>";
+//            System.out.println("表格生成的一行：" + item);
+//            contribute_contract_list += item;
+//        }
+//
+//        return contribute_contract_list;
+//    }
 
     public StringBuffer getParaData(BufferedReader bufferedReader){
         StringBuffer sb = new StringBuffer();
