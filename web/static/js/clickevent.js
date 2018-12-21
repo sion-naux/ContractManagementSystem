@@ -354,7 +354,7 @@ function submit_approval2(){
 
 function submit_search(){
     var obj = $(this);
-    var search_message = $("#search_message").html();
+    var search_message = $("#search_message").val();
     var data = search_message;
     alert(data);
     $.ajax({
