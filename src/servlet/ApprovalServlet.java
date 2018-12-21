@@ -20,6 +20,7 @@ public class ApprovalServlet extends HttpServlet {
         System.out.println("post");
         request.setCharacterEncoding("utf-8");
         StringBuffer sb = new Get_Para_Data().getParaData(request.getReader());
+
         String conNum = null;
         String conName = null;
         String content = null;
