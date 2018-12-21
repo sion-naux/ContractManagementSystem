@@ -29,6 +29,12 @@ File -> Project Structure -> Libraries -> 点"+"号，添加tomcat的lib路径�
 #### 新增会签以及查看已会签合同功能
 #### PS：ajax真好用
 
+### 2018.12.22更新
+#### 新增信息查询功能
+##### PS：form中的button会自动提交表单，若自行发送了HTTP请求，务必将其（自动提交）阻止掉
+
+
+
 ### 建表命令行
 - user
 ~~~
