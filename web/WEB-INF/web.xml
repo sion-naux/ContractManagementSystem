@@ -145,5 +145,14 @@
         <url-pattern>/search</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>procedure</servlet-name>
+        <servlet-class>servlet.ProcedureServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>procedure</servlet-name>
+        <url-pattern>/procedure</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>
