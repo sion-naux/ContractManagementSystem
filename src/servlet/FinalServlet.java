@@ -41,6 +41,8 @@ public class FinalServlet extends HttpServlet {
         request.setAttribute("right_list", CurrentUser.right_list);
 
         if(request.getRequestURL().toString().contains("get_final_content")) {
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("text/html;charset=utf-8");
             PrintWriter pw = response.getWriter();
             ArrayList<String> content =  Get_Con_List.getInstance().find_final_Cont_Info(request.getParameter("cont_num"), 2,client);
 

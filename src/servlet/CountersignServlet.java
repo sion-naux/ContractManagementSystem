@@ -27,7 +27,7 @@ public class CountersignServlet extends HttpServlet {
             {"起草","会签","审批","签订","分配","定稿"};
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.setCharacterEncoding("UTF-8");
         StringBuffer sb = new Get_Para_Data().getParaData(request.getReader());
 
         String conNum = null;
@@ -57,6 +57,8 @@ public class CountersignServlet extends HttpServlet {
         request.setAttribute("right_list", CurrentUser.right_list);
 
         if(request.getRequestURL().toString().contains("get_countersign_content")) {
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("text/html;charset=utf-8");
             PrintWriter pw = response.getWriter();
             String content =  Get_Con_List.getInstance().find_Cont_Info(request.getParameter("cont_num"),1,1,client);
             String result = "{ \"msg\" : \""+content+"\"}";

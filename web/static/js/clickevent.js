@@ -179,7 +179,8 @@ function over_countersign(btn) {
         type : "GET",
         // dataType : 'text',
         success (data){
-            var item = JSON.parse(data)
+            var item = JSON.parse(data);
+
             document.getElementById("sign_message").innerHTML = item.msg;
 
         },
@@ -217,8 +218,7 @@ function over_conclude(btn) {
         // dataType : 'text',
         success (data){
             var item = JSON.parse(data)
-            document.getElementById("sign_message").innerHTML = item.msg;
-
+            document.getElementById("conclude_message").innerHTML = item.msg;
         },
         error (data){
             alert("操作失败");
@@ -274,7 +274,7 @@ function submit_conclude(){
     // var sign_msg = document.getElementById("sign_message").innerText;
     var cont_num = $("#box_cont_num").html();
     var cont_name = $("#box_cont_name").text();
-    var sign_msg = $("#sign_message").val();
+    var sign_msg = $("#conclude_message").val();
     var data = cont_num + "&" + cont_name + "&" + sign_msg;
     alert(data);
     $.ajax({

@@ -325,7 +325,7 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label card-description">签订意见</label>
                       <div class="col-sm-9">
-                        <textarea class="form-control" rows="5" id="sign_message" placeholder="输入会签意见" disabled></textarea>
+                        <textarea class="form-control" rows="5" id="conclude_message" placeholder="输入会签意见" disabled></textarea>
                       </div>
                     </div>
                     <div style="text-align: center">

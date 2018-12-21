@@ -20,7 +20,7 @@ import Utils.Get_Con_List;
 
 public class ConcludeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.setCharacterEncoding("utf-8");
         StringBuffer sb = new Get_Para_Data().getParaData(request.getReader());
 
         String conNum = null;
@@ -46,10 +46,11 @@ public class ConcludeServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String client = CurrentUser.username;
         request.setAttribute("right_list", CurrentUser.right_list);
         if(request.getRequestURL().toString().contains("get_conclude_content")) {
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("text/html;charset=utf-8");
             PrintWriter pw = response.getWriter();
             String content =  Get_Con_List.getInstance().find_Cont_Info(request.getParameter("cont_num"),3,1,client);
             String result = "{ \"msg\" : \""+content+"\"}";

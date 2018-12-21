@@ -24,6 +24,9 @@ public class SearchServlet extends HttpServlet {
         List<Map> list =new ArrayList<Map>();//用于存放返回的集合
         contract_info_search info_search = new contract_info_search();
         list = info_search.likesearch(keyword);
+
+
+
         request.setAttribute("default_list",list);
         request.getRequestDispatcher("jsp/cont_info_search.jsp").forward(request, response);
     }
@@ -35,6 +38,7 @@ public class SearchServlet extends HttpServlet {
         List<Map> list =new ArrayList<Map>();//用于存放返回的集合
         contract_info_search info_search = new contract_info_search();
         list = info_search.defaultsearch();
+
         request.setAttribute("default_list",list);
         request.setAttribute("right_list", CurrentUser.right_list);
 

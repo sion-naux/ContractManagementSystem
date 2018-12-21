@@ -196,7 +196,7 @@ public class Get_Con_List {
 
     public String getContractList(List<ContributeContract> list, String methodName, String btnName){
 
-        String contract_list = null;
+        String contract_list = "";
         Iterator<ContributeContract> iter = list.iterator();
         while (iter.hasNext()) {
             ContributeContract contributeContract = iter.next();

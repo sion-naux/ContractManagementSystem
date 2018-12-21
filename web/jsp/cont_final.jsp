@@ -261,12 +261,14 @@
                                   <%--<td>28.76%</td>--%>
                                   <%--<td><button class="btn btn-info" >定稿</button></td>--%>
                                 <%--</tr>--%>
+
                                 <%
                                   String countersign_contract_list = (String) request.getAttribute("get_contract_list");
                                   if (countersign_contract_list != null) {
                                     out.print(countersign_contract_list);
                                   }
                                 %>
+
                               </tbody>
                             </table>
                           </div>

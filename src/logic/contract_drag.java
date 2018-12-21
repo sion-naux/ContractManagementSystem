@@ -79,7 +79,7 @@ public class contract_drag {
                 System.out.println("插入失败!");
             } else {
                 result = insertcontract_state();
-                result = insertcontract_process();
+//                result = insertcontract_process();
 
                 if(attachment != null)
                     add_attactment();
@@ -221,7 +221,7 @@ public class contract_drag {
             ps.setString(1, num);
             ps.setInt(2, 1);
             ps.setInt(3, 0);
-            ps.setString(4, null);
+            ps.setString(4, this.userName);
             ps.setString(5, null);
             ps.setDate(6, null);
             int row = ps.executeUpdate();//执行更新操作，返回所影响的行数

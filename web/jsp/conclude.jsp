@@ -312,7 +312,7 @@
                         <span class="card-description" id="box_cont_name">
 
                       </span>
-                      </div></br>
+                      </div>
                       <div class="col-sm-12">
                       <span class="card-description " >
                           客户姓名
@@ -325,7 +325,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label card-description">签订信息</label>
                           <div class="col-sm-9">
-                              <textarea class="form-control" rows="5" placeholder="输入签订意见"></textarea>
+                              <textarea class="form-control" rows="5" id="conclude_message" placeholder="输入签订意见"></textarea>
                           </div>
                         </div>
                         <div style="text-align: center">
