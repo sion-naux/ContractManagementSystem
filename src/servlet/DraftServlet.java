@@ -34,7 +34,8 @@ public class DraftServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.setAttribute("right_list", CurrentUser.right_list);
+        request.getRequestDispatcher("jsp/draft.jsp").forward(request, response);
     }
 
     private java.sql.Date parseDate(String str){

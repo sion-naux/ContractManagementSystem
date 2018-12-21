@@ -2,6 +2,7 @@ package servlet;
 
 
 import entity.ContributeContract;
+import entity.CurrentUser;
 import logic.Allocate;
 import logic.Verify;
 import logic.contract_drag;
@@ -84,6 +85,7 @@ public class ContributeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("contribute_contract_list", get_contribute_contract_list());
         req.setAttribute("contribute_person_list", get_contribute_person_list());
+        req.setAttribute("right_list", CurrentUser.right_list);
         req.getRequestDispatcher("jsp/cont_contribute.jsp").forward(req, resp);
     }
 

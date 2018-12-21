@@ -48,6 +48,7 @@ public class ConcludeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String client = CurrentUser.username;
+        request.setAttribute("right_list", CurrentUser.right_list);
         if(request.getRequestURL().toString().contains("get_conclude_content")) {
             PrintWriter pw = response.getWriter();
             String content =  Get_Con_List.getInstance().find_Cont_Info(request.getParameter("cont_num"),3,1,client);

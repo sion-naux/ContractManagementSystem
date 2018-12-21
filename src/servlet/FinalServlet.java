@@ -37,6 +37,7 @@ public class FinalServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String client = CurrentUser.username;
+        request.setAttribute("right_list", CurrentUser.right_list);
 
         if(request.getRequestURL().toString().contains("get_final_content")) {
             PrintWriter pw = response.getWriter();

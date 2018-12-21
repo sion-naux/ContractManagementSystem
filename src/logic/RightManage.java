@@ -4,8 +4,10 @@ import database.JDBCFacade;
 import database.dbConfig;
 import entity.Right;
 
+import java.sql.Array;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RightManage {
@@ -63,5 +65,28 @@ public class RightManage {
             e.printStackTrace();
         }
         return flag;
+    }
+
+    public static List<String> get_right_list_of_user(String username) {
+        List<String> right_list = new ArrayList<String>();
+        try {
+            JDBCFacade jdbc = new JDBCFacade();
+            //打开数据库连接
+            jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
+            String sql = "select functions from userright,role where role.name=userright.roleName and userName='" + username+"'";
+            System.out.println("生成的sql语句是：" + sql);
+            ResultSet rs = jdbc.executeQuery(sql);
+            while (rs.next()){
+                right_list = Arrays.asList(rs.getString("functions").split("，"));
+            }
+
+
+
+            jdbc.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return right_list;
+
     }
 }

@@ -1,9 +1,12 @@
 package servlet;
 
 import entity.CurrentUser;
+import logic.RightManage;
 import logic.Verify;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,6 +36,7 @@ public class LoginServlet extends HttpServlet {
             req.getRequestDispatcher("jsp/login.jsp").forward(req, resp);
         } else if (register_result == 1) {
             CurrentUser.username = userName;
+            CurrentUser.right_list = get_right_list(userName);
             resp.sendRedirect(req.getContextPath() + "/index");
         } else {
             req.setAttribute("error", "登陆失败！");
@@ -41,6 +45,11 @@ public class LoginServlet extends HttpServlet {
         }
 
 
+    }
+    private List<String> get_right_list(String username) {
+        List<String> right_list = new ArrayList<String>();
+        right_list = RightManage.get_right_list_of_user(username);
+        return right_list;
     }
 
     @Override

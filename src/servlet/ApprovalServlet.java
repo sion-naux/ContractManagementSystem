@@ -56,6 +56,7 @@ public class ApprovalServlet extends HttpServlet {
             }
         }
 
+        request.setAttribute("right_list", CurrentUser.right_list);
         request.getRequestDispatcher("jsp/approval.jsp").forward(request, response);
 //        response.sendRedirect("jsp/approval.jsp");
     }

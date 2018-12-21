@@ -32,6 +32,8 @@ public class SearchServlet extends HttpServlet {
         contract_info_search info_search = new contract_info_search();
         list = info_search.defaultsearch();
         request.setAttribute("default_list",list);
+        request.setAttribute("right_list", CurrentUser.right_list);
+
         request.getRequestDispatcher("jsp/cont_info_search.jsp").forward(request, response);
     }
 }

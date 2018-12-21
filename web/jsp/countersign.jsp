@@ -17,8 +17,9 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper">
-        <a class="navbar-brand brand-logo" href="index.jsp"><img src="../static/images/logo.svg" alt="logo"></a>
-        <a class="navbar-brand brand-logo-mini" href="index.jsp"><img src="../static/images/logo_mini.svg" alt="logo"></a>
+        <a class="navbar-brand brand-logo" href="<%=request.getContextPath()%>/index"><img src="../static/images/logo.svg" alt="logo"></a>
+        <a class="navbar-brand brand-logo-mini" href="<%=request.getContextPath()%>/index"><img src="../static/images/logo_mini.svg"
+                                                                                                alt="logo"></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
         <p class="page-name d-none d-lg-block">早上好！</p>
@@ -26,7 +27,8 @@
           <li class="nav-item">
             <form class="mt-2 mt-md-0 d-none d-lg-block search-input">
               <div class="input-group">
-                <span class="input-group-addon d-flex align-items-center"><i class="icon-magnifier icons"></i></span>
+                            <span class="input-group-addon d-flex align-items-center"><i
+                                    class="icon-magnifier icons"></i></span>
                 <input type="text" class="form-control" placeholder="Search...">
               </div>
             </form>
@@ -60,117 +62,151 @@
     <!-- partial -->
     <div class="container-fluid page-body-wrapper" style="margin-top: -9px;">
       <div class="row row-offcanvas row-offcanvas-right">
+        <%
+          List<String> l = (List<String>) request.getAttribute("right_list");
+
+        %>
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
-            <li class="nav-item nav-category">
-              <span class="nav-link">合同起草</span>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/draft.jsp">
-                <span class="menu-title">起草合同</span>
-                <i class="icon-speedometer menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/cont_final.jsp">
-                <span class="menu-title">待定稿合同</span>
-                <i class="icon-wrench menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/over_cont_final.jsp">
-                <span class="menu-title">已定稿合同</span>
-                <i class="icon-wrench menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item nav-category">
-              <span class="nav-link">合同会签</span>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/countersign">
-                <span class="menu-title">待会签合同</span>
-                <i class="icon-speedometer menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link"href="<%=request.getContextPath()%>/over_countersign">
-                <span class="menu-title">已会签合同</span>
-                <i class="icon-grid menu-icon"></i>
-              </a>
-            </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="pages/icons/font-awesome.html">
-                <span class="menu-title">Icons</span>
-                <i class="icon-globe menu-icon"></i>
-              </a>
-            </li> -->
-            <li class="nav-item nav-category">
-              <span class="nav-link">合同审批</span>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/approval">
-                <span class="menu-title">待审批合同</span>
-                <i class="icon-flag menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/over_approval.jsp">
-                <span class="menu-title">已审批合同</span>
-                <i class="icon-flag menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item nav-category">
-              <span class="nav-link">合同签订</span>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/conclude.jsp">
-                <span class="menu-title">待签订合同</span>
-                <i class="icon-pie-chart menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/over_conclude.jsp">
-                <span class="menu-title">已签订合同</span>
-                <i class="icon-pie-chart menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item nav-category">
-              <span class="nav-link">合同查询</span>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/cont_info_search.jsp">
-                <span class="menu-title">合同信息查询</span>
-                <i class="icon-bubbles menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/cont_proc_search.jsp">
-                <span class="menu-title">合同流程查询</span>
-                <i class="icon-pie-chart menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item nav-category">
-              <span class="nav-link">系统管理</span>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/contribute">
-                <span class="menu-title">分配合同</span>
-                <i class="icon-pie-chart menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/authManage">
-                <span class="menu-title">权限管理</span>
-                <i class="icon-pie-chart menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<%=request.getContextPath()%>/jsp/auth_manage.jsp">
-                <span class="menu-title">日志管理</span>
-                <i class="icon-pie-chart menu-icon"></i>
-              </a>
-            </li>
+            <%
+              if (l.contains("起草合同")) {
+                out.print("<li class=\"nav-item nav-category\"><span class=\"nav-link\">合同起草</span></li>\n" +
+                        "                    <li class=\"nav-item\">\n" +
+                        "                        <a class=\"nav-link\" href=\"" + request.getContextPath() + "/draft\">\n" +
+                        "                            <span class=\"menu-title\">起草合同</span>\n" +
+                        "                            <i class=\"icon-speedometer menu-icon\"></i>\n" +
+                        "                        </a>\n" +
+                        "                    </li>");
+              }
+
+            %>
+            <%
+              if (l.contains("定稿合同")) {
+                out.print("<li class=\"nav-item\">\n" +
+                        "                        <a class=\"nav-link\" href=\"" + request.getContextPath() + "/cont_final\">\n" +
+                        "                            <span class=\"menu-title\">待定稿合同</span>\n" +
+                        "                            <i class=\"icon-wrench menu-icon\"></i>\n" +
+                        "                        </a>\n" +
+                        "                    </li>" + "<li class=\"nav-item\">\n" +
+                        "                        <a class=\"nav-link\" href=\"" + request.getContextPath() + "/over_cont_final\">\n" +
+                        "                            <span class=\"menu-title\">已定稿合同</span>\n" +
+                        "                            <i class=\"icon-wrench menu-icon\"></i>\n" +
+                        "                        </a>\n" +
+                        "                    </li>");
+              }
+            %>
+            <%
+              if (l.contains("会签合同")) {
+                out.print("<li class=\"nav-item nav-category\">\n" +
+                        "                        <span class=\"nav-link\">合同会签</span>\n" +
+                        "                    </li>\n" +
+                        "                    <li class=\"nav-item\">\n" +
+                        "                        <a class=\"nav-link\" href=\"" + request.getContextPath() + "/countersign\">\n" +
+                        " <span class=\"menu-title\">待会签合同</span>\n" +
+                        " <i class=\"icon-speedometer menu-icon\"></i>\n" +
+                        "                        </a>\n" +
+                        "                    </li>\n" +
+                        "<li class=\"nav-item\">\n" +
+                        " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/over_countersign\">\n" +
+                        " <span class=\"menu-title\">已会签合同</span>\n" +
+                        " <i class=\"icon-grid menu-icon\"></i>\n" +
+                        " </a>\n" +
+                        " </li>");
+              }
+            %>
+            <%
+              if (l.contains("审批合同")) {
+                out.print("<li class=\"nav-item nav-category\">\n" +
+                        "                        <span class=\"nav-link\">合同审批</span>\n" +
+                        "                    </li>\n" +
+                        "                    <li class=\"nav-item\">\n" +
+                        "                        <a class=\"nav-link\" href=\"" + request.getContextPath() + "/approval\">\n" +
+                        " <span class=\"menu-title\">待审批合同</span>\n" +
+                        " <i class=\"icon-flag menu-icon\"></i>\n" +
+                        "                        </a>\n" +
+                        "                    </li>\n" +
+                        "<li class=\"nav-item\">\n" +
+                        " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/jsp/over_approval.jsp\">\n" +
+                        " <span class=\"menu-title\">已审批合同</span>\n" +
+                        " <i class=\"icon-flag menu-icon\"></i>\n" +
+                        " </a>\n" +
+                        " </li> ");
+              }
+            %>
+            <%
+              if (l.contains("签订合同")) {
+                out.print("<li class=\"nav-item nav-category\">\n" +
+                        "                        <span class=\"nav-link\">合同签订</span>\n" +
+                        "                    </li>\n" +
+                        "                    <li class=\"nav-item\">\n" +
+                        "                        <a class=\"nav-link\" href=\"" + request.getContextPath() + "/conclude\">\n" +
+                        " <span class=\"menu-title\">待签订合同</span>\n" +
+                        " <i class=\"icon-pie-chart menu-icon\"></i>\n" +
+                        "                        </a>\n" +
+                        "                    </li>\n" +
+                        "<li class=\"nav-item\">\n" +
+                        " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/over_conclude\">\n" +
+                        " <span class=\"menu-title\">已签订合同</span>\n" +
+                        " <i class=\"icon-pie-chart menu-icon\"></i>\n" +
+                        " </a>\n" +
+                        "</li>");
+              }
+            %>
+            <%
+              if (l.contains("查询合同")) {
+                out.print("<li class=\"nav-item nav-category\">\n" +
+                        "                        <span class=\"nav-link\">合同查询</span>\n" +
+                        "                    </li>\n" +
+                        "                    <li class=\"nav-item\">\n" +
+                        "                        <a class=\"nav-link\" href=\"" + request.getContextPath() +
+                        "/search\">\n" +
+                        " <span class=\"menu-title\">合同信息查询</span>\n" +
+                        " <i class=\"icon-bubbles menu-icon\"></i>\n" +
+                        "                        </a>\n" +
+                        "                    </li>"
+                );
+              }
+            %>
+            <%
+              if (l.contains("流程查询")) {
+                out.print("<li class=\"nav-item\">\n" +
+                        " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/jsp/cont_proc_search.jsp\">\n" +
+                        " <span class=\"menu-title\">合同流程查询</span>\n" +
+                        " <i class=\"icon-pie-chart menu-icon\"></i>\n" +
+                        " </a>\n" +
+                        "</li>");
+              }
+            %>
+            <%
+              if (l.contains("分配会签")) {
+                out.print("<li class=\"nav-item nav-category\">\n" +
+                        "                        <span class=\"nav-link\">系统管理</span>\n" +
+                        "                    </li>\n" +
+                        "                    <li class=\"nav-item\">\n" +
+                        "                        <a class=\"nav-link\" href=\"" + request.getContextPath() +
+                        "/contribute\">\n" +
+                        " <span class=\"menu-title\">分配合同</span>\n" +
+                        " <i class=\"icon-pie-chart menu-icon\"></i>\n" +
+                        "                        </a>\n" +
+                        "                    </li>\n" +
+                        "<li class=\"nav-item\">\n" +
+                        " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/authManage\">\n" +
+                        " <span class=\"menu-title\">权限管理</span>\n" +
+                        " <i class=\"icon-pie-chart menu-icon\"></i>\n" +
+                        " </a>\n" +
+                        "</li>\n" +
+                        "<li class=\"nav-item\">\n" +
+                        " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/jsp/auth_manage.jsp\">\n" +
+                        " <span class=\"menu-title\">日志管理</span>\n" +
+                        " <i class=\"icon-pie-chart menu-icon\"></i>\n" +
+                        " </a>\n" +
+                        "</li>");
+              }
+
+            %>
+
+
           </ul>
         </nav>
         <!-- partial -->

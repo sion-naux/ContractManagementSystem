@@ -1,5 +1,6 @@
 package servlet;
 
+import entity.CurrentUser;
 import entity.Right;
 import entity.Role;
 import logic.ManageRole;
@@ -20,6 +21,7 @@ public class AuthManageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("role_list", get_role_list());
         req.setAttribute("auth_person_list", get_auth_person_list());
+        req.setAttribute("right_list", CurrentUser.right_list);
         req.getRequestDispatcher("jsp/auth_manage.jsp").forward(req, resp);
     }
 
