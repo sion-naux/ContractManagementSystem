@@ -2,6 +2,7 @@ package servlet;
 
 import Utils.Get_Con_List;
 import Utils.Get_Para_Data;
+import com.google.gson.JsonObject;
 import entity.CurrentUser;
 import logic.contract_countersign;
 
@@ -42,11 +43,15 @@ public class FinalServlet extends HttpServlet {
         if(request.getRequestURL().toString().contains("get_final_content")) {
             PrintWriter pw = response.getWriter();
             ArrayList<String> content =  Get_Con_List.getInstance().find_final_Cont_Info(request.getParameter("cont_num"), 2,client);
+
+
+
             String result = "{ \"client_name\" : \""+ content.get(0) + "\", " +
                               "\"begin_time\" : \"" + content.get(1) + "\", " +
                               "\"end_time\" : \"" + content.get(2) + "\", " +
                               "\"contract_content\" : \"" + content.get(3) + "\"}";
             pw.print(result);
+
             pw.flush();
             pw.close();
         }

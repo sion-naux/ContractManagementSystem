@@ -77,6 +77,8 @@ public class DraftServlet extends HttpServlet {
                     // 处理不在表单中的字段
                     if (!item.isFormField()) {
                         String fileName = new File(item.getName()).getName();
+                        if(fileName.equals(""))
+                            continue;
                         String filePath = uploadPath + File.separator + fileName;
                         File storeFile = new File(filePath);
 
