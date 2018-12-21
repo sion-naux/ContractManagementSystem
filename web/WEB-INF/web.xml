@@ -144,6 +144,11 @@
         <servlet-name>search</servlet-name>
         <url-pattern>/search</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>search</servlet-name>
+        <url-pattern>/query_special</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>procedure</servlet-name>

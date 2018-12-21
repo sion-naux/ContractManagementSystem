@@ -217,7 +217,7 @@ function over_conclude(btn) {
         type : "GET",
         // dataType : 'text',
         success (data){
-            var item = JSON.parse(data)
+            var item = JSON.parse(data);
             document.getElementById("conclude_message").innerHTML = item.msg;
         },
         error (data){
@@ -356,17 +356,32 @@ function submit_search(){
     var obj = $(this);
     var search_message = $("#search_message").val();
     var data = search_message;
-    alert(data);
     $.ajax({
-        url : "http://localhost:8080/search",
-        type : "POST",
-        data :  data,
+        url : "http://localhost:8080/query_special?search_message=" + search_message,
+        type : "GET",
+        // data :  data,
         // dataType : 'text',
         success (data){
-            alert("chenggong");
+            var items = JSON.parse(data);
+            var str;
+            $("#search-content").html("");
+            $.each(items, function(index, item){
+                 str = "<tr>" +
+                    "<td>" + item.name + "</td>" +
+                    "<td>" + item.beginTime + "</td>" +
+                    "<td>" + item.userName + "</td>" +
+                    "<td>" + item.type + "</td>" +
+                     "<td>" + item.content + "</td>" +
+                    "<td><button class=\"btn btn-info\" onclick=\"search_info(this)\">查看</button></td>" +
+                "</tr>";
+                $("#search-content").append(str);
+            })
+            $('table tr').find('td:eq(4)').hide();
+
         },
         error (data){
-            alert(data.msg);
+            var data = JSON.parse(data);
+            alert(data.data);
         }
     });
 }

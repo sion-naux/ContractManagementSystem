@@ -224,7 +224,7 @@
                             <div class="search d1">
                                 <form class="search">
                                     <input id="search_message" type="text" placeholder="输入关键字">
-                                    <button type="submit" onclick="submit_search()"></button>
+                                    <button onclick="submit_search();return false"></button>
                                 </form>
                             </div>
 
@@ -243,7 +243,7 @@
                                                 <th></th>
                                             </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="search-content">
                                             <%--<tr>--%>
                                             <%--<td>Jacob</td>--%>
                                             <%--<td>123</td>--%>
