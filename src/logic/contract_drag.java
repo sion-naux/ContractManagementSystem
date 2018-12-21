@@ -12,6 +12,7 @@ import com.mysql.jdbc.PreparedStatement;
 import database.JDBCFacade;
 import database.dbConfig;
 
+import entity.Attachment;
 import entity.ContributeContract;
 
 public class contract_drag {
@@ -22,10 +23,23 @@ public class contract_drag {
     private Date endTime;
     private String text;
     private String userName;
+    private Attachment attachment;
     public static JDBCFacade jdbcObject = new JDBCFacade();
 
     static{
         jdbcObject.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
+    }
+
+    public contract_drag(String name, String customer, Date beginTime,
+                         Date endTime, String text, String userName, Attachment attachment) {
+        this.name = name;
+        this.customer = customer;
+        this.beginTime = beginTime;
+        this.endTime = endTime;
+        this.text = text;
+        this.userName = userName;
+        this.num = (int) (1 + Math.random() * (1000000)) + "";
+        this.attachment = attachment;
     }
 
     public contract_drag(String name, String customer, Date beginTime,
@@ -37,7 +51,6 @@ public class contract_drag {
         this.text = text;
         this.userName = userName;
         this.num = (int) (1 + Math.random() * (1000000)) + "";
-//        this.jdbcObject = new JDBCFacade();
     }
 
     public void judge() {
@@ -67,6 +80,10 @@ public class contract_drag {
             } else {
                 result = insertcontract_state();
                 result = insertcontract_process();
+
+                if(attachment != null)
+                    add_attactment();
+
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -101,6 +118,29 @@ public class contract_drag {
 //		}
 
     }
+
+    private void add_attactment() {
+
+        String sql = "insert into contract_attachment values(?,?,?,?,?)";
+        PreparedStatement ps;
+        try {
+            ps = (PreparedStatement) jdbcObject.getPrepareStatement(sql);
+
+            ps.setString(1, this.num);
+            ps.setString(2, attachment.getFileName());
+            ps.setString(3, attachment.getPath());
+            ps.setString(4, attachment.getType());
+            ps.setDate(5, new Get_Time().getCurrentTime());
+
+            int row = ps.executeUpdate();//执行更新操作，返回所影响的行数
+            if (row == 0)
+                System.out.println("插入失败!");
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
 
     //列出待分配合同
     //合同名称 起草日期 起草人
