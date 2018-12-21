@@ -95,18 +95,14 @@ public class DraftServlet extends HttpServlet {
                     }
                     else{
                         String fieldName = item.getFieldName();
-                        DeferredFileOutputStream dfos =  (DeferredFileOutputStream)item.getOutputStream();
-
-                        String str = new String(dfos.getData());
+                        String str = item.getString("UTF-8");
 
                         switch (fieldName){
                             case "contract_name":
                                 contract_name = str;
-                                contract_name = new String(contract_name.getBytes("ISO-8859-1"),"utf-8");
                                 break;
                             case "contract_customer":
                                 contract_customer = str;
-                                contract_customer=new String(contract_customer.getBytes("ISO-8859-1"),"utf-8");
                                 break;
                             case "contract_begin_time":
                                 contract_begin_time = str;
@@ -116,7 +112,6 @@ public class DraftServlet extends HttpServlet {
                                 break;
                             case "contract_content":
                                 contract_content = str;
-                                contract_content=new String(contract_content.getBytes("ISO-8859-1"),"utf-8");
                                 break;
                         }
 
