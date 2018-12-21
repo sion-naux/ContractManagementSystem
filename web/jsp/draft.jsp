@@ -254,7 +254,7 @@
                       <p class="card-description">
                         填写信息
                       </p>
-                      <form class="forms-sample" action="<%=request.getContextPath()%>/draft" method="post">
+                      <form class="forms-sample" action="<%=request.getContextPath()%>/draft" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                           <input type="text" class="form-control" name="contract_name" placeholder="合同名称">
                         </div>
@@ -296,11 +296,11 @@
                             });
                         </script>
                         <div class="form-group" style="margin-top: 20px">
-                          <input type="file" name="img[]" class="file-upload-default">
+                          <input name="img[]" class="file-upload-default">
                           <div class="input-group col-xs-12">
                             <input type="text" class="form-control file-upload-info" name="option_name" disabled placeholder="上传附件">
                             <span class="input-group-append">
-                              <input class="dropfy" type="file">
+                              <input class="dropfy" type="file" name="attachment">
                             </span>
                           </div>
                         </div>
