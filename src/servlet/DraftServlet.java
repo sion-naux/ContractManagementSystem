@@ -131,7 +131,7 @@ public class DraftServlet extends HttpServlet {
                 parseDate(contract_begin_time), parseDate(contract_end_time),
                 contract_content, CurrentUser.username, attachment);
         drag.insertcontract();
-        response.sendRedirect(request.getContextPath() + "jsp/draft.jsp");
+        response.sendRedirect(request.getContextPath() + "/draft");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

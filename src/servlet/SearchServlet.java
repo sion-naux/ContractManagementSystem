@@ -17,15 +17,18 @@ import java.util.Map;
 
 public class SearchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.removeAttribute("default_list");
+//        request.removeAttribute("default_list");
         request.setCharacterEncoding("utf-8");
         StringBuffer sb = new Get_Para_Data().getParaData(request.getReader());
         String keyword = sb.toString();
         List<Map> list =new ArrayList<Map>();//用于存放返回的集合
         contract_info_search info_search = new contract_info_search();
         list = info_search.likesearch(keyword);
-        request.setAttribute("default_list",list);
+
 //        response.sendRedirect("jsp/approval.jsp");
+        request.setAttribute("default_list",list);
+        request.setAttribute("right_list", CurrentUser.right_list);
+
         request.getRequestDispatcher("jsp/cont_info_search.jsp").forward(request, response);
     }
 
@@ -36,7 +39,8 @@ public class SearchServlet extends HttpServlet {
         list = info_search.defaultsearch();
         request.setAttribute("default_list",list);
         request.setAttribute("right_list", CurrentUser.right_list);
-
         request.getRequestDispatcher("jsp/cont_info_search.jsp").forward(request, response);
     }
+
+
 }
