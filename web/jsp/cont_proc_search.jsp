@@ -219,11 +219,11 @@
           <div class="col-lg-12 grid-margin">
             <div class="card overflow-hidden dashboard-curved-chart">
               <div class="card-body mx-3">
-                <h2 class="card-title border-bottom-none">合同信息查询</h2>
+                <h2 class="card-title border-bottom-none">合同流程查询</h2>
               </div>
               <div class="search d1">
                 <form class="search">
-                  <select id="search_message">
+                  <select class = "sel_mask" id="search_message">
                     <option value ="0"></option>
                     <option value ="1">起草</option>
                     <option value="2">会签完成</option>

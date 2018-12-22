@@ -431,7 +431,7 @@ function submit_final(btn) {
 }
 
 function procedure_search(){
-    var obj = document.getElementByIdx_x("#search_message"); //定位id
+    var obj = document.getElementById("search_message");
     var index = obj.selectedIndex; // 选中索引
     alert(index);
     $.ajax({
@@ -440,6 +440,7 @@ function procedure_search(){
         // data :  data,
         // dataType : 'text',
         success (data){
+            alert("chenggong");
             var items = JSON.parse(data);
             var str;
             $("#search-content").html("");

@@ -24,7 +24,6 @@ public class contract_process_search {
 
     public List<Map> search() {
         PreparedStatement ps;
-        String num;
         String name;
         String beginTime;
         String userName;
@@ -38,7 +37,6 @@ public class contract_process_search {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Map map = new HashMap();
-                num = rs.getString("num");
                 name = rs.getString("name");
                 beginTime = rs.getString("beginTime");
                 userName = rs.getString("userName");
@@ -47,6 +45,23 @@ public class contract_process_search {
                 map.put("beginTime", beginTime);
                 map.put("userName", userName);
                 map.put("content", content);
+                switch (type){
+                    case(1):
+                        map.put("type", "起草");
+                        break;
+                    case(2):
+                        map.put("type", "会签完成");
+                        break;
+                    case(3):
+                        map.put("type", "定稿完成");
+                        break;
+                    case(4):
+                        map.put("type", "审批完成");
+                        break;
+                    case(5):
+                        map.put("type", "签订完成");
+                        break;
+                }
                 list.add(map);
             }
         } catch (SQLException e) {

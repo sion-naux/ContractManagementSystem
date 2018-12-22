@@ -26,11 +26,10 @@ public class ProcedureServlet extends HttpServlet {
         if(request.getRequestURL().toString().contains("choice")){
             //设置编码格式
             request.setCharacterEncoding("utf-8");
-            String choice = request.getParameter("choice");
-
+            String choice = request.getParameter("search_message");
+            int type = Integer.parseInt(choice);
             //获取搜索结果
             List<Map> list;
-            int type  = 1;
             contract_process_search pro = new contract_process_search(type);
             list = pro.search();
 
@@ -46,15 +45,14 @@ public class ProcedureServlet extends HttpServlet {
             pw.close();
         }
         else {
-
             request.removeAttribute("default_list");
+            int type = 1;
+            //获取搜索结果
             List<Map> list;
-            contract_info_search info_search = new contract_info_search();
-            list = info_search.defaultsearch();
-
+            contract_process_search pro = new contract_process_search(type);
+            list = pro.search();
             request.setAttribute("default_list", list);
             request.setAttribute("right_list", CurrentUser.right_list);
-
             request.getRequestDispatcher("jsp/cont_proc_search.jsp").forward(request, response);
 
         }
