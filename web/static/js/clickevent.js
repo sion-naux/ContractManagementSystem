@@ -313,7 +313,7 @@ function submit_approval1(){
     var data = cont_num + "&" + cont_name + "&" + sign_msg + "&" +"y";
     alert(data);
     $.ajax({
-        url : "http://localhost:8081/approval",
+        url : "http://localhost:8080/approval",
         type : "POST",
         data :  data,
         // dataType : 'text',
@@ -440,7 +440,22 @@ function procedure_search(){
         // data :  data,
         // dataType : 'text',
         success (data){
-            alert("chenggong");
+            var items = JSON.parse(data);
+            var str;
+            $("#search-content").html("");
+            $.each(items, function(index, item){
+                str = "<tr>" +
+                    "<td>" + item.name + "</td>" +
+                    "<td>" + item.beginTime + "</td>" +
+                    "<td>" + item.userName + "</td>" +
+                    "<td>" + item.type + "</td>" +
+                    "<td>" + item.content + "</td>" +
+                    "<td><button class=\"btn btn-info\" onclick=\"search_info(this)\">查看</button></td>" +
+                    "</tr>";
+                $("#search-content").append(str);
+            })
+            $('table tr').find('td:eq(4)').hide();
+
         },
         error (data){
             var data = JSON.parse(data);

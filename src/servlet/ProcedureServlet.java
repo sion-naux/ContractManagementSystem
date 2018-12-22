@@ -18,11 +18,6 @@ import java.util.Map;
 
 public class ProcedureServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int type  = 1;
-        contract_process_search pro = new contract_process_search(type);
-        pro.search();
-        request.setAttribute("right_list", CurrentUser.right_list);
-        request.getRequestDispatcher("jsp/cont_proc_search.jsp").forward(request, response);
 
     }
 
