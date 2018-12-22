@@ -20488,15 +20488,16 @@ ul, li {
 
 }
 
+
 .sel_mask{
     position: relative;
-    width: 200px;
+    width: 310px;
     height: 42px;
-    background: #7BA7AB;
+    /* background: #7BA7AB; */
     border-radius: 5px;
-    box-shadow: 1px 1px 5px #788bd5;
+    border: 2px solid #7BA7AB;
     display: inline-block;
     text-decoration: none;
-    color: white;
+    color: #9E9C9C;
 }
 /*# sourceMappingURL=maps/style.css.map */

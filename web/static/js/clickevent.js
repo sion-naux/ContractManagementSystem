@@ -1,6 +1,6 @@
 //授权的checkbox只能点一个
-$(document).ready(function(){
-    $('#checkbox_group_role').find('input[type=checkbox]').bind('click', function(){
+$(document).ready(function () {
+    $('#checkbox_group_role').find('input[type=checkbox]').bind('click', function () {
         $('#checkbox_group_role').find('input[type=checkbox]').not(this).attr("checked", false);
     });
 });
@@ -109,15 +109,14 @@ function submit_contribute() {
 }
 
 //提交授权
-function submit_auth(){
+function submit_auth() {
 
     var s = document.getElementsByName("checkbox_role");
     var role_list_Array = "";
 
-    for( var i = 0; i < s.length; i++ )
-    {
-        if ( s[i].checked ){
-            role_list_Array= s[i].value;
+    for (var i = 0; i < s.length; i++) {
+        if (s[i].checked) {
+            role_list_Array = s[i].value;
             break;
         }
     }
@@ -128,14 +127,13 @@ function submit_auth(){
 }
 
 //提交添加角色
-function submit_add_role(){
+function submit_add_role() {
 
     var s = document.getElementsByName("checkbox_addrole");
     var addrole_list_Array = new Array();
 
-    for( var i = 0; i < s.length; i++ )
-    {
-        if ( s[i].checked ){
+    for (var i = 0; i < s.length; i++) {
+        if (s[i].checked) {
             addrole_list_Array.push(s[i].value);
 
         }
@@ -145,6 +143,7 @@ function submit_add_role(){
 
     document.getElementById("addrole_form").submit()
 }
+
 function approval(btn) {
     var tr = btn.parentElement.parentElement;
     document.getElementById("box_cont_num").innerHTML = tr.cells[0].innerHTML;
@@ -158,7 +157,7 @@ function search_info(btn) {
     ShowHide(true, shadow, dialog);
 }
 
-function cancel(btn){
+function cancel(btn) {
     ShowHide(false, shadow, dialog);
 }
 
@@ -175,18 +174,18 @@ function over_countersign(btn) {
     document.getElementById("box_cont_name").innerHTML = tr.cells[1].innerHTML;
     ShowHide(true, shadow, dialog);
     var cont_num = $("#box_cont_num").html();
-    alert(cont_num);
+
     $.ajax({
-        url : "http://localhost:8080/get_countersign_content?cont_num=" + cont_num,
-        type : "GET",
+        url: "http://localhost:8080/get_countersign_content?cont_num=" + cont_num,
+        type: "GET",
         // dataType : 'text',
-        success (data){
+        success(data) {
             var item = JSON.parse(data);
 
             document.getElementById("sign_message").innerHTML = item.msg;
 
         },
-        error (data){
+        error(data) {
             alert("操作失败");
         }
 
@@ -215,21 +214,21 @@ function over_conclude(btn) {
     ShowHide(true, shadow, dialog);
     var cont_num = $("#box_cont_num").html();
     $.ajax({
-        url : "http://localhost:8080/get_conclude_content?cont_num=" + cont_num,
-        type : "GET",
+        url: "http://localhost:8080/get_conclude_content?cont_num=" + cont_num,
+        type: "GET",
         // dataType : 'text',
-        success (data){
+        success(data) {
             var item = JSON.parse(data);
             document.getElementById("conclude_message").innerHTML = item.msg;
         },
-        error (data){
+        error(data) {
             alert("操作失败");
         }
 
     });
 }
 
-function submit_sign(){
+function submit_sign() {
     // $(document).ready(function () {
     //     $("#sign_submit").click(function (e) {
     //         e.preventDefault();
@@ -241,21 +240,21 @@ function submit_sign(){
     var cont_name = $("#box_cont_name").text();
     var sign_msg = $("#sign_message").val();
     var data = cont_num + "&" + cont_name + "&" + sign_msg;
-    alert(data);
+
     $.ajax({
-        url : "http://localhost:8080/countersign",
-        type : "POST",
-        data :  data,
+        url: "http://localhost:8080/countersign",
+        type: "POST",
+        data: data,
         // dataType : 'text',
-        success (data){
-            alert("chenggong");
-            ShowHide(false,shadow,dialog);
+        success(data) {
+
+            ShowHide(false, shadow, dialog);
             var row = document.getElementById(cont_num);
             row.remove();
 
 
         },
-        error (data){
+        error(data) {
             alert(data.msg);
         }
 
@@ -266,7 +265,7 @@ function submit_sign(){
 
 }
 
-function submit_conclude(){
+function submit_conclude() {
     // $(document).ready(function () {
     //     $("#sign_submit").click(function (e) {
     //         e.preventDefault();
@@ -278,21 +277,21 @@ function submit_conclude(){
     var cont_name = $("#box_cont_name").text();
     var sign_msg = $("#conclude_message").val();
     var data = cont_num + "&" + cont_name + "&" + sign_msg;
-    alert(data);
+
     $.ajax({
-        url : "http://localhost:8080/conclude",
-        type : "POST",
-        data :  data,
+        url: "http://localhost:8080/conclude",
+        type: "POST",
+        data: data,
         // dataType : 'text',
-        success (data){
-            alert("chenggong");
-            ShowHide(false,shadow,dialog);
+        success(data) {
+
+            ShowHide(false, shadow, dialog);
             var row = document.getElementById(cont_num);
             row.remove();
 
 
         },
-        error (data){
+        error(data) {
             alert(data.msg);
         }
 
@@ -304,84 +303,83 @@ function submit_conclude(){
 }
 
 
-
-function submit_approval1(){
+function submit_approval1() {
     var obj = $(this);
     var cont_num = $("#box_cont_num").html();
     var cont_name = $("#box_cont_name").text();
     var sign_msg = $("#approval_message").val();
-    var data = cont_num + "&" + cont_name + "&" + sign_msg + "&" +"y";
-    alert(data);
+    var data = cont_num + "&" + cont_name + "&" + sign_msg + "&" + "y";
+
     $.ajax({
-        url : "http://localhost:8080/approval",
-        type : "POST",
-        data :  data,
+        url: "http://localhost:8080/approval",
+        type: "POST",
+        data: data,
         // dataType : 'text',
-        success (data){
-            alert("chenggong");
-            ShowHide(false,shadow,dialog);
+        success(data) {
+
+            ShowHide(false, shadow, dialog);
             var row = document.getElementById(cont_num);
             row.remove();
         },
-        error (data){
+        error(data) {
             alert(data.msg);
         }
     });
 }
 
-function submit_approval2(){
+function submit_approval2() {
     var obj = $(this);
     var cont_num = $("#box_cont_num").html();
     var cont_name = $("#box_cont_name").text();
     var sign_msg = $("#approval_message").val();
-    var data = cont_num + "&" + cont_name + "&" + sign_msg + "&" +"n";
-    alert(data);
+    var data = cont_num + "&" + cont_name + "&" + sign_msg + "&" + "n";
+
     $.ajax({
-        url : "http://localhost:8080/approval",
-        type : "POST",
-        data :  data,
+        url: "http://localhost:8080/approval",
+        type: "POST",
+        data: data,
         // dataType : 'text',
-        success (data){
-            ShowHide(false,shadow,dialog);
-            alert("chenggong");
+        success(data) {
+            ShowHide(false, shadow, dialog);
+
             var row = document.getElementById(cont_num);
             row.remove();
         },
-        error (data){
+        error(data) {
             alert(data.msg);
         }
     });
 }
 
 
-function submit_search(){
+function submit_search() {
     var obj = $(this);
     var search_message = $("#search_message").val();
     var data = search_message;
     $.ajax({
-        url : "http://localhost:8080/query_special?search_message=" + search_message,
-        type : "GET",
+        url: "http://localhost:8080/query_special?search_message=" + search_message,
+        type: "GET",
         // data :  data,
         // dataType : 'text',
-        success (data){
+        success(data) {
             var items = JSON.parse(data);
             var str;
             $("#search-content").html("");
-            $.each(items, function(index, item){
-                 str = "<tr>" +
+            $.each(items, function (index, item) {
+                str = "<tr>" +
                     "<td>" + item.name + "</td>" +
                     "<td>" + item.beginTime + "</td>" +
                     "<td>" + item.userName + "</td>" +
                     "<td>" + item.type + "</td>" +
-                     "<td>" + item.content + "</td>" +
+                    "<td>" + item.content + "</td>" +
                     "<td><button class=\"btn btn-info\" onclick=\"search_info(this)\">查看</button></td>" +
-                "</tr>";
+                    "</tr>";
                 $("#search-content").append(str);
             })
             $('table tr').find('td:eq(4)').hide();
 
         },
-        error (data){
+        error(data) {
             var data = JSON.parse(data);
             alert(data.data);
         }
@@ -396,17 +394,17 @@ function final_cont(btn) {
     ShowHide(true, shadow, dialog);
     var cont_num = $("#box_cont_num").html();
     $.ajax({
-        url : "http://localhost:8080/get_final_content?cont_num=" + cont_num,
-        type : "GET",
+        url: "http://localhost:8080/get_final_content?cont_num=" + cont_num,
+        type: "GET",
         // dataType : 'text',
-        success (data){
+        success(data) {
             var item = JSON.parse(data);
             document.getElementById("box_client_name").innerHTML = item.client_name;
             document.getElementById("box_begin_time").innerHTML = item.begin_time;
             document.getElementById("box_end_time").innerHTML = item.end_time;
             document.getElementById("contract_content").innerHTML = item.contract_content;
         },
-        error (data){
+        error(data) {
             alert("操作失败");
         }
 
@@ -417,34 +415,34 @@ function submit_final(btn) {
 
     var cont_num = $("#box_cont_num").html();
     $.ajax({
-        url : "http://localhost:8080/get_final_content",
-        type : "POST",
-        data : cont_num,
+        url: "http://localhost:8080/get_final_content",
+        type: "POST",
+        data: cont_num,
         // dataType : 'text',
-        success (data){
+        success(data) {
 
         },
-        error (data){
+        error(data) {
             alert("操作失败");
         }
     });
 }
 
-function procedure_search(){
+function procedure_search() {
     var obj = document.getElementById("search_message");
-    var index = obj.selectedIndex; // 选中索引
-    alert(index);
+    var index = obj.selectedIndex + 1; // 选中索引
+
     $.ajax({
-        url : "http://localhost:8080/choice?search_message=" + index,
-        type : "GET",
+        url: "http://localhost:8080/choice?search_message=" + index,
+        type: "GET",
         // data :  data,
         // dataType : 'text',
-        success (data){
-            alert("chenggong");
+        success(data) {
+
             var items = JSON.parse(data);
             var str;
             $("#search-content").html("");
-            $.each(items, function(index, item){
+            $.each(items, function (index, item) {
                 str = "<tr>" +
                     "<td>" + item.name + "</td>" +
                     "<td>" + item.beginTime + "</td>" +
@@ -458,7 +456,7 @@ function procedure_search(){
             $('table tr').find('td:eq(4)').hide();
 
         },
-        error (data){
+        error(data) {
             var data = JSON.parse(data);
             alert(data.data);
         }
