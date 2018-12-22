@@ -307,7 +307,7 @@
                   </div>
 
                   <div style="text-align: center">
-                    <button class="btn btn-light">确定</button>
+                    <button class="btn btn-light" onclick="ShowHide(false,shadow,dialog);return false;">确定</button>
                   </div>
                   </form>
                 </div>

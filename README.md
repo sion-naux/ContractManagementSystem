@@ -110,3 +110,12 @@ CREATE TABLE `contract_state` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ~~~
 
+- log
+~~~
+CREATE TABLE `log` (
+  `userName` varchar(40) DEFAULT NULL,
+  `content` text,
+  `time` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+~~~
+

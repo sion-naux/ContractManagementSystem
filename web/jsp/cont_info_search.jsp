@@ -201,7 +201,7 @@
                                     " </a>\n" +
                                     "</li>\n" +
                                     "<li class=\"nav-item\">\n" +
-                                    " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/jsp/auth_manage.jsp\">\n" +
+                                    " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/logManage\">\n" +
                                     " <span class=\"menu-title\">日志管理</span>\n" +
                                     " <i class=\"icon-pie-chart menu-icon\"></i>\n" +
                                     " </a>\n" +
@@ -300,7 +300,7 @@
                                     </div>
 
                                     <div style="text-align: center">
-                                        <button class="btn btn-light">确定</button>
+                                        <button class="btn btn-light" onclick="ShowHide(false,shadow,dialog);return false;">确定</button>
                                     </div>
                                     </form>
                                 </div>

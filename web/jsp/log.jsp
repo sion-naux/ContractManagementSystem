@@ -1,6 +1,5 @@
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.List" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" import="java.util.*" language="java" %>
+
 <html lang="en">
 
 <head>
@@ -9,19 +8,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>合同管理系统</title>
     <!-- inject:css -->
-
     <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/style.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/font-awesome.min.css">
+
     <!-- endinject -->
-    <link rel="shortcut icon" href="<%=request.getContextPath()%>/static/images/favicon.png" />
+    <link rel="shortcut icon" href="<%=request.getContextPath()%>/static/images/favicon.png"/>
 </head>
 <body>
 <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper">
-            <a class="navbar-brand brand-logo" href="<%=request.getContextPath()%>/index"><img src="../static/images/logo.svg" alt="logo"></a>
-            <a class="navbar-brand brand-logo-mini" href="<%=request.getContextPath()%>/index"><img src="../static/images/logo_mini.svg"
-                                                                                                    alt="logo"></a>
+            <a class="navbar-brand brand-logo" href="<%=request.getContextPath()%>/index"><img
+                    src="../static/images/logo.svg" alt="logo"></a>
+            <a class="navbar-brand brand-logo-mini" href="<%=request.getContextPath()%>/index"><img
+                    src="../static/images/logo_mini.svg"
+                    alt="logo"></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center">
             <p class="page-name d-none d-lg-block">早上好！</p>
@@ -129,7 +131,7 @@
                                     "                        </a>\n" +
                                     "                    </li>\n" +
                                     "<li class=\"nav-item\">\n" +
-                                    " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/overapproval\">\n" +
+                                    " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/jsp/over_approval.jsp\">\n" +
                                     " <span class=\"menu-title\">已审批合同</span>\n" +
                                     " <i class=\"icon-flag menu-icon\"></i>\n" +
                                     " </a>\n" +
@@ -173,7 +175,8 @@
                     <%
                         if (l.contains("流程查询")) {
                             out.print("<li class=\"nav-item\">\n" +
-                                    " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/procedure\">\n" +" <span class=\"menu-title\">合同流程查询</span>\n" +
+                                    " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/jsp/cont_proc_search.jsp\">\n" +
+                                    " <span class=\"menu-title\">合同流程查询</span>\n" +
                                     " <i class=\"icon-pie-chart menu-icon\"></i>\n" +
                                     " </a>\n" +
                                     "</li>");
@@ -216,30 +219,32 @@
                     <div class="col-lg-12 grid-margin">
                         <div class="card overflow-hidden dashboard-curved-chart">
                             <div class="card-body mx-3">
-                                <h2 class="card-title border-bottom-none">审批合同</h2>
+                                <h2 class="card-title border-bottom-none">日志管理</h2>
                             </div>
+
+
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">未审批合同</h4>
                                         <table class="table table-hover">
                                             <thead>
                                             <tr>
-                                                <th>合同编号</th>
-                                                <th>合同名称</th>
-                                                <th>起草日期</th>
-                                                <th>起草人</th>
-                                                <th>操作</th>
+                                                <th>操作人</th>
+                                                <th>操作内容</th>
+                                                <th>时间</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
-                                            <%List<Map> list = (List<Map>)request.getAttribute("default_list");%>
-                                            <%for (Map m : list) {%>
-                                            <tr><%for (Object k : m.keySet()){%>
-                                                <td><%out.println(m.get(k));}%></td>
-                                                <td><button class="btn btn-info" onclick="approval(this)">审批</button></td>
-                                                <%}%>
-                                            </tr>
+                                            <tbody id="search-content">
+                                            <%--<%List<Map> list = (List<Map>) request.getAttribute("default_list");%>--%>
+                                            <%--<%for (Map m : list) {%>--%>
+                                            <%--<tr>--%>
+                                                <%--<%for (Object k : m.keySet()) {%>--%>
+                                                <%--<td><%--%>
+                                                        <%--out.println(m.get(k));--%>
+                                                    <%--}--%>
+                                                <%--%></td>--%>
+                                                <%--<%}%>--%>
+                                            <%--</tr>--%>
                                             </tbody>
                                         </table>
                                     </div>
@@ -249,58 +254,22 @@
                                 <p class="mb-0">Showing 1 to 10 of 57 entries</p>
                                 <nav>
                                     <ul class="pagination rounded-separated pagination-info mt-3">
-                                        <li class="page-item"><a class="page-link" href="#"><i class="mdi mdi-chevron-left"></i></a></li>
+                                        <li class="page-item"><a class="page-link" href="#"><i
+                                                class="mdi mdi-chevron-left"></i></a></li>
                                         <li class="page-item active"><a class="page-link" href="#">1</a></li>
                                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                                         <li class="page-item"><a class="page-link" href="#">3</a></li>
                                         <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                        <li class="page-item"><a class="page-link" href="#"><i class="mdi mdi-chevron-right"></i></a></li>
+                                        <li class="page-item"><a class="page-link" href="#"><i
+                                                class="mdi mdi-chevron-right"></i></a></li>
                                     </ul>
                                 </nav>
                             </div>
                             <div id="curved-line-chart" class="float-chart float-chart-mini"></div>
                         </div>
                     </div>
-                    <div class="black-shadow" id="black-shadow" tabindex=-1>
-                    </div>
-                    <div class="dialog" id="dialogBox">
-                        <div class="col-12 stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">审批合同</h4>
-                                    <div>
-                                        <span class="card-description col-sm-3">
-                                            合同编号
-                                         </span>
-                                        <span class="card-description" id="box_cont_num">
-                                            合同名称
-                                        </span>
-                                    </div>
-                                    <div>
-                                    <span class="card-description col-sm-3">
-                        合同名称
-                      </span>
-                                    <span class="card-description" id="box_cont_name">
-                        合同名称
-                      </span>
-                                    </div>
-                                    <form class="forms-sample">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label card-description">审批意见</label>
-                                            <div class="col-sm-9">
-                                                <textarea class="form-control" rows="5" id="approval_message" placeholder="输入审批意见"></textarea>
-                                            </div>
-                                        </div>
-                                        <div style="text-align: center">
-                                            <button type="submit" class="btn btn-success mr-2" id="approval_submit1"  onclick="submit_approval1()">同意</button>
-                                            <button type="submit" class="btn btn-success mr-2" id="approval_submit2" onclick="submit_approval2()">拒绝</button>
-                                            <button class="btn btn-light">取消</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+
                 </div>
 
 
@@ -311,7 +280,8 @@
                 <div class="container-fluid clearfix">
             <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018 Bootstrapdash
               All rights reserved. </span>
-                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i
+                            class="mdi mdi-heart text-danger"></i></span>
                 </div>
             </footer>
             <!-- partial -->
@@ -323,8 +293,12 @@
 <!-- container-scroller -->
 
 <script src="../static/js/jQuery1.7.js"></script>
-
 <script src="../static/js/clickevent.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('table tr').find('td:eq(4)').hide();
+    });
+</script>
+<!-- End custom js for this page-->
 </body>
-
 </html>

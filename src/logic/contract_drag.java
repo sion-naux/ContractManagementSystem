@@ -79,7 +79,7 @@ public class contract_drag {
                 System.out.println("插入失败!");
             } else {
                 result = insertcontract_state();
-//                result = insertcontract_process();
+                //result = insertcontract_process();
 
                 if(attachment != null)
                     add_attactment();
