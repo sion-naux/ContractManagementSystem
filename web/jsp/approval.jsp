@@ -129,7 +129,7 @@
                                     "                        </a>\n" +
                                     "                    </li>\n" +
                                     "<li class=\"nav-item\">\n" +
-                                    " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/jsp/over_approval.jsp\">\n" +
+                                    " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/overapproval\">\n" +
                                     " <span class=\"menu-title\">已审批合同</span>\n" +
                                     " <i class=\"icon-flag menu-icon\"></i>\n" +
                                     " </a>\n" +
