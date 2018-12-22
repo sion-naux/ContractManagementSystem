@@ -156,7 +156,11 @@ public class contract_countersign {
             pst = (PreparedStatement) jdbcObject.getPrepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             if (!rs.next()) {
-                String sql2 = "update contract_state set type = "+(type+1)+",time = ? where num = ?";
+                String sql2 = null;
+                if(type == 3)
+                    sql2 = "update contract_state set type = "+(type+2)+",time = ? where num = ?";
+                else if(type == 1)
+                    sql2 = "update contract_state set type = "+(type+1)+",time = ? where num = ?";
                 pst = (PreparedStatement) jdbcObject.getPrepareStatement(sql2);
                 pst.setDate(1, new Get_Time().getCurrentTime());
                 pst.setString(2, num);
