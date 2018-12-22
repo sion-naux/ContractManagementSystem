@@ -231,7 +231,7 @@
                     <option value="4">审批完成</option>
                     <option value="5">签订完成</option>
                   </select>
-                  <button onclick="submit_search();return false"></button>
+                  <button onclick="procedure_search();return false"></button>
                 </form>
               </div>
 

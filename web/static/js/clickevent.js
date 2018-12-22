@@ -435,7 +435,7 @@ function procedure_search(){
     var index = obj.selectedIndex; // 选中索引
     alert(index);
     $.ajax({
-        url : "http://localhost:8081/choice?search_message=" + index,
+        url : "http://localhost:8080/choice?search_message=" + index,
         type : "GET",
         // data :  data,
         // dataType : 'text',
