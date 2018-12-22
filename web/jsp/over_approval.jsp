@@ -230,10 +230,9 @@
                           <th>合同名称</th>
                           <th>起草日期</th>
                           <th>起草人</th>
-                          <th></th>
-                          <th></th>
-                          <%--<th></th>--%>
                           <th>操作</th>
+                          <th></th>
+                          <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -241,7 +240,7 @@
                         <%for (LinkedHashMap m : list) {%>
                         <tr><%for (Object k : m.keySet()){%>
                           <td><%out.println(m.get(k));}%></td>
-                          <td><button class="btn btn-info" onclick="approval(this)">审批</button></td>
+                          <td><button class="btn btn-info" onclick="over_approval(this)">查看</button></td>
                           <%}%>
                         </tr>
                         </tbody>
@@ -271,34 +270,28 @@
               <div class="col-12 stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">审批合同</h4>
+                    <h4 class="card-title">详情界面</h4>
                     <div>
                                         <span class="card-description col-sm-3">
-                                            合同编号
+                                            <%--合同编号--%>合同内容
                                          </span>
                       <span class="card-description" id="box_cont_num">
-                                            合同名称
+                                            <%--合同名称--%>审批内容
                                         </span>
                     </div>
                     <div>
                                     <span class="card-description col-sm-3">
-                        合同名称
+                        <%--合同名称--%>审批内容
                       </span>
                       <span class="card-description" id="box_cont_name">
-                        合同名称
+                        <%--合同名称--%>审批内容
                       </span>
                     </div>
                     <form class="forms-sample">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label card-description">审批意见</label>
-                        <div class="col-sm-9">
-                          <textarea class="form-control" rows="5" id="approval_message" placeholder="输入审批意见"></textarea>
-                        </div>
-                      </div>
                       <div style="text-align: center">
-                        <button type="submit" class="btn btn-success mr-2" id="approval_submit1"  onclick="submit_approval1()">同意</button>
-                        <button type="submit" class="btn btn-success mr-2" id="approval_submit2" onclick="submit_approval2()">拒绝</button>
-                        <button class="btn btn-light">取消</button>
+                        <%--<button type="submit" class="btn btn-success mr-2" id="approval_submit1"  onclick="submit_approval1()">同意</button>--%>
+                        <%--<button type="submit" class="btn btn-success mr-2" id="approval_submit2" onclick="submit_approval2()">拒绝</button>--%>
+                        <button class="btn btn-light">确定</button>
                       </div>
                     </form>
                   </div>
@@ -330,8 +323,8 @@
   <script src="../static/js/clickevent.js"></script>
   <script type="text/javascript">
     $(document).ready(function () {
-      // $('table tr').find('td:eq(4)').hide();
-      // $('table tr').find('td:eq(5)').hide();
+      $('table tr').find('td:eq(4)').hide();
+      $('table tr').find('td:eq(5)').hide();
       // $('table tr').find('td:eq(6)').hide();
     });
   </script>
