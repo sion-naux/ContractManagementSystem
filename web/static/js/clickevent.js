@@ -431,16 +431,16 @@ function submit_final(btn) {
 }
 
 function procedure_search(){
-    var obj = $(this);
-    var search_message = $("#search_message").val();
-    alert(search_message)
+    var obj = document.getElementByIdx_x("#search_message"); //定位id
+    var index = obj.selectedIndex; // 选中索引
+    alert(index);
     $.ajax({
-        url : "http://localhost:8081/choice?search_message=" + search_message,
+        url : "http://localhost:8081/choice?search_message=" + index,
         type : "GET",
         // data :  data,
         // dataType : 'text',
         success (data){
-
+            alert("chenggong");
         },
         error (data){
             var data = JSON.parse(data);

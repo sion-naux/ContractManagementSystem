@@ -60,7 +60,7 @@ public class ProcedureServlet extends HttpServlet {
             request.setAttribute("default_list", list);
             request.setAttribute("right_list", CurrentUser.right_list);
 
-            request.getRequestDispatcher("jsp/cont_info_search.jsp").forward(request, response);
+            request.getRequestDispatcher("jsp/cont_proc_search.jsp").forward(request, response);
 
         }
 
