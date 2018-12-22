@@ -4,10 +4,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import database.JDBCFacade;
 import database.dbConfig;
@@ -172,5 +169,48 @@ public class contract_approval {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public List<LinkedHashMap> overApproval(){
+		List<LinkedHashMap> list =new ArrayList<LinkedHashMap>();
+		try {
+			String result_no;//合同编号
+			String result_name;//合同名称
+			String result_beginTime;//起草日期
+			String result_userName;//起草人
+			String c_content;//合同内容
+			String p_content;//审批内容
+			Date time;//审批时间
+			ResultSet rs,rs2,rs3;
+			String conNum;
+			String sql = "select * from contract c,contract_process p where c.num = p.conNum " +
+					"and p.type = 2 and p.state = 1 and p.userName = ?";
+			PreparedStatement ps = (PreparedStatement) jdbc.getPrepareStatement(sql);
+			ps.setString(1, userName);
+			System.out.println(ps);
+			rs = ps.executeQuery();
+			System.out.println("已经审批完的合同有：");
+			while(rs.next()){
+				LinkedHashMap map = new LinkedHashMap();
+				result_no = rs.getString("num");
+				result_name = rs.getString("name");
+				result_beginTime =rs.getString("beginTime");
+				result_userName = rs.getString("userName");
+				c_content = rs.getString("c.content");
+				p_content = rs.getString("p.content");
+				time = rs.getDate("time");
+				map.put("num", result_no);
+				map.put("name", result_name);
+				map.put("beginTime",result_beginTime);
+				map.put("userName",result_userName);
+				map.put("c.content",c_content);
+				map.put("p.content",p_content);
+//				map.put("time",time);
+				list.add(map);
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

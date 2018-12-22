@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,9 +20,9 @@ public class OverArrpovalServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Map> list =new ArrayList<Map>();//用于存放返回的集合
+        List<LinkedHashMap> list =new ArrayList<LinkedHashMap>();//用于存放返回的集合
         contract_approval approval = new contract_approval(CurrentUser.username);
-        list = approval.defaultFind();
+        list = approval.overApproval();
         request.setAttribute("default_list",list);
 //        request.setAttribute("test",list);
         for (Map m : list)

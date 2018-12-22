@@ -158,12 +158,14 @@ function search_info(btn) {
     ShowHide(true, shadow, dialog);
 }
 
-
+function cancel(btn){
+    ShowHide(false, shadow, dialog);
+}
 
 function over_approval(btn) {
     var tr = btn.parentElement.parentElement;
-    document.getElementById("box_cont_num").innerHTML = tr.cells[0].innerHTML;
-    document.getElementById("box_cont_name").innerHTML = tr.cells[1].innerHTML;
+    document.getElementById("box_cont_content").innerHTML = tr.cells[4].innerHTML;
+    document.getElementById("box_approval_content").innerHTML = tr.cells[5].innerHTML;
     ShowHide(true, shadow, dialog);
 }
 

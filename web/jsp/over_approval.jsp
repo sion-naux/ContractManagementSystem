@@ -1,4 +1,6 @@
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.LinkedHashMap" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 
@@ -218,108 +220,88 @@
                   <h2 class="card-title border-bottom-none">审批合同</h2>
                 </div>
                 <div class="col-lg-12 grid-margin stretch-card">
-                        <div class="card">
-                          <div class="card-body">
-                            <h4 class="card-title">已审批合同</h4>
-
-                            <table class="table table-hover">
-                              <thead>
-                                <tr>
-                                  <th>合同名称</th>
-                                  <th>起草日期</th>
-                                  <th>起草人</th>
-                                  <th>操作</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>Jacob</td>
-                                  <td>123</td>
-                                  <td>28.76%</td>
-                                  <td><button class="btn btn-info" onclick="over_approval(this)">查看</button> <button class="btn btn-info">删除</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Jacob</td>
-                                    <td>123</td>
-                                    <td>28.76%</td>
-                                    <td><button class="btn btn-info">查看</button> <button class="btn btn-info">删除</button></td>
-                                </tr>
-                                <tr>
-                                  <td>John</td>
-                                  <td>Premier</td>
-                                  <td>28.76%</td>
-                                  <td><button class="btn btn-info">查看</button> <button class="btn btn-info">删除</button></td>
-                                </tr>
-                                <tr>
-                                  <td>Peter</td>
-                                  <td>After effects</td>
-                                  <td>28.76%</td>
-                                    <td><button class="btn btn-info">查看</button> <button class="btn btn-info">删除</button></td>
-                                </tr>
-                                <tr>
-                                  <td>Dave</td>
-                                  <td>53275535</td>
-                                  <td>28.76%</td>
-                                  <td><button class="btn btn-info">查看</button> <button class="btn btn-info">删除</button></td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="d-flex align-items-center justify-content-between flex-wrap">
-                            <p class="mb-0">Showing 1 to 10 of 57 entries</p>
-                            <nav>
-                              <ul class="pagination rounded-separated pagination-info mt-3">
-                                <li class="page-item"><a class="page-link" href="#"><i class="mdi mdi-chevron-left"></i></a></li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#"><i class="mdi mdi-chevron-right"></i></a></li>
-                              </ul>
-                            </nav>
-                          </div>
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">已审批合同</h4>
+                      <table class="table table-hover">
+                        <thead>
+                        <tr>
+                          <th>合同编号</th>
+                          <th>合同名称</th>
+                          <th>起草日期</th>
+                          <th>起草人</th>
+                          <th></th>
+                          <th></th>
+                          <%--<th></th>--%>
+                          <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <%List<LinkedHashMap> list = (List<LinkedHashMap>)request.getAttribute("default_list");%>
+                        <%for (LinkedHashMap m : list) {%>
+                        <tr><%for (Object k : m.keySet()){%>
+                          <td><%out.println(m.get(k));}%></td>
+                          <td><button class="btn btn-info" onclick="approval(this)">审批</button></td>
+                          <%}%>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between flex-wrap">
+                  <p class="mb-0">Showing 1 to 10 of 57 entries</p>
+                  <nav>
+                    <ul class="pagination rounded-separated pagination-info mt-3">
+                      <li class="page-item"><a class="page-link" href="#"><i class="mdi mdi-chevron-left"></i></a></li>
+                      <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item"><a class="page-link" href="#">4</a></li>
+                      <li class="page-item"><a class="page-link" href="#"><i class="mdi mdi-chevron-right"></i></a></li>
+                    </ul>
+                  </nav>
+                </div>
                 <div id="curved-line-chart" class="float-chart float-chart-mini"></div>
               </div>
             </div>
-          </div>
-
-          <div class="black-shadow" id="black-shadow" tabindex=-1>
-          </div>
-          <div class="dialog" id="dialogBox">
-            <div class="col-12 stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">会签合同</h4>
-                  <div>
-                      <span class="card-description col-sm-3">
-                        合同编号
-                      </span>
-                    <span class="card-description" id="box_cont_num">
-
-                      </span>
-                  </div>
-                  <div>
-                      <span class="card-description col-sm-3">
+            <div class="black-shadow" id="black-shadow" tabindex=-1>
+            </div>
+            <div class="dialog" id="dialogBox">
+              <div class="col-12 stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">审批合同</h4>
+                    <div>
+                                        <span class="card-description col-sm-3">
+                                            合同编号
+                                         </span>
+                      <span class="card-description" id="box_cont_num">
+                                            合同名称
+                                        </span>
+                    </div>
+                    <div>
+                                    <span class="card-description col-sm-3">
                         合同名称
                       </span>
-                    <span class="card-description" id="box_cont_name">
-
+                      <span class="card-description" id="box_cont_name">
+                        合同名称
                       </span>
-                  </div>
-                  <form class="forms-sample">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label card-description">会签意见</label>
-                      <div class="col-sm-9">
-                        <textarea class="form-control" rows="5" id="sign_message" placeholder="输入会签意见"></textarea>
+                    </div>
+                    <form class="forms-sample">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label card-description">审批意见</label>
+                        <div class="col-sm-9">
+                          <textarea class="form-control" rows="5" id="approval_message" placeholder="输入审批意见"></textarea>
+                        </div>
                       </div>
-                    </div>
-                    <div style="text-align: center">
-                      <a class="btn btn-success mr-2" id="sign_submit" onclick="submit_sign()">提交</a>
-                      <button class="btn btn-light">取消</button>
-                    </div>
-                  </form>
+                      <div style="text-align: center">
+                        <button type="submit" class="btn btn-success mr-2" id="approval_submit1"  onclick="submit_approval1()">同意</button>
+                        <button type="submit" class="btn btn-success mr-2" id="approval_submit2" onclick="submit_approval2()">拒绝</button>
+                        <button class="btn btn-light">取消</button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
@@ -346,7 +328,13 @@
 
   <script src="../static/js/jQuery1.7.js"></script>
   <script src="../static/js/clickevent.js"></script>
-
+  <script type="text/javascript">
+    $(document).ready(function () {
+      // $('table tr').find('td:eq(4)').hide();
+      // $('table tr').find('td:eq(5)').hide();
+      // $('table tr').find('td:eq(6)').hide();
+    });
+  </script>
 </body>
 
 </html>
