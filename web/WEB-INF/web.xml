@@ -160,6 +160,15 @@
         <url-pattern>/query_special</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>logManage</servlet-name>
+        <servlet-class>servlet.LogServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logManage</servlet-name>
+        <url-pattern>/logManage</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>procedure</servlet-name>

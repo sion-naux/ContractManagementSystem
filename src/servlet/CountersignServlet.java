@@ -24,7 +24,7 @@ import java.util.List;
 public class CountersignServlet extends HttpServlet {
 
     public static String[] STATIONS = new String[]
-            {"起草","会签","审批","签订","分配","定稿"};
+            {"起草", "会签", "审批", "签订", "分配", "定稿"};
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -56,22 +56,20 @@ public class CountersignServlet extends HttpServlet {
         String client = CurrentUser.username;
         request.setAttribute("right_list", CurrentUser.right_list);
 
-        if(request.getRequestURL().toString().contains("get_countersign_content")) {
+        if (request.getRequestURL().toString().contains("get_countersign_content")) {
             response.setCharacterEncoding("UTF-8");
             response.setContentType("text/html;charset=utf-8");
             PrintWriter pw = response.getWriter();
-            String content =  Get_Con_List.getInstance().find_Cont_Info(request.getParameter("cont_num"),1,1,client);
-            String result = "{ \"msg\" : \""+content+"\"}";
+            String content = Get_Con_List.getInstance().find_Cont_Info(request.getParameter("cont_num"), 1, 1, client);
+            String result = "{ \"msg\" : \"" + content + "\"}";
             pw.print(result);
             pw.flush();
             pw.close();
-        }
-        else if(request.getRequestURL().toString().contains("over_countersign")) {
-            request.setAttribute("get_contract_list",  Get_Con_List.getInstance().get_contract_list(1,1,client,1));
+        } else if (request.getRequestURL().toString().contains("over_countersign")) {
+            request.setAttribute("get_contract_list", Get_Con_List.getInstance().get_contract_list(1, 1, client, 1));
             request.getRequestDispatcher("jsp/over_countersign.jsp").forward(request, response);
-        }
-        else {
-            request.setAttribute("get_contract_list",  Get_Con_List.getInstance().get_contract_list(1,0,client,1));
+        } else {
+            request.setAttribute("get_contract_list", Get_Con_List.getInstance().get_contract_list(1, 0, client, 1));
             request.getRequestDispatcher("jsp/countersign.jsp").forward(request, response);
         }
 
