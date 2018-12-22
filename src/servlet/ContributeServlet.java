@@ -1,9 +1,12 @@
 package servlet;
 
 
+import Utils.Get_Time;
 import entity.ContributeContract;
 import entity.CurrentUser;
+import entity.Log;
 import logic.Allocate;
+import logic.LogManage;
 import logic.Verify;
 import logic.contract_drag;
 
@@ -43,7 +46,7 @@ public class ContributeServlet extends HttpServlet {
             System.out.println(sign_list[i]);
         }
         Allocate.allocateSign(contract_num, Arrays.asList(sign_list));
-
+        LogManage.insert_log(new Log(CurrentUser.username, "分配合同，合同id：" + contract_num, new Get_Time().getCurrentTime()));
         doGet(req, resp);
 
 

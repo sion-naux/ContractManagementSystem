@@ -1,7 +1,10 @@
 package servlet;
 
+import Utils.Get_Time;
 import entity.Attachment;
 import entity.CurrentUser;
+import entity.Log;
+import logic.LogManage;
 import logic.contract_drag;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -21,9 +24,9 @@ public class DraftServlet extends HttpServlet {
     //上传文件存储路径
     private static final String UPLOAD_DIRECTORY = "upload";
     // 上传配置
-    private static final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
-    private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
-    private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
+    private static final int MEMORY_THRESHOLD = 1024 * 1024 * 3;  // 3MB
+    private static final int MAX_FILE_SIZE = 1024 * 1024 * 40; // 40MB
+    private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 50; // 50MB
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -77,7 +80,7 @@ public class DraftServlet extends HttpServlet {
                     // 处理不在表单中的字段
                     if (!item.isFormField()) {
                         String fileName = new File(item.getName()).getName();
-                        if(fileName.equals(""))
+                        if (fileName.equals(""))
                             continue;
                         String filePath = uploadPath + File.separator + fileName;
                         File storeFile = new File(filePath);
@@ -92,12 +95,11 @@ public class DraftServlet extends HttpServlet {
                         item.write(storeFile);
                         request.setAttribute("message",
                                 "文件上传成功!");
-                    }
-                    else{
+                    } else {
                         String fieldName = item.getFieldName();
                         String str = item.getString("UTF-8");
 
-                        switch (fieldName){
+                        switch (fieldName) {
                             case "contract_name":
                                 contract_name = str;
                                 break;
@@ -124,10 +126,11 @@ public class DraftServlet extends HttpServlet {
                     "错误信息: " + ex.getMessage());
         }
 
-        contract_drag drag = new contract_drag(contract_name,contract_customer,
+        contract_drag drag = new contract_drag(contract_name, contract_customer,
                 parseDate(contract_begin_time), parseDate(contract_end_time),
                 contract_content, CurrentUser.username, attachment);
         drag.insertcontract();
+        LogManage.insert_log(new Log(CurrentUser.username, "起草合同：" + contract_name, new Get_Time().getCurrentTime()));
         response.sendRedirect(request.getContextPath() + "/draft");
     }
 
@@ -136,8 +139,8 @@ public class DraftServlet extends HttpServlet {
         request.getRequestDispatcher("jsp/draft.jsp").forward(request, response);
     }
 
-    private java.sql.Date parseDate(String str){
-        str = str.replaceAll("/","-");
+    private java.sql.Date parseDate(String str) {
+        str = str.replaceAll("/", "-");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date d = null;
         try {

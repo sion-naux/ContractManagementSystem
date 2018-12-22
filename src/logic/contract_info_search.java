@@ -6,26 +6,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import com.mysql.jdbc.PreparedStatement;
 import database.JDBCFacade;
 import database.dbConfig;
 
 public class contract_info_search {
     private JDBCFacade jdbc;
-    String  userName;
-    public contract_info_search(){
+    String userName;
+
+    public contract_info_search() {
         jdbc = new JDBCFacade();
         //打开数据库连接
         jdbc.open(dbConfig.driverName, dbConfig.newjdbcUrl, dbConfig.userName, dbConfig.userPwd);
     }
-    public List<Map> likesearch(String keyword){
+
+    public List<Map> likesearch(String keyword) {
         String num;
         String name;
         String beginTime;
         String userName;
         String type;
         String content;
-        List<Map> list =new ArrayList<Map>();
+        List<Map> list = new ArrayList<Map>();
         try {
             String sql = "select * from contract where name like '%" + keyword + "%'";
             PreparedStatement ps = (PreparedStatement) jdbc.getPrepareStatement(sql);
@@ -51,20 +54,20 @@ public class contract_info_search {
                 ResultSet rs2 = ps2.executeQuery();
                 if (rs2.next()) {
                     type = rs2.getString("type");
-                    switch (type){
-                        case("1"):
+                    switch (type) {
+                        case ("1"):
                             map.put("type", "起草");
                             break;
-                        case("2"):
+                        case ("2"):
                             map.put("type", "会签完成");
                             break;
-                        case("3"):
+                        case ("3"):
                             map.put("type", "定稿完成");
                             break;
-                        case("4"):
+                        case ("4"):
                             map.put("type", "审批完成");
                             break;
-                        case("5"):
+                        case ("5"):
                             map.put("type", "签订完成");
                             break;
                     }
@@ -73,20 +76,20 @@ public class contract_info_search {
                 }
                 list.add(map);
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return list;
     }
 
-    public List<Map> defaultsearch(){
+    public List<Map> defaultsearch() {
         String num;
         String name;
         String beginTime;
         String userName;
         String type;
         String content;
-        List<Map> list =new ArrayList<Map>();
+        List<Map> list = new ArrayList<Map>();
         try {
             String sql = "select * from contract";
             PreparedStatement ps = (PreparedStatement) jdbc.getPrepareStatement(sql);
@@ -113,28 +116,28 @@ public class contract_info_search {
                 ResultSet rs2 = ps2.executeQuery();
                 if (rs2.next()) {
                     type = rs2.getString("type");
-                    switch (type){
-                        case("1"):
+                    switch (type) {
+                        case ("1"):
                             map.put("type", "起草");
                             break;
-                        case("2"):
+                        case ("2"):
                             map.put("type", "会签完成");
-                          break;
-                        case("3"):
+                            break;
+                        case ("3"):
                             map.put("type", "定稿完成");
                             break;
-                        case("4"):
+                        case ("4"):
                             map.put("type", "审批完成");
                             break;
-                        case("5"):
+                        case ("5"):
                             map.put("type", "签订完成");
                             break;
                     }
-                    System.out.println(name + beginTime + userName + type+content);
+                    System.out.println(name + beginTime + userName + type + content);
                 }
                 list.add(map);
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return list;

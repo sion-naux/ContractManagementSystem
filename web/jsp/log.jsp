@@ -235,16 +235,12 @@
                                             </tr>
                                             </thead>
                                             <tbody id="search-content">
-                                            <%--<%List<Map> list = (List<Map>) request.getAttribute("default_list");%>--%>
-                                            <%--<%for (Map m : list) {%>--%>
-                                            <%--<tr>--%>
-                                                <%--<%for (Object k : m.keySet()) {%>--%>
-                                                <%--<td><%--%>
-                                                        <%--out.println(m.get(k));--%>
-                                                    <%--}--%>
-                                                <%--%></td>--%>
-                                                <%--<%}%>--%>
-                                            <%--</tr>--%>
+                                            <%
+                                                String log_list = (String) request.getAttribute("default_list");
+                                                if (log_list != null) {
+                                                    out.print(log_list);
+                                                }
+                                            %>
                                             </tbody>
                                         </table>
                                     </div>

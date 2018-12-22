@@ -2,8 +2,11 @@ package servlet;
 
 import Utils.Get_Con_List;
 import Utils.Get_Para_Data;
+import Utils.Get_Time;
 import entity.ContributeContract;
 import entity.CurrentUser;
+import entity.Log;
+import logic.LogManage;
 import logic.contract_countersign;
 import logic.contract_drag;
 import logic.contract_sign;
@@ -48,6 +51,7 @@ public class CountersignServlet extends HttpServlet {
 
         contract_countersign contract_countersign = new contract_countersign(sign_user);
         contract_countersign.insertComment(conNum, sign_msg, 1);
+        LogManage.insert_log(new Log(CurrentUser.username, "会签合同，合同id：" + conNum, new Get_Time().getCurrentTime()));
 
     }
 

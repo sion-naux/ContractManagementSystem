@@ -6,6 +6,8 @@ import logic.contract_drag;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -158,13 +160,15 @@ public class Get_Con_List {
         PreparedStatement pst;
         try {
             pst = (PreparedStatement) jdbcObject.getPrepareStatement(sql);
-            pst.setDate(1, new Get_Time().getCurrentTime());
+            pst.setTimestamp(1,new java.sql.Timestamp(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(new Get_Time().getCurrentTime()).getTime()));
             pst.setString(2, conNum);
             pst.executeUpdate();
 
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             System.out.println("操作失败o(╥﹏╥)");
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
     }

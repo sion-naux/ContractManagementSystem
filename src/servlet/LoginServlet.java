@@ -1,6 +1,9 @@
 package servlet;
 
+import Utils.Get_Time;
 import entity.CurrentUser;
+import entity.Log;
+import logic.LogManage;
 import logic.RightManage;
 import logic.Verify;
 
@@ -37,6 +40,7 @@ public class LoginServlet extends HttpServlet {
         } else if (register_result == 1) {
             CurrentUser.username = userName;
             CurrentUser.right_list = get_right_list(userName);
+            LogManage.insert_log(new Log(userName,"登陆",new Get_Time().getCurrentTime()));
             resp.sendRedirect(req.getContextPath() + "/index");
         } else {
             req.setAttribute("error", "登陆失败！");
