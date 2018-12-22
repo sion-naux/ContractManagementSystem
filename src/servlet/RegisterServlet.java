@@ -1,5 +1,9 @@
 package servlet;
 
+import Utils.Get_Time;
+import entity.CurrentUser;
+import entity.Log;
+import logic.LogManage;
 import logic.Verify;
 
 import javax.servlet.ServletException;
@@ -20,6 +24,7 @@ public class RegisterServlet  extends HttpServlet {
 
         Verify verify = new Verify();
         int register_result = verify.register(userName,password,password_confirm);
+        LogManage.insert_log(new Log(CurrentUser.username, "用户" + userName + "注册", new Get_Time().getCurrentTime()));
         if(register_result == -1){
             req.setAttribute("register_error", "注册失败！");
             System.out.println("注册失败！");

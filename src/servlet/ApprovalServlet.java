@@ -1,6 +1,9 @@
 package servlet;
 
 import Utils.Get_Para_Data;
+import Utils.Get_Time;
+import entity.Log;
+import logic.LogManage;
 import logic.contract_approval;
 
 import javax.servlet.ServletException;
@@ -38,6 +41,7 @@ public class ApprovalServlet extends HttpServlet {
         }else{
             contract_approval approval = new contract_approval(CurrentUser.username);
             approval.decide(conName,ifpass,content);
+            LogManage.insert_log(new Log(CurrentUser.username, "审批合同，合同名称：" + conName + " 意见：" + ifpass, new Get_Time().getCurrentTime()));
 //            request.getSession().setAttribute("message", "操作成功!");
 //            request.getRequestDispatcher("jsp/approval.jsp").forward(request, response);
             request.setAttribute("right_list", CurrentUser.right_list);

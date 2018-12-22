@@ -3,6 +3,7 @@ package logic;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -130,13 +131,15 @@ public class contract_drag {
             ps.setString(2, attachment.getFileName());
             ps.setString(3, attachment.getPath());
             ps.setString(4, attachment.getType());
-            ps.setDate(5, new Get_Time().getCurrentTime());
+            ps.setTimestamp(5, new java.sql.Timestamp(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(new Get_Time().getCurrentTime()).getTime()));
 
             int row = ps.executeUpdate();//执行更新操作，返回所影响的行数
             if (row == 0)
                 System.out.println("插入失败!");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
     }
@@ -188,13 +191,13 @@ public class contract_drag {
         try {
 
             //获取当前时间
-            Date finishtime = new Get_Time().getCurrentTime();
+            java.sql.Timestamp finishtime=new java.sql.Timestamp(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(new Get_Time().getCurrentTime()).getTime());//把java.util.Date类型转换为java.sql.Timestamp类型
 
             ps = (PreparedStatement) jdbcObject.getPrepareStatement(sql);
 //			ps = (PreparedStatement) controller.connect.prepareStatement(sql);
             ps.setString(1, num);
             ps.setInt(2, 1);
-            ps.setDate(3, finishtime);
+            ps.setTimestamp(3, finishtime);
             int row = ps.executeUpdate();//执行更新操作，返回所影响的行数
             if (row == 1) {
                 System.out.println("插入成功!");

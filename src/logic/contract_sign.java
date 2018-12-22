@@ -158,7 +158,7 @@ public class contract_sign {
 				System.out.println("该合同的所有签订已完成！");
 				String sql2 = "update contract_state set type = 5,time = ? where num = ?";
 				pst = (PreparedStatement) controller.connect.prepareStatement(sql2);
-				pst.setDate(1, new Get_Time().getCurrentTime());
+				pst.setTimestamp(1, new java.sql.Timestamp(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(new Get_Time().getCurrentTime()).getTime()));
 				pst.setString(2, conNum);
 				System.out.println(pst);
 				int count = pst.executeUpdate();

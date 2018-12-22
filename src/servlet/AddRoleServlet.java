@@ -1,5 +1,9 @@
 package servlet;
 
+import Utils.Get_Time;
+import entity.CurrentUser;
+import entity.Log;
+import logic.LogManage;
 import logic.ManageRole;
 
 import javax.servlet.ServletException;
@@ -26,6 +30,7 @@ public class AddRoleServlet extends HttpServlet {
         }
         fuctions += addrole_list[addrole_list.length - 1];
         manageRole.createRole(add_role_name, add_role_description, fuctions);
+        LogManage.insert_log(new Log(CurrentUser.username, "添加角色，角色名：" + add_role_name, new Get_Time().getCurrentTime()));
 
 
 

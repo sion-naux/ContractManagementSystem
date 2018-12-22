@@ -1,17 +1,17 @@
 package Utils;
 
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 public class Get_Time {
 
-    public Date getCurrentTime(){
+    public String getCurrentTime(){
         //获取当前时间
         long l = System.currentTimeMillis();
-        Date time = new Date(l);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        sdf.format(time);
-        return time;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        sdf.format(l);
+        System.out.println("当前时间："+sdf.format(l));
+        return sdf.format(l);
     }
 
 }

@@ -3,7 +3,10 @@ package servlet;
 import Utils.Get_Con_List;
 import Utils.Get_Para_Data;
 //import com.google.gson.JsonObject;
+import Utils.Get_Time;
 import entity.CurrentUser;
+import entity.Log;
+import logic.LogManage;
 import logic.contract_countersign;
 
 import javax.servlet.ServletException;
@@ -32,6 +35,8 @@ public class FinalServlet extends HttpServlet {
         pw.close();
 
         Get_Con_List.getInstance().Change_final_status(sb.toString());
+        LogManage.insert_log(new Log(CurrentUser.username, "签订合同，合同id：" + sb.toString(), new Get_Time().getCurrentTime()));
+
 
     }
 

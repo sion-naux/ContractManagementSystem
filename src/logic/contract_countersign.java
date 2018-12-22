@@ -3,6 +3,7 @@ package logic;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
@@ -127,7 +128,7 @@ public class contract_countersign {
             String sql2 = "update contract_process set content = ?,time = ?,state = 1 where type = " + type + " and userName = \""+this.username+"\" and conNum = \"" + conNum + "\"";
             pst = (PreparedStatement) jdbcObject.getPrepareStatement(sql2);
             pst.setString(1, content);
-            pst.setDate(2, new Get_Time().getCurrentTime());
+            pst.setTimestamp(2, new java.sql.Timestamp(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(new Get_Time().getCurrentTime()).getTime()));
             System.out.println(pst);
             //执行sql语句
             pst.executeUpdate();
@@ -139,6 +140,8 @@ public class contract_countersign {
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             System.out.println("操作失败o(╥﹏╥)");
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
     }
@@ -162,13 +165,15 @@ public class contract_countersign {
                 else if(type == 1)
                     sql2 = "update contract_state set type = "+(type+1)+",time = ? where num = ?";
                 pst = (PreparedStatement) jdbcObject.getPrepareStatement(sql2);
-                pst.setDate(1, new Get_Time().getCurrentTime());
+                pst.setTimestamp(1, new java.sql.Timestamp(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(new Get_Time().getCurrentTime()).getTime()));
                 pst.setString(2, num);
                 pst.executeUpdate();
             } else {
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
 

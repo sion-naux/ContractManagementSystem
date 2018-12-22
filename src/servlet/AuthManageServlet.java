@@ -1,8 +1,11 @@
 package servlet;
 
+import Utils.Get_Time;
 import entity.CurrentUser;
+import entity.Log;
 import entity.Right;
 import entity.Role;
+import logic.LogManage;
 import logic.ManageRole;
 import logic.RightManage;
 import logic.Verify;
@@ -33,7 +36,7 @@ public class AuthManageServlet extends HttpServlet {
             Role role = iter.next();
             String name = role.getName();
             String item = "";
-            item = "<div class=\"row-fluid\"><label class=\"role_label\"><input type=\"checkbox\" name=\"checkbox_role\" value=\""+name+"\"></label>" + name + "</div>";
+            item = "<div class=\"row-fluid\"><label class=\"role_label\"><input type=\"checkbox\" name=\"checkbox_role\" value=\"" + name + "\"></label>" + name + "</div>";
             System.out.println("表格生成的一行：" + item);
             role_list_string += item;
         }
@@ -70,12 +73,13 @@ public class AuthManageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String role = new String(req.getParameter("role_list").getBytes("ISO-8859-1"), "utf-8");
         String username = new String(req.getParameter("username_input").getBytes("ISO-8859-1"), "utf-8");
-        System.out.println("用户："+username);
-        System.out.println("授权角色："+role);
-        int r = RightManage.updateRight(username,role);
-        if(r==-1){
+        System.out.println("用户：" + username);
+        System.out.println("授权角色：" + role);
+        LogManage.insert_log(new Log(CurrentUser.username, "授权给用户 <" + username + "> [" + role + "]角色", new Get_Time().getCurrentTime()));
+        int r = RightManage.updateRight(username, role);
+        if (r == -1) {
             System.out.println("授权失败");
-        }else{
+        } else {
             System.out.println("授权成功");
         }
 
