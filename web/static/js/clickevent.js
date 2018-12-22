@@ -313,7 +313,7 @@ function submit_approval1(){
     var data = cont_num + "&" + cont_name + "&" + sign_msg + "&" +"y";
     alert(data);
     $.ajax({
-        url : "http://localhost:8080/approval",
+        url : "http://localhost:8081/approval",
         type : "POST",
         data :  data,
         // dataType : 'text',
@@ -413,7 +413,6 @@ function final_cont(btn) {
     });
 }
 
-
 function submit_final(btn) {
 
     var cont_num = $("#box_cont_num").html();
@@ -427,6 +426,25 @@ function submit_final(btn) {
         },
         error (data){
             alert("操作失败");
+        }
+    });
+}
+
+function procedure_search(){
+    var obj = $(this);
+    var search_message = $("#search_message").val();
+    alert(search_message)
+    $.ajax({
+        url : "http://localhost:8081/choice?search_message=" + search_message,
+        type : "GET",
+        // data :  data,
+        // dataType : 'text',
+        success (data){
+
+        },
+        error (data){
+            var data = JSON.parse(data);
+            alert(data.data);
         }
     });
 }

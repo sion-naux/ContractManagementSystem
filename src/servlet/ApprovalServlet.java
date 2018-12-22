@@ -33,13 +33,15 @@ public class ApprovalServlet extends HttpServlet {
         if(content.equals("")){
 //            request.setAttribute("message","合同意见不能为空！");
 //            request.getRequestDispatcher("jsp/approval.jsp").forward(request, response);
-            response.sendRedirect("jsp/approval.jsp");
+            request.setAttribute("right_list", CurrentUser.right_list);
+            request.getRequestDispatcher("jsp/cont_proc_search.jsp").forward(request, response);
         }else{
             contract_approval approval = new contract_approval(CurrentUser.username);
             approval.decide(conName,ifpass,content);
 //            request.getSession().setAttribute("message", "操作成功!");
 //            request.getRequestDispatcher("jsp/approval.jsp").forward(request, response);
-            response.sendRedirect("jsp/approval.jsp");
+            request.setAttribute("right_list", CurrentUser.right_list);
+            request.getRequestDispatcher("jsp/cont_proc_search.jsp").forward(request, response);
         }
     }
 
