@@ -128,6 +128,7 @@
                                     "                    </li>\n" +
                                     "<li class=\"nav-item\">\n" +
                                     " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/overapproval\">\n" +
+                                    " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/overapproval\">\n" +
                                     " <span class=\"menu-title\">已审批合同</span>\n" +
                                     " <i class=\"icon-flag menu-icon\"></i>\n" +
                                     " </a>\n" +
@@ -171,7 +172,7 @@
                     <%
                         if (l.contains("流程查询")) {
                             out.print("<li class=\"nav-item\">\n" +
-                                    " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/jsp/cont_proc_search.jsp\">\n" +
+                                    " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/procedure\">\n" +
                                     " <span class=\"menu-title\">合同流程查询</span>\n" +
                                     " <i class=\"icon-pie-chart menu-icon\"></i>\n" +
                                     " </a>\n" +

@@ -170,7 +170,7 @@
             <%
               if (l.contains("流程查询")) {
                 out.print("<li class=\"nav-item\">\n" +
-                        " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/jsp/cont_proc_search.jsp\">\n" +
+                        " <a class=\"nav-link\" href=\"" + request.getContextPath() + "/procedure\">\n" +
                         " <span class=\"menu-title\">合同流程查询</span>\n" +
                         " <i class=\"icon-pie-chart menu-icon\"></i>\n" +
                         " </a>\n" +
