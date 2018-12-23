@@ -271,7 +271,7 @@
                       <span class="card-description col-sm-3" >
                         合同编号
                       </span>
-                    <span class="card-description" id="box_cont_num">
+                    <span class="card-description" id="box_cont_num" name="box_cont_num">
                         合同名称
                       </span>
                   </div>
@@ -317,6 +317,7 @@
                     <div style="text-align: center">
                       <button class="btn btn-success mr-2">确定</button>
                       <button class="btn btn-light">取消</button>
+                      <a class="btn btn-danger " id="box-download" href="/download">下载附件</a>
                     </div>
                   </form>
                 </div>

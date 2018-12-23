@@ -61,13 +61,11 @@ public class DraftServlet extends HttpServlet {
         // 这个路径相对当前应用的目录
         String uploadPath = getServletContext().getRealPath("/") + File.separator + UPLOAD_DIRECTORY;
 
-
         // 如果目录不存在则创建
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) {
             uploadDir.mkdir();
         }
-
 
         try {
             // 解析请求的内容提取文件数据

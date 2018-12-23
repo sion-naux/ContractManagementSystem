@@ -295,6 +295,7 @@
                                             <button type="submit" class="btn btn-success mr-2" id="approval_submit1"  onclick="submit_approval1()">同意</button>
                                             <button type="submit" class="btn btn-success mr-2" id="approval_submit2" onclick="submit_approval2()">拒绝</button>
                                             <button class="btn btn-light">取消</button>
+                                            <a class="btn btn-danger " id="box-download" href="/download">下载附件</a>
                                         </div>
                                     </form>
                                 </div>

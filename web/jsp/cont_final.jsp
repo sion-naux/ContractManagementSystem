@@ -303,7 +303,6 @@
                         合同编号
                       </span>
                       <span class="card-description" id="box_cont_num">
-                        合同名称
                       </span>
                     </div>
                     <div class="row">
@@ -311,7 +310,6 @@
                         合同名称
                       </span>
                       <span class="card-description" id="box_cont_name">
-                        合同名称
                       </span>
                     </div>
                     <div class="row">
@@ -319,7 +317,6 @@
                         客户名称
                       </span>
                       <span class="card-description" id="box_client_name">
-                        路人甲
                       </span>
                     </div>
                     <div class="row">
@@ -347,14 +344,15 @@
                       </div>
                       <div style="text-align: center">
                       <button class="btn btn-success mr-2" onclick="submit_final(this)">提交</button>
-                      <button class="btn btn-light">取消</button>
+                      <button class="btn btn-light" >取消</button>
+                        <a class="btn btn-danger " id="box-download" href="/download">下载附件</a>
                       </div>
                     </form>
                   </div>
                 </div>
               </div>
             </div>
-       
+
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->

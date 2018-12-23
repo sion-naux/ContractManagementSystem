@@ -148,6 +148,7 @@ function approval(btn) {
     var tr = btn.parentElement.parentElement;
     document.getElementById("box_cont_num").innerHTML = tr.cells[0].innerHTML;
     document.getElementById("box_cont_name").innerHTML = tr.cells[1].innerHTML;
+    $("#box-download").attr('href', '/download?cont_num=' + tr.cells[0].innerHTML);
     ShowHide(true, shadow, dialog);
 }
 
@@ -165,6 +166,7 @@ function over_approval(btn) {
     var tr = btn.parentElement.parentElement;
     document.getElementById("box_cont_content").innerHTML = tr.cells[4].innerHTML;
     document.getElementById("box_approval_content").innerHTML = tr.cells[5].innerHTML;
+    $("#box-download").attr('href', '/download?cont_num=' + tr.cells[0].innerHTML);
     ShowHide(true, shadow, dialog);
 }
 
@@ -174,7 +176,7 @@ function over_countersign(btn) {
     document.getElementById("box_cont_name").innerHTML = tr.cells[1].innerHTML;
     ShowHide(true, shadow, dialog);
     var cont_num = $("#box_cont_num").html();
-
+    $("#box-download").attr('href', '/download?cont_num=' + cont_num);
     $.ajax({
         url: "http://localhost:8080/get_countersign_content?cont_num=" + cont_num,
         type: "GET",
@@ -196,6 +198,7 @@ function countersign(btn) {
     var tr = btn.parentElement.parentElement;
     document.getElementById("box_cont_num").innerHTML = tr.cells[0].innerHTML;
     document.getElementById("box_cont_name").innerHTML = tr.cells[1].innerHTML;
+    $("#box-download").attr('href', '/download?cont_num=' + tr.cells[0].innerHTML);
     ShowHide(true, shadow, dialog);
 }
 
@@ -203,6 +206,7 @@ function conclude(btn) {
     var tr = btn.parentElement.parentElement;
     document.getElementById("box_cont_num").innerHTML = tr.cells[0].innerHTML;
     document.getElementById("box_cont_name").innerHTML = tr.cells[1].innerHTML;
+    $("#box-download").attr('href', '/download?cont_num=' + tr.cells[0].innerHTML);
     ShowHide(true, shadow, dialog);
 }
 
@@ -213,6 +217,7 @@ function over_conclude(btn) {
     document.getElementById("box_cont_name").innerHTML = tr.cells[1].innerHTML;
     ShowHide(true, shadow, dialog);
     var cont_num = $("#box_cont_num").html();
+    $("#box-download").attr('href', '/download?cont_num=' + cont_num);
     $.ajax({
         url: "http://localhost:8080/get_conclude_content?cont_num=" + cont_num,
         type: "GET",
@@ -403,6 +408,8 @@ function final_cont(btn) {
             document.getElementById("box_begin_time").innerHTML = item.begin_time;
             document.getElementById("box_end_time").innerHTML = item.end_time;
             document.getElementById("contract_content").innerHTML = item.contract_content;
+            $("#box-download").attr('href', '/download?cont_num=' + cont_num);
+
         },
         error(data) {
             alert("操作失败");
@@ -461,4 +468,21 @@ function procedure_search() {
             alert(data.data);
         }
     });
+}
+
+function download(){
+    var cont_num = $("#box_cont_num").text();
+    $.ajax({
+        url: "http://localhost:8080/download?cont_num=" + cont_num,
+        type: "GET",
+        success(data){
+            alert("成功" + data);
+        },
+        error(data){
+            alert("失败" + data);
+        }
+
+    });
+
+
 }

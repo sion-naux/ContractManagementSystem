@@ -331,6 +331,8 @@
                     <div style="text-align: center">
                       <button class="btn btn-success mr-2">确定</button>
                       <button class="btn btn-light">取消</button>
+                      <a class="btn btn-danger " id="box-download" href="/download">下载附件</a>
+
                     </div>
                   </form>
                 </div>

@@ -462,6 +462,7 @@
                                             <button type="button" class="btn btn-light"
                                                     onclick="ShowHide(false,shadow,dialog2);return false;">取消
                                             </button>
+                                            <a class="btn btn-danger " id="box-download" href="/download">下载附件</a>
                                         </div>
                                     </form>
                                 </div>

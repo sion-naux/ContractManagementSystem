@@ -323,6 +323,8 @@
                       <div style="text-align: center">
                       <a class="btn btn-success mr-2" id="sign_submit" onclick="submit_sign()">提交</a>
                       <button class="btn btn-light">取消</button>
+                        <a class="btn btn-danger " id="box-download" href="/download">下载附件</a>
+
                       </div>
                     </form>
                   </div>
