@@ -133,7 +133,7 @@ public class Get_Con_List {
         String content = null;
         ArrayList<String> list = new ArrayList<>();
         //首先查找该合同名对应的合同编号
-        String sql1 = "select customer,beginTime,endTime,content from contract,contract_state where contract.num=contract_state.num and contract.num = \"" + conNum + "\" and type = " + type + " and userName = \"" + client + "\"";
+        String sql1 = "select customer,beginTime,endTime,content from contract,contract_state where contract.num=contract_state.num and contract.num = \"" + conNum + "\" and type >= " + type + " and userName = \"" + client + "\"";
         System.out.println(sql1);
         PreparedStatement pst;
         try {
