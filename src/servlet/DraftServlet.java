@@ -59,7 +59,9 @@ public class DraftServlet extends HttpServlet {
 
         // 构造临时路径来存储上传的文件
         // 这个路径相对当前应用的目录
-        String uploadPath = getServletContext().getRealPath("/") + File.separator + UPLOAD_DIRECTORY;
+
+        String i = getParentPath(this.getClass().getResource(".").getPath(), 6);
+        String uploadPath = getParentPath(this.getClass().getResource(".").getPath(), 6) + "/web/" + UPLOAD_DIRECTORY;
 
         // 如果目录不存在则创建
         File uploadDir = new File(uploadPath);
@@ -130,6 +132,15 @@ public class DraftServlet extends HttpServlet {
         drag.insertcontract();
         LogManage.insert_log(new Log(CurrentUser.username, "起草合同：" + contract_name, new Get_Time().getCurrentTime()));
         response.sendRedirect(request.getContextPath() + "/draft");
+    }
+
+    private String getParentPath(String path, int num) {
+        String s = path;
+        for (int i = 0; i < num; i++) {
+            File f = new File(s);
+            s = f.getParent();
+        }
+        return s;
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

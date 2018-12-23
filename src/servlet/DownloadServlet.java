@@ -14,7 +14,7 @@ import java.io.*;
 
 public class DownloadServlet extends HttpServlet {
 
-    public static final String ATTACHMENT_ROOT_PATH = "../out/artifacts/ContractManagementSystem_war_exploded/upload/";
+    public static final String ATTACHMENT_ROOT_PATH = "upload/";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -27,8 +27,9 @@ public class DownloadServlet extends HttpServlet {
         response.addHeader("Content-Disposition", "attachment;filename="
                 + attachment.getFileName());
         try {
+            String s= ATTACHMENT_ROOT_PATH + attachment.getFileName();
             RequestDispatcher rd = request.getRequestDispatcher(ATTACHMENT_ROOT_PATH + attachment.getFileName());
-            if(rd != null)
+            if (rd != null)
                 rd.forward(request, response);
             response.flushBuffer();
 
