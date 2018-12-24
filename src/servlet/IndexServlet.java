@@ -1,6 +1,8 @@
 package servlet;
 
+import Utils.GetNumber;
 import entity.CurrentUser;
+import entity.Number;
 import logic.RightManage;
 
 import javax.servlet.ServletException;
@@ -21,6 +23,9 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Number number = GetNumber.getAll(CurrentUser.username);
+        req.setAttribute("number", number);
+
         req.setAttribute("right_list", CurrentUser.right_list);
         req.getRequestDispatcher("jsp/index.jsp").forward(req, resp);
     }

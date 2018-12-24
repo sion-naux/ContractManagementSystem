@@ -1,4 +1,5 @@
 <%@ page import="java.util.List" %>
+<%@ page import="entity.Number" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 
@@ -213,36 +214,6 @@
             <div class="content-wrapper">
                 <div class="row">
                     <div class="col-lg-12 grid-margin">
-                        <div class="card overflow-hidden dashboard-curved-chart">
-                            <div class="card-body mx-3">
-                                <h2 class="card-title border-bottom-none">Recent Movement</h2>
-                                <div class="align-items-center mb-5 justify-content-between d-lg-flex d-xl-flex d-md-block d-block">
-                                    <div id="chartLegend"></div>
-                                    <div class="nav-wrapper d-inline-block mt-4 mt-lg-0">
-                                        <ul class="nav nav-pills">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Week</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link active" href="#">Month</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Year</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Today</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="curved-line-chart" class="float-chart float-chart-mini"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ROW ENDS -->
-                <div class="row">
-                    <div class="col-lg-12 grid-margin">
                         <div class="card performance-cards">
                             <div class="card-body">
                                 <div class="row">
@@ -250,9 +221,18 @@
                                         <div class="wrapper icon-circle bg-success">
                                             <i class="icon-rocket icons"></i>
                                         </div>
+
+                                        <%
+                                            Number number = (Number) request.getAttribute("number");
+                                        %>
                                         <div class="wrapper text-wrapper">
-                                            <p class="text-dark">8954</p>
-                                            <p>Lifetime total sales</p>
+                                            <p class="text-dark">
+                                                <%
+                                                    if(number != null){
+                                                        out.print(number.getDingGao());
+                                                    }
+                                                %></p>
+                                            <p>待定稿合同</p>
                                         </div>
                                     </div>
                                     <div class="col d-flex flex-row justify-content-center align-items-center">
@@ -260,8 +240,12 @@
                                             <i class="icon-briefcase icons"></i>
                                         </div>
                                         <div class="wrapper text-wrapper">
-                                            <p class="text-dark">7841</p>
-                                            <p>Income amounts</p>
+                                            <p class="text-dark"><%
+                                                if(number != null){
+                                                    out.print(number.getHuiQian());
+                                                }
+                                            %></p>
+                                            <p>待会签合同</p>
                                         </div>
                                     </div>
                                     <div class="col d-flex flex-row justify-content-center align-items-center">
@@ -269,8 +253,12 @@
                                             <i class="icon-umbrella icons"></i>
                                         </div>
                                         <div class="wrapper text-wrapper">
-                                            <p class="text-dark">6521</p>
-                                            <p>Total users</p>
+                                            <p class="text-dark"><%
+                                                if(number != null){
+                                                    out.print(number.getShenPi());
+                                                }
+                                            %></p>
+                                            <p>待审批合同</p>
                                         </div>
                                     </div>
                                     <div class="col d-flex flex-row justify-content-center align-items-center">
@@ -278,8 +266,12 @@
                                             <i class="icon-check icons"></i>
                                         </div>
                                         <div class="wrapper text-wrapper">
-                                            <p class="text-dark">325</p>
-                                            <p>Total visits</p>
+                                            <p class="text-dark"><%
+                                                if(number != null){
+                                                    out.print(number.getQianDing());
+                                                }
+                                            %></p>
+                                            <p>待签订合同</p>
                                         </div>
                                     </div>
                                 </div>
